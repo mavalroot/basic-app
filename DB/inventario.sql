@@ -128,7 +128,7 @@ DROP TABLE IF EXISTS historial CASCADE;
 CREATE TABLE historial (
       id            bigserial       PRIMARY KEY
     , accion        varchar(255)    NOT NULL
-    , tipo          bigint          NOT NULL REFERENCES tipos_historial (id)
+    , tipo          bigint          NOT NULL 
     , referencia    bigint
     , created_at    timestamp(0)    DEFAULT localtimestamp
     , created_by    bigint          NOT NULL REFERENCES roles (id)
@@ -161,3 +161,24 @@ CREATE TABLE roles (
     , last_con      timestamp(0)    DEFAULT localtimestamp
     , created_at    timestamp(0)    DEFAULT localtimestamp
 );
+
+--------------------
+----- INSERTS ------
+--------------------
+INSERT INTO permisos (permiso) VALUES
+      ('admin')
+    , ('normal')
+;
+
+INSERT INTO roles (nombre, password_hash, permiso_id) VALUES
+      (
+          'usuario'
+        , crypt('usuario', gen_salt('md5'))
+        , 2
+    )
+    , (
+          'administrador'
+        , crypt('administrador', gen_salt('md5'))
+        , 1
+    )
+;
