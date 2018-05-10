@@ -1,0 +1,64 @@
+.left-margin{
+    margin:0 .5em 0 0;
+}
+
+.right-button-margin{
+    margin: 0 0 1em 0;
+    overflow: hidden;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+ #wrap {
+  flex: 1;
+}
+
+footer {
+  flex: 0;
+}
+body > #wrap > .container-fluid {
+    margin-top: 10px;
+}
+body > #wrap > nav + .container-fluid {
+    margin-top: 90px;
+}
+
+#option-window {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+}
+
+#option-window > #window {
+    background: white;
+    padding: 20px;
+  position: relative;
+}
+
+#option-window > #window > #close {
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  cursor: pointer;
+}
+
+hr.style11 {
+    height: 6px;
+    background: url(http://ibrahimjabbari.com/english/images/hr-11.png) repeat-x 0 0;
+    border: 0;
+}
