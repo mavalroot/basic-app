@@ -577,7 +577,7 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "🛠 Nette Utils: lightweight utilities for string & array manipulation, image handling, safe JSON encoding/decoding, validation, slug or strong password generating etc.",
+            "description": "🛠 Nette Utils: lightweight utilities for string & array manipulation, image handling, safe JSON encoding/decoding, validation, slug or strong password_hash generating etc.",
             "homepage": "https://nette.org",
             "keywords": [
                 "array",
@@ -587,7 +587,7 @@
                 "json",
                 "nette",
                 "paginator",
-                "password",
+                "password_hash",
                 "slugify",
                 "string",
                 "unicode",

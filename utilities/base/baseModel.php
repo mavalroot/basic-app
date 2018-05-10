@@ -217,7 +217,7 @@ class BaseModel
 
     /**
      * Cambia el criterio de búsqueda de una instancia.
-     * @param string $new 
+     * @param string $new
      */
     public function setSortBy($new)
     {

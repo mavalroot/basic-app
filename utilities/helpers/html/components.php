@@ -217,45 +217,19 @@ class Components
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <?php if (Checker::checkRole('cementerio') || Checker::checkRole('todo')): ?>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Cementerio
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../inhumaciones/index.php">Inhumaciones</a>
-                      </div>
-                    </li>
-                <?php endif; ?>
-                <?php if (Checker::checkRole('trafico') || Checker::checkRole('todo')): ?>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Tráfico
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="../vados/index.php">Vados</a>
-                      <a class="dropdown-item" href="#">...</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">...</a>
-                    </div>
-                  </li>
-                <?php endif; ?>
-                <?php if (Checker::checkRole('admin') || Checker::checkRole('todo')): ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Administración
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="../actividad-reciente/index.php">Actividad reciente</a>
-                          <a class="dropdown-item" href="#">Marcado para eliminar</a>
-                          <a class="dropdown-item" href="../roles/index.php">roles</a>
+                          <a class="dropdown-item" href="../roles/index.php">Roles</a>
                         </div>
                     </li>
-                <?php endif; ?>
             </ul>
-            <?php if (isset($_SESSION['rol'])): ?>
+            <?php if (isset($_SESSION['nombre'])): ?>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../roles/logout.php" class="nav-link">Logout ( <?= $_SESSION['rol'] ?> )</a></li>
+                <li><a href="../roles/logout.php" class="nav-link">Logout ( <?= $_SESSION['nombre'] ?> )</a></li>
             </ul>
             <?php else: ?>
                 <ul class="nav navbar-nav navbar-right">

@@ -33,7 +33,7 @@ class Database
      * Contraseña de dicho rol
      * @var string
      */
-    private $password = 'inventario';
+    private $password_hash = 'inventario';
 
     /**
      * Variable que se usará para la conexión.
@@ -50,7 +50,7 @@ class Database
         $this->conn = null;
 
         try {
-            $this->conn = new PDO('pgsql:host=' . $this->host . ';dbname=' . $this->db_name, $this->username, $this->password);
+            $this->conn = new PDO('pgsql:host=' . $this->host . ';dbname=' . $this->db_name, $this->username, $this->password_hash);
         } catch (PDOException $exception) {
             echo 'Error de conexión: ' . $exception->getMessage();
         }

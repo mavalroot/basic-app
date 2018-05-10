@@ -24,11 +24,11 @@ class Checker
     /**
      * Comprueba que el rol del rol actual coincida con el rol pasado
      * como parámetro.
-     * @param  string $check
+     * @param  int $check
      * @return bool
      */
-    public static function checkRole($check)
+    public static function checkPermission($check)
     {
-        return isset($_SESSION['rol']) && $_SESSION['rol'] == $check;
+        return isset($_SESSION['permiso_id']) && $_SESSION['permiso_id'] == $check;
     }
 }

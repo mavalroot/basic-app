@@ -2,7 +2,7 @@
 session_start();
 include_once '../../config/main-local.php';
 
-use controllers\rolesController;
+use controllers\RolesController;
 use utilities\helpers\html\Components;
 
 $pageTitle = "Login";

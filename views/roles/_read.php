@@ -26,7 +26,7 @@ if (!isset($_SESSION)) {
     'query' => $query,
     'rows' => [
         'nombre' => ['label' => 'Nombre de rol'],
-        'last_conn' => ['label' => 'Última conexión'],
+        'last_con' => ['label' => 'Última conexión'],
     ],
     'actions' => [
         'replace' => true,

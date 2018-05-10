@@ -2,6 +2,7 @@
 session_start();
 include_once '../../config/main-local.php';
 
+use models\Permisos;
 use models\ActividadReciente;
 
 use utilities\base\Database;
@@ -33,18 +34,22 @@ Components::header($pageTitle, $breadcrumps);
 
 <?php
 
+$permisos = new Permisos(['id' => 1]);
+$permisos->readOne();
+var_dump($permisos->getRoles());
+$permisos->id;
 // $prueba = new ActividadReciente(['id' => 2]);
 // $prueba->readOne();
 // var_dump($prueba->referencia);
 // echo $prueba->getUrl();
 
-// var_dump(Checker::checkRole('todo'));
+// var_dump(Checker::checkPermission('todo'));
 
 // $user = new Roles(['nombre' => $_SESSION['rol']]);
 //
 // var_dump($user->getRole());
 //
-// var_dump(Checker::checkRole('todo'));
+// var_dump(Checker::checkPermission('todo'));
 //
 // var_dump($_SESSION['rol']);
 //

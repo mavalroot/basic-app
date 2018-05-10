@@ -23,15 +23,15 @@ class Roles extends BaseModel
      * Contraseña, que se corresponde con la contraseña de la tabla.
      * @var string
      */
-    public $password;
+    public $password_hash;
 
     protected $columnas = [
-        'Última conexión' => 'last_conn',
+        'Última conexión' => 'last_con',
     ];
 
-    protected $sortBy = 'last_conn DESC';
+    protected $sortBy = 'last_con DESC';
 
-    protected $searchBy = ['Nombre de rol' => 'nombre'];
+    protected $searchBy = ['Nombre de usuario' => 'nombre'];
 
     public static function tableName()
     {
@@ -40,7 +40,7 @@ class Roles extends BaseModel
 
     public static function primaryKey()
     {
-        return 'nombre';
+        return 'id';
     }
 
     /**
@@ -55,13 +55,14 @@ class Roles extends BaseModel
         ->get();
 
         $row = $query->fetch(PDO::FETCH_ASSOC);
-        $password = $row['password'];
+        $password_hash = $row['password_hash'];
 
-        if (password_verify($this->password, $password)) {
-            $_SESSION['rol'] = $this->nombre;
-            $_SESSION['rol'] = $this->getRole();
+        if (password_verify($this->password_hash, $password_hash)) {
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['nombre'] = $this->nombre;
+            $_SESSION['permiso_id'] = $row['permiso_id'];
             $this->readOne(['nombre', $this->nombre]);
-            $this->last_conn = date("Y-m-d H:i:s");
+            $this->last_con = date("Y-m-d H:i:s");
             $this->update();
             return true;
         }
@@ -74,27 +75,14 @@ class Roles extends BaseModel
      */
     public function isLogged()
     {
-        if (isset($_SESSION['rol'])) {
-            return $this->readOne(['nombre', $_SESSION['rol']]);
+        if (isset($_SESSION['nombre'])) {
+            return $this->readOne(['nombre', $_SESSION['nombre']]);
         }
         return false;
     }
 
-    /**
-     * Devuelve el rol del rol.
-     * @return string El rol.
-     */
-    public function getRole()
+    public function getRoleName()
     {
-        $query = QueryBuilder::db($this->conn)
-        ->select('*')
-        ->from('roles u')
-        ->join('roles r', ['u.rol_id', 'r.id'])
-        ->where(['nombre', $this->nombre])
-        ->get();
-
-        $row = $query->fetch(PDO::FETCH_ASSOC);
-        return $row['tipo'];
     }
 
     public function getActividad($config)

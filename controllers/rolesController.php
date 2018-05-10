@@ -14,7 +14,7 @@ use utilities\helpers\validation\Errors;
  */
 class RolesController extends BaseController
 {
-    protected static $rol = 'admin';
+    protected static $rol = 1;
 
     public function __construct()
     {
@@ -43,7 +43,7 @@ class RolesController extends BaseController
         }
         if ($_POST) {
             $rol->nombre = $_POST['nombre'];
-            $rol->password = $_POST['password'];
+            $rol->password_hash = $_POST['password_hash'];
 
             if ($rol->login()) {
                 header("Location: ../site/index.php");
@@ -73,7 +73,6 @@ class RolesController extends BaseController
             'limit' => $pagLimit,
             'offset' => $pagOffset,
         ]);
-
         if ($searchTerm) {
             $url = "index.php?search={$searchTerm}&by={$searchBy}&";
             $rows = $model->countAll([

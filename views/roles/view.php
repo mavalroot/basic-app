@@ -26,7 +26,7 @@ Components::header($pageTitle, $breadcrumps);
 $rol = rolesController::view($id);
 $rol->setColumnas([
     'Nombre de rol' => 'nombre',
-    'Última conexión' => 'last_conn'
+    'Última conexión' => 'last_con'
 ])
 ?>
 

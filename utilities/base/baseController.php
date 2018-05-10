@@ -63,7 +63,7 @@ class BaseController
      */
     public function permission()
     {
-        if (!Checker::checkRole(static::$rol) && !Checker::checkRole('todo')) {
+        if (!Checker::checkPermission(static::$rol) && !Checker::checkPermission(1)) {
             Errors::forbidden();
         }
     }
