@@ -98,10 +98,10 @@ class RolesController extends BaseController
      * @param  string    $name      Nombre del rol a visualizar.
      * @return Roles   Modelo.
      */
-    public function view($name)
+    public function view($id)
     {
         self::permission();
-        $model = new Roles(['nombre' => $name]);
+        $model = new Roles(['id' => $id]);
         if (!$model->readOne()) {
             Errors::notFound();
         }

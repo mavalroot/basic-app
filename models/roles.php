@@ -81,8 +81,16 @@ class Roles extends BaseModel
         return false;
     }
 
-    public function getRoleName()
+    /**
+     * Devuelve el nombre del permiso.
+     * @return string
+     */
+    public function getPermiso()
     {
+        $permiso = new Permisos();
+        $permiso->readOne(['id', $this->permiso_id]);
+        return $permiso->permiso;
+        ;
     }
 
     public function getActividad($config)

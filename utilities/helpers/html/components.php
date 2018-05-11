@@ -217,24 +217,26 @@ class Components
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Administración
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="../actividad-reciente/index.php">Actividad reciente</a>
-                          <a class="dropdown-item" href="../roles/index.php">Roles</a>
-                        </div>
+                <?php if (Checker::checkPermission(1)): ?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Administración
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="../actividad-reciente/index.php">Actividad reciente</a>
+                      <a class="dropdown-item" href="../roles/index.php">Roles</a>
+                    </div>
                     </li>
+                <?php endif; ?>
             </ul>
             <?php if (isset($_SESSION['nombre'])): ?>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="../roles/logout.php" class="nav-link">Logout ( <?= $_SESSION['nombre'] ?> )</a></li>
             </ul>
             <?php else: ?>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../roles/login.php" class="nav-link">Login</a></li>
-                </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../roles/login.php" class="nav-link">Login</a></li>
+            </ul>
             <?php endif ?>
           </div>
         </nav>

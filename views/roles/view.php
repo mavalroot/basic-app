@@ -7,23 +7,23 @@ use utilities\helpers\html\Html;
 use utilities\helpers\html\tableView;
 use utilities\helpers\validation\Errors;
 use utilities\helpers\html\Components;
-use controllers\rolesController;
+use controllers\RolesController;
 
 // Se obtiene el ID del registro que se va a mostrar.
-if (!isset($_GET['name'])) {
+if (!isset($_GET['id'])) {
     Errors::notFound();
 }
-$id = $_GET['name'];
+$id = $_GET['id'];
 
 $breadcrumps = [
     'Index' => '../site/index.php',
     'roles' => 'index.php',
-    "Detalle del rol $id" => ''
+    "Detalle" => ''
 ];
 $pageTitle = "Consultar un rol";
 Components::header($pageTitle, $breadcrumps);
 
-$rol = rolesController::view($id);
+$rol = RolesController::view($id);
 $rol->setColumnas([
     'Nombre de rol' => 'nombre',
     'Última conexión' => 'last_con'
@@ -39,6 +39,10 @@ $rol->setColumnas([
 <div class="table-responsive">
     <table class='table table-striped'>
         <?= Html::form($rol)->multiTrTable(); ?>
+        <tr>
+            <th class="col-sm-2">Permisos</th>
+            <td class="col-sm-10"><?= $rol->getPermiso() ?></td>
+        </tr>
     </table>
 </div>
 <hr class="style11">

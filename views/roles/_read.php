@@ -26,6 +26,12 @@ if (!isset($_SESSION)) {
     'query' => $query,
     'rows' => [
         'nombre' => ['label' => 'Nombre de rol'],
+        [
+            'label' => 'permiso',
+            'value' => function ($model) {
+                return $model->getPermiso();
+            }
+        ],
         'last_con' => ['label' => 'Última conexión'],
     ],
     'actions' => [
@@ -33,7 +39,7 @@ if (!isset($_SESSION)) {
         'add' => [
             [
                 'value' => function ($model) {
-                    return Html::a(['<i class="fas fa-eye"></i> Ver', ['view.php', 'name' => $model->nombre], ['class' => 'btn btn-info btn-sm']], true);
+                    return Html::a(['<i class="fas fa-eye"></i> Ver', ['view.php', 'id' => $model->id], ['class' => 'btn btn-info btn-sm']], true);
                 },
             ],
         ]

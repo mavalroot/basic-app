@@ -111,6 +111,12 @@ class tableView
      *      'rows' => [
      *          'columna1' => ['label' => 'Columna1'],
      *          'columna1' => ['label' => 'Columna2'],
+     *          [
+     *               'label' => 'Columna1',
+     *               'value' => function($model) {
+     *                   return
+     *               }
+     *          ]
      *      ],
      * ];
      *
@@ -121,6 +127,7 @@ class tableView
         extract($config); ?>
         <tr id="row_<?= $model->id ?>">
             <?php foreach ($rows as $key => $value): ?>
+                <?php $value['raw'] = isset($value['raw']) ? $value['raw'] : false ; ?>
                 <?php if (is_integer($key)): ?>
                     <td><?= $value['raw'] ? call_user_func($value['value'], $model) : Html::h(call_user_func($value['value'], $model)) ?></td>
                 <?php else: ?>
