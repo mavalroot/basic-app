@@ -9,6 +9,7 @@ if (!isset($_SESSION)) {
 
 ?>
 <fieldset>
+    <legend>General</legend>
 <?= Html::form($aparato, 'usuario_id')->label('Usuario')->textInput() ?>
 <?= Html::form($aparato, 'delegacion_id')->label('Delegación')->textInput() ?>
 <?= Html::form($aparato, 'tipo')->label('Tipo de aparato')->textInput() ?>

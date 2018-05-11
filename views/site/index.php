@@ -2,6 +2,7 @@
 session_start();
 include_once '../../config/main-local.php';
 
+use models\Aparatos;
 use models\Permisos;
 use models\ActividadReciente;
 
@@ -34,10 +35,7 @@ Components::header($pageTitle, $breadcrumps);
 
 <?php
 
-$permisos = new Permisos(['id' => 1]);
-$permisos->readOne();
-var_dump($permisos->getRoles());
-$permisos->id;
+var_dump(Aparatos::getAllColumns());
 // $prueba = new ActividadReciente(['id' => 2]);
 // $prueba->readOne();
 // var_dump($prueba->referencia);

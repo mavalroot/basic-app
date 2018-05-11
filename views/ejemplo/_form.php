@@ -17,7 +17,7 @@ if (!isset($_SESSION)) {
 <?= Html::form($aparato, 'edad')->label('Edad')->readonlyInput(['message' => '*Este campo es autogenerado.']) ?>
 <?= Html::form($aparato, 'fecha_nac')->label('Fecha de nacimiento')->dateInput() ?>
 <?= Html::form($aparato, 'fecha_dec')->label('Fecha de deceso')->dateInput() ?>
-<?= Html::form($aparato, 'fecha_inh')->label('Fecha de inhumación')->dateInput() ?>
+<?= Html::form($aparato, 'fecha_inh')->label('Fecha de aparato')->dateInput() ?>
 <?= Html::form($aparato, 'procedencia')->label('Procedencia')->textInput() ?>
 <?= Html::form($aparato, 'cert_med_causa')->label('Certificado médico de Causa')->textInput() ?>
 <?= Html::form($aparato, 'nicho')->label('Nicho')->numberInput() ?>

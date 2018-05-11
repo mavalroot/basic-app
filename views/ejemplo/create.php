@@ -9,7 +9,7 @@ use controllers\AparatosController;
 $breadcrumps = [
     'Index' => '../site/index.php',
     'Aparatos' => 'index.php',
-    'Crear inhumación' => ''
+    'Crear aparato' => ''
 ];
 $pageTitle = "Nuevo registro";
 Components::header($pageTitle, $breadcrumps);

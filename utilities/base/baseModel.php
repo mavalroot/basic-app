@@ -340,23 +340,27 @@ class BaseModel
      */
     public function create()
     {
+        $columnas = static::getAllColumns();
+        $datos = [];
+        foreach ($columnas as $value) {
+            if (isset($this->$value) && $this->$value == true) {
+                $datos[$value] = $this->$value;
+            }
+        }
         $query =    "INSERT INTO
                         " . static::tableName() . "
-                    (" . implode(',', $this->columnas) . ")
+                    (" . implode(', ', array_keys($datos)) . ")
                     VALUES
-                    (" . implode(',', preg_filter('/^/', ':', $this->columnas)) . ")";
+                    (" . implode(', ', preg_filter('/^/', ':', array_keys($datos))) . ")";
 
         $stmt = $this->conn->prepare($query);
-
         $this->beforeInsert();
-        $this->bindAll($stmt);
-        if ($stmt->execute()) {
+        if ($stmt->execute($datos)) {
             $this->id = $this->conn->lastInsertId();
             $this->afterInsert();
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -366,18 +370,25 @@ class BaseModel
     public function update()
     {
         $this->beforeUpdate();
+        $columnas = static::getAllColumns();
+        $datos = [];
+        foreach ($columnas as $value) {
+            if (isset($this->$value) && $this->$value == true) {
+                $datos[$value] = $this->$value;
+            }
+        }
 
-        foreach ($this->columnas as $valor) {
+        foreach ($datos as $key => $valor) {
             $query = "UPDATE
                         " . static::tableName() . "
                     SET
-                        $valor = :{$valor}
+                        $key = :{$key}
                     WHERE
                         " . static::primaryKey() . " = :" . static::primaryKey();
 
             $stmt = $this->conn->prepare($query);
 
-            $stmt->bindParam(':' . $valor, $this->$valor);
+            $stmt->bindParam(':' . $key, $valor);
             $stmt->bindParam(':' . static::primaryKey(), $this->{static::primaryKey()});
             if (!$stmt->execute()) {
                 return false;
@@ -445,23 +456,34 @@ class BaseModel
      */
     public function createRecord($action)
     {
-        $record = new ActividadReciente([
-            'accion' => $this->actionMessage[$action],
-            'tipo' => $this->tableName(),
-            'referencia' => $this->id,
-            'created_by' => $_SESSION['rol']
-        ]);
-        $record->create();
+        // $record = new ActividadReciente([
+        //     'accion' => $this->actionMessage[$action],
+        //     'tipo' => $this->tableName(),
+        //     'referencia' => $this->id,
+        //     'created_by' => $_SESSION['rol']
+        // ]);
+        // $record->create();
+        return;
     }
 
     /**
-     * Hace un bind de todos los atributos usando los valores de $columna.
-     * @param  mixed $value El valor al que se le hace bind.
+     * Obtiene los nombres de las columnas de la tabla en forma de array.
+     * @return array
      */
-    protected function bindAll($value)
+    public static function getAllColumns()
     {
-        foreach ($this->columnas as $valor) {
-            $value->bindParam(':' . $valor, $this->$valor);
+        $conection = new Database();
+        $db = $conection->getConnection();
+        $query = QueryBuilder::db($db)
+        ->select('*')
+        ->from(static::tableName())
+        ->get();
+        $i = 0;
+        $columns = [];
+        while ($val = $query->getColumnMeta($i)) {
+            $columns[] = $val['name'];
+            $i++;
         }
+        return $columns;
     }
 }
