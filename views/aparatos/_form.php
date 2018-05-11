@@ -15,7 +15,7 @@ if (!isset($_SESSION)) {
 <?= Html::form($aparato, 'tipo')->label('Tipo de aparato')->textInput() ?>
 <?= Html::form($aparato, 'marca')->label('Marca')->textInput() ?>
 <?= Html::form($aparato, 'modelo')->label('Modelo')->textInput() ?>
-<?= Html::form($aparato, 'num_serie')->label('Número de serie')->numberInput() ?>
+<?= Html::form($aparato, 'num_serie')->label('Número de serie')->textInput() ?>
 <?= Html::form($aparato, 'fecha_compra')->label('Fecha de compra')->dateInput() ?>
 <?= Html::form($aparato, 'proveedor')->label('Proveedor')->textInput() ?>
 <?= Html::form($aparato, 'observaciones')->label('Observaciones')->textInput() ?>
