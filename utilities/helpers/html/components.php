@@ -217,6 +217,7 @@ class Components
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                <li><a href="../aparatos/index.php" class="nav-link">Aparatos</a></li>
                 <?php if (Checker::checkPermission(1)): ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
