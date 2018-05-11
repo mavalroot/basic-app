@@ -226,7 +226,7 @@ class Components
                       <a class="dropdown-item" href="../actividad-reciente/index.php">Actividad reciente</a>
                       <a class="dropdown-item" href="../roles/index.php">Roles</a>
                     </div>
-                    </li>
+                </li>
                 <?php endif; ?>
             </ul>
             <?php if (isset($_SESSION['nombre'])): ?>
