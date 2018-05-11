@@ -34,7 +34,7 @@ CREATE TABLE aparatos (
     , delegacion_id bigint          REFERENCES delegaciones (id)
     , marca         varchar(255)
     , modelo        varchar(255)
-    , num_serie     int
+    , num_serie     varchar(255)
     , fecha_compra  timestamp(0)
     , proveedor     varchar(255)
     , tipo          varchar(255)
