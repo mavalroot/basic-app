@@ -1,12 +1,12 @@
 <?php
 include_once '../../config/main-local.php';
 
-use controllers\InhumacionesController;
+use controllers\AparatosController;
 
 if (!isset($_POST['object_id'])) {
     echo 'El registro no ha podido ser eliminado.';
     return;
 } else {
-    $controller = new InhumacionesController();
+    $controller = new AparatosController();
     $controller->delete($_POST['object_id']);
 }

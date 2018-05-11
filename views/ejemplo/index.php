@@ -3,16 +3,16 @@ session_start();
 include_once '../../config/main-local.php';
 use utilities\helpers\html\Components;
 
-use controllers\InhumacionesController;
+use controllers\AparatosController;
 
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Inhumaciones' => ''
+    'Aparatos' => ''
 ];
 $pageTitle = "Registro completo";
 Components::header($pageTitle, $breadcrumps);
 
-$controller = new InhumacionesController();
+$controller = new AparatosController();
 $controller = $controller->index($pagLimit, $pagOffset);
 extract($controller);
 

@@ -4,7 +4,7 @@ include_once '../../config/main-local.php';
 use utilities\helpers\html\Html;
 use utilities\helpers\validation\Errors;
 use utilities\helpers\html\Components;
-use controllers\InhumacionesController;
+use controllers\AparatosController;
 
 // Se obtiene el ID del registro que se va a mostrar.
 if (!isset($_GET['id'])) {
@@ -14,13 +14,13 @@ $id = $_GET['id'];
 
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Inhumaciones' => 'index.php',
-    "Detalle inhumacion$id" => ''
+    'Aparatos' => 'index.php',
+    "Detalle aparato$id" => ''
 ];
 $pageTitle = "Consultar un registro";
 Components::header($pageTitle, $breadcrumps);
 
-$inhumacion = InhumacionesController::view($id);
+$aparato = AparatosController::view($id);
 ?>
 
 <div class='right-button-margin'>
@@ -31,11 +31,11 @@ $inhumacion = InhumacionesController::view($id);
 
 <div id="content" class="table-responsive">
     <table class='table table-striped'>
-        <?= Html::form($inhumacion)->multiTrTable(); ?>
+        <?= Html::form($aparato)->multiTrTable(); ?>
     </table>
 </div>
 
-<button class="btn btn-md btn-success float-right" id="export" data-id="<?= $id ?>" data-name="inhumacion">
+<button class="btn btn-md btn-success float-right" id="export" data-id="<?= $id ?>" data-name="aparato">
     Guardar como PDF
 </button>
 

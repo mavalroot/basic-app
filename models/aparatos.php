@@ -21,9 +21,19 @@ class Aparatos extends BaseModel
         'Observaciones' => 'observaciones',
     ];
 
-    protected $searchBy = $this->columnas;
+    protected $searchBy = [
+        'Usuario' => 'usuario_id',
+        'Delegación' => 'delegacion_id',
+        'Marca' => 'marca',
+        'Modelo' => 'modelo',
+        'Número de serie' => 'num_serie',
+        'Fecha de compra' => 'fecha_compra',
+        'Proveedor' => 'proveedor',
+        'Tipo de aparato' => 'tipo',
+        'Observaciones' => 'observaciones',
+    ];
 
-    public function tableName()
+    public static function tableName()
     {
         return 'aparatos';
     }

@@ -3,7 +3,7 @@ session_start();
 include_once '../../config/main-local.php';
 use utilities\helpers\validation\Errors;
 use utilities\helpers\html\Components;
-use controllers\InhumacionesController;
+use controllers\AparatosController;
 
 // Obtenemos el ID del registro que se va a actualizar.
 if (!isset($_GET['id'])) {
@@ -13,8 +13,8 @@ $id = $_GET['id'];
 
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Inhumaciones' => 'index.php',
-    "Editar inhumacion$id" => ''
+    'Aparatos' => 'index.php',
+    "Editar aparato$id" => ''
 ];
 $pageTitle = "Actualizar registro";
 Components::header($pageTitle, $breadcrumps);
@@ -28,8 +28,8 @@ Components::header($pageTitle, $breadcrumps);
 </div>
 
 <?php
-    $controller = new InhumacionesController();
-    $inhumacion = $controller->update($id);
+    $controller = new AparatosController();
+    $aparato = $controller->update($id);
 ?>
 
 <div class="container">

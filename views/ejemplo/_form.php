@@ -9,21 +9,21 @@ if (!isset($_SESSION)) {
 
 ?>
 <fieldset>
-<?= Html::form($inhumacion, 'nombre')->label('Nombre')->textInput() ?>
-<?= Html::form($inhumacion, 'dni')->label('DNI')->textInput() ?>
-<?= Html::form($inhumacion, 'domicilio')->label('Domicilio')->textInput() ?>
-<?= Html::form($inhumacion, 'estado_civil')->label('Estado Civil')->textInput() ?>
-<?= Html::form($inhumacion, 'sexo')->label('Sexo')->textInput() ?>
-<?= Html::form($inhumacion, 'edad')->label('Edad')->readonlyInput(['message' => '*Este campo es autogenerado.']) ?>
-<?= Html::form($inhumacion, 'fecha_nac')->label('Fecha de nacimiento')->dateInput() ?>
-<?= Html::form($inhumacion, 'fecha_dec')->label('Fecha de deceso')->dateInput() ?>
-<?= Html::form($inhumacion, 'fecha_inh')->label('Fecha de inhumación')->dateInput() ?>
-<?= Html::form($inhumacion, 'procedencia')->label('Procedencia')->textInput() ?>
-<?= Html::form($inhumacion, 'cert_med_causa')->label('Certificado médico de Causa')->textInput() ?>
-<?= Html::form($inhumacion, 'nicho')->label('Nicho')->numberInput() ?>
-<?= Html::form($inhumacion, 'fila')->label('Fila')->numberInput() ?>
-<?= Html::form($inhumacion, 'patio')->label('Patio')->numberInput() ?>
-<?= Html::form($inhumacion, 'bloque')->label('Bloque')->numberInput() ?>
+<?= Html::form($aparato, 'nombre')->label('Nombre')->textInput() ?>
+<?= Html::form($aparato, 'dni')->label('DNI')->textInput() ?>
+<?= Html::form($aparato, 'domicilio')->label('Domicilio')->textInput() ?>
+<?= Html::form($aparato, 'estado_civil')->label('Estado Civil')->textInput() ?>
+<?= Html::form($aparato, 'sexo')->label('Sexo')->textInput() ?>
+<?= Html::form($aparato, 'edad')->label('Edad')->readonlyInput(['message' => '*Este campo es autogenerado.']) ?>
+<?= Html::form($aparato, 'fecha_nac')->label('Fecha de nacimiento')->dateInput() ?>
+<?= Html::form($aparato, 'fecha_dec')->label('Fecha de deceso')->dateInput() ?>
+<?= Html::form($aparato, 'fecha_inh')->label('Fecha de inhumación')->dateInput() ?>
+<?= Html::form($aparato, 'procedencia')->label('Procedencia')->textInput() ?>
+<?= Html::form($aparato, 'cert_med_causa')->label('Certificado médico de Causa')->textInput() ?>
+<?= Html::form($aparato, 'nicho')->label('Nicho')->numberInput() ?>
+<?= Html::form($aparato, 'fila')->label('Fila')->numberInput() ?>
+<?= Html::form($aparato, 'patio')->label('Patio')->numberInput() ?>
+<?= Html::form($aparato, 'bloque')->label('Bloque')->numberInput() ?>
 </fieldset>
 
 <fieldset>

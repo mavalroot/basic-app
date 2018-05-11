@@ -35,9 +35,9 @@ if (!isset($_SESSION)) {
     'model' => $model,
     'query' => $query,
     'rows' => [
-        'nombre' => ['label' => 'Nombre'],
-        'dni' => ['label' => 'DNI'],
-        'domicilio' => ['label' => 'Domicilio'],
+        'tipo' => ['label' => 'Tipo de aparato'],
+        'marca' => ['label' => 'Marca'],
+        'modelo' => ['label' => 'Modelo']
     ],
 ]); ?>
 

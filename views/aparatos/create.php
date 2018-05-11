@@ -4,11 +4,11 @@ session_start();
 include_once '../../config/main-local.php';
 
 use utilities\helpers\html\Components;
-use controllers\InhumacionesController;
+use controllers\AparatosController;
 
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Inhumaciones' => 'index.php',
+    'Aparatos' => 'index.php',
     'Crear inhumación' => ''
 ];
 $pageTitle = "Nuevo registro";
@@ -23,8 +23,8 @@ Components::header($pageTitle, $breadcrumps);
 </div>
 
 <?php
-$controller = new InhumacionesController();
-$inhumacion = $controller->create();
+$controller = new AparatosController();
+$aparato = $controller->create();
 ?>
 
 <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">

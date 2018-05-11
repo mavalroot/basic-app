@@ -24,7 +24,7 @@ Components::header($pageTitle, $breadcrumps);
 <h3>Aquí se incluirán links recopilatorios a todas las distintas bases de datos.</h3>
 
 <ul>
-    <li>Inhumaciones</li>
+    <li>Aparatos</li>
     <li>Tráfico
         <ul>
             <li>Vados</li>
