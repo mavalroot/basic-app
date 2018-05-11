@@ -35,6 +35,7 @@ if (!isset($_SESSION)) {
     'model' => $model,
     'query' => $query,
     'rows' => [
+        'num_serie' => ['label' => 'Número de serie'],
         'tipo' => ['label' => 'Tipo de aparato'],
         'marca' => ['label' => 'Marca'],
         'modelo' => ['label' => 'Modelo']

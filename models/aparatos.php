@@ -44,4 +44,31 @@ class Aparatos extends BaseModel
 
         ];
     }
+
+    public function getDatosAsociados()
+    {
+        $model = $this->getModelByType();
+        if ($model->readOne()) {
+            return $model;
+        }
+        return null;
+    }
+
+    public function getModelByType()
+    {
+        switch ($this->tipo) {
+            case 'ordenador':
+                return new Ordenadores(['aparato_id' => $this->id]);
+            case 'periferico':
+                return new Perifericos(['aparato_id' => $this->id]);
+            case 'impresora':
+                return new Impresoras(['aparato_id' => $this->id]);
+            case 'electronica':
+                return new ElectronicaRed(['aparato_id' => $this->id]);
+            case 'monitor':
+                return new Monitores(['aparato_id' => $this->id]);
+            default:
+                return null;
+        }
+    }
 }
