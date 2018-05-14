@@ -24,7 +24,10 @@ Components::header($pageTitle, $breadcrumps);
 
 <?php
 $controller = new AparatosController();
-$aparato = $controller->create();
+$crear = $controller->create();
+extract($crear);
+var_dump($especifico);
+
 ?>
 
 <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">

@@ -386,6 +386,65 @@ class Html
         }
     }
 
+    public static function selectOption($options, $config = [])
+    {
+        self::prepareConfig($config);
+        if (static::$model) {
+            $model = static::$model;
+            $set = isset($model['value']) ? $model['value'] : false; ?>
+            <div class="form-group row">
+                <label for="<?= $model['name'] ?>" class="col-sm-2 col-form-label"><?= static::$label ?: $model['prop'] ?></label>
+                <div class="col-sm-10">
+                    <select id="<?= $model['name'] ?>" class="form-control <?= $model['valid'] ?>" name="<?= $model['name'] ?>" <?= $set ? 'disabled="true"' : '' ?>>
+                        <option value="">-- Elegir --</option>
+                        <?php foreach ($options as $key => $value): ?>
+                            <option value="<?= $key ?>" <?= $set == $key ? 'selected' : '' ?>><?= $value ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <small>
+                        <?= $config['message'] ?>
+                    </small>
+                    <div class="invalid-feedback">
+                        <i class="fas fa-exclamation-circle"></i> <?= $model['error'] ?>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+    }
+
+    public static function textarea($config = [])
+    {
+        self::prepareConfig($config);
+        if (static::$model) {
+            $model = static::$model; ?>
+            <div class="form-group row">
+                <label for="<?= $model['name'] ?>" class="col-sm-2 col-form-label">
+                    <?= static::$label ?: $model['prop'] ?>
+                </label>
+                <div class="col-sm-10">
+                    <textarea id="<?= $model['name'] ?>" name="<?= $model['name'] ?>" class="form-control <?= $model['valid'] ?>"  ><?= $model['value'] ?></textarea>
+
+                    <small>
+                        <?= $config['message'] ?>
+                    </small>
+                    <div class="invalid-feedback">
+                        <i class="fas fa-exclamation-circle"></i> <?= $model['error'] ?>
+                    </div>
+                </div>
+            </div>
+            <?php
+        } else {
+            ?>
+            <div class="form-group">
+                <label>
+                    <input type="text" name="" value="" class="form-control">
+                </label>
+            </div>
+            <?php
+        }
+    }
+
     /**
      * Comprueba que la variable introducida es una fecha, y si lo es la
      * formatea.

@@ -112,7 +112,22 @@ class ModelValidator
             case '!==':
             static::addError(($array[0] !== $array[2]), $key, $array, $errores);
             break;
+            case 'in':
+            static::addError(self::checkIn($array[0], $array[2]), $key, $array, $errores);
+            break;
+            default:
+            break;
         }
+    }
+
+    protected function checkIn($checking, $in)
+    {
+        foreach ($in as $value) {
+            if ($checking == $value) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

@@ -41,7 +41,7 @@ class Aparatos extends BaseModel
     public static function rules()
     {
         return [
-
+            [['tipo'], 'in', array_keys(static::getTypes()), 'message' => 'El tipo no es correcto. Seleccione una opción válida.']
         ];
     }
 
@@ -56,19 +56,32 @@ class Aparatos extends BaseModel
 
     public function getModelByType()
     {
+        $id = isset($this->id) ? ['aparato_id' => $this->id] : false;
+
         switch ($this->tipo) {
             case 'ordenador':
-                return new Ordenadores(['aparato_id' => $this->id]);
+                return new Ordenadores($id);
             case 'periferico':
-                return new Perifericos(['aparato_id' => $this->id]);
+                return new Perifericos($id);
             case 'impresora':
-                return new Impresoras(['aparato_id' => $this->id]);
-            case 'electronica':
-                return new ElectronicaRed(['aparato_id' => $this->id]);
+                return new Impresoras($id);
+            case 'electronica_red':
+                return new ElectronicaRed($id);
             case 'monitor':
-                return new Monitores(['aparato_id' => $this->id]);
+                return new Monitores($id);
             default:
                 return null;
         }
+    }
+
+    public static function getTypes()
+    {
+        return [
+            'ordenadores' => 'Ordenadores',
+            'impresoras' => 'Impresoras',
+            'monitores' => 'Monitores',
+            'perifericos' => 'Periféricos',
+            'electronica_red' => 'Electrónica de red',
+        ];
     }
 }
