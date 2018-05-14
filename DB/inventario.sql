@@ -52,6 +52,7 @@ CREATE TABLE aparatos_usuarios (
       id            bigserial       PRIMARY KEY
     , usuario_id    bigint          REFERENCES roles (id)
     , aparato_id    bigint          REFERENCES aparatos (id)
+                                    ON DELETE CASCADE ON UPDATE CASCADE
     , created_at    timestamp(0)    DEFAULT localtimestamp
 );
 
@@ -61,13 +62,14 @@ DROP TABLE IF EXISTS ordenadores CASCADE;
  * Aparatos -> Ordenadores.
  */
 CREATE TABLE ordenadores (
-    aparato_id bigint PRIMARY KEY REFERENCES aparatos (id)
-    , micro varchar(255)
-    , memoria varchar(255)
-    , disco_duro varchar(255)
-    , tipo_disco varchar(255)
-    , ip varchar(255)
-    , sist_op varchar(255)
+      aparato_id    bigint          PRIMARY KEY REFERENCES aparatos (id)
+                                    ON DELETE CASCADE ON UPDATE CASCADE
+    , micro         varchar(255)
+    , memoria       varchar(255)
+    , disco_duro    varchar(255)
+    , tipo_disco    varchar(255)
+    , ip            varchar(255)
+    , sist_op       varchar(255)
 );
 
 DROP TABLE IF EXISTS impresoras CASCADE;
@@ -76,13 +78,14 @@ DROP TABLE IF EXISTS impresoras CASCADE;
  * Aparatos -> Impresoras.
  */
 CREATE TABLE impresoras (
-    aparato_id bigint PRIMARY KEY REFERENCES aparatos (id)
-    , cartucho varchar(255)
-    , magenta varchar(255)
-    , cian varchar(255)
-    , amarillo varchar(255)
-    , negro varchar(255)
-    , red boolean
+      aparato_id    bigint          PRIMARY KEY REFERENCES aparatos (id)
+                                    ON DELETE CASCADE ON UPDATE CASCADE
+    , cartucho      varchar(255)
+    , magenta       varchar(255)
+    , cian          varchar(255)
+    , amarillo      varchar(255)
+    , negro         varchar(255)
+    , red           boolean
 );
 
 DROP TABLE IF EXISTS monitores CASCADE;
@@ -91,8 +94,9 @@ DROP TABLE IF EXISTS monitores CASCADE;
  * Aparatos -> Monitores.
  */
 CREATE TABLE monitores (
-    aparato_id bigint PRIMARY KEY REFERENCES aparatos (id)
-    , pulgadas numeric(3,2)
+      aparato_id    bigint          PRIMARY KEY REFERENCES aparatos (id)
+                                    ON DELETE CASCADE ON UPDATE CASCADE
+    , pulgadas      numeric(3,2)
 );
 
 DROP TABLE IF EXISTS perifericos CASCADE;
@@ -101,8 +105,9 @@ DROP TABLE IF EXISTS perifericos CASCADE;
  * Aparatos -> Periféricos.
  */
 CREATE TABLE perifericos (
-    aparato_id bigint PRIMARY KEY REFERENCES aparatos (id)
-    , descripcion text
+      aparato_id    bigint  PRIMARY KEY REFERENCES aparatos (id)
+                            ON DELETE CASCADE ON UPDATE CASCADE
+    , descripcion   text
 );
 
 DROP TABLE IF EXISTS electronica_red CASCADE;
@@ -111,10 +116,11 @@ DROP TABLE IF EXISTS electronica_red CASCADE;
  * Aparatos -> Electrónica de red.
  */
 CREATE TABLE electronica_red (
-    aparato_id bigint PRIMARY KEY REFERENCES aparatos (id)
-    , ubicacion varchar(255)
-    , tipo varchar(255)
-    , descripcion text
+      aparato_id    bigint          PRIMARY KEY REFERENCES aparatos (id)
+                                    ON DELETE CASCADE ON UPDATE CASCADE
+    , ubicacion     varchar(255)
+    , tipo          varchar(255)
+    , descripcion   text
 );
 
 --------------------------
