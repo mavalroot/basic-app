@@ -3,6 +3,9 @@
 namespace models;
 
 use utilities\base\BaseModel;
+use utilities\base\Database;
+
+use utilities\query\QueryBuilder;
 
 /**
  *
@@ -41,7 +44,9 @@ class Aparatos extends BaseModel
     public static function rules()
     {
         return [
-            [['tipo'], 'in', array_keys(static::getTypes()), 'message' => 'El tipo no es correcto. Seleccione una opción válida.']
+            [['usuario_id'], 'in', array_keys(static::getUsuarios(true)), 'message' => 'Error: Seleccione una opción válida.'],
+            [['delegacion_id'], 'in', array_keys(static::getDelegaciones(true)), 'message' => 'Error: Seleccione una opción válida.'],
+            [['tipo'], 'in', array_keys(static::getTypes()), 'message' => 'Error: Seleccione una opción válida.']
         ];
     }
 
@@ -59,15 +64,15 @@ class Aparatos extends BaseModel
         $id = isset($this->id) ? ['aparato_id' => $this->id] : false;
 
         switch ($this->tipo) {
-            case 'ordenador':
+            case 'ordenadores':
                 return new Ordenadores($id);
-            case 'periferico':
+            case 'perifericos':
                 return new Perifericos($id);
-            case 'impresora':
+            case 'impresoras':
                 return new Impresoras($id);
             case 'electronica_red':
                 return new ElectronicaRed($id);
-            case 'monitor':
+            case 'monitores':
                 return new Monitores($id);
             default:
                 return null;
@@ -83,5 +88,49 @@ class Aparatos extends BaseModel
             'perifericos' => 'Periféricos',
             'electronica_red' => 'Electrónica de red',
         ];
+    }
+
+    public static function getUsuarios($withEmpty = false)
+    {
+        $db = new Database();
+        $db = $db->getConnection();
+        $query = QueryBuilder::db($db)
+            ->select('id, nombre')
+            ->from('usuarios')
+            ->get();
+
+        $data = $query->fetchAll();
+
+        $new = [];
+        if ($withEmpty) {
+            $new[''] = 'Ningún';
+        }
+        foreach ($data as $value) {
+            $new[$value['id']] = $value['nombre'];
+        }
+
+        return $new;
+    }
+
+    public static function getDelegaciones($withEmpty = false)
+    {
+        $db = new Database();
+        $db = $db->getConnection();
+        $query = QueryBuilder::db($db)
+            ->select('id, nombre')
+            ->from('delegaciones')
+            ->get();
+
+        $data = $query->fetchAll();
+
+        $new = [];
+        if ($withEmpty) {
+            $new[''] = 'Ningún';
+        }
+        foreach ($data as $value) {
+            $new[$value['id']] = $value['nombre'];
+        }
+
+        return $new;
     }
 }

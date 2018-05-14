@@ -35,7 +35,7 @@ Components::header($pageTitle, $breadcrumps);
 
 <?php
 
-var_dump(Aparatos::getAllColumns());
+var_dump(Aparatos::getUsuarios(true));
 // $prueba = new ActividadReciente(['id' => 2]);
 // $prueba->readOne();
 // var_dump($prueba->referencia);

@@ -26,7 +26,6 @@ Components::header($pageTitle, $breadcrumps);
 $controller = new AparatosController();
 $crear = $controller->create();
 extract($crear);
-var_dump($especifico);
 
 ?>
 

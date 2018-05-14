@@ -10,9 +10,12 @@ if (!isset($_SESSION)) {
 ?>
 <fieldset>
     <legend>General</legend>
-<?= Html::form($aparato, 'usuario_id')->label('Usuario')->textInput() ?>
-<?= Html::form($aparato, 'delegacion_id')->label('Delegación')->textInput() ?>
-<?= Html::form($aparato, 'tipo')->label('Tipo de aparato')->selectOption($aparato->getTypes()) ?>
+
+<?= Html::form($aparato, 'usuario_id')->label('Usuario')->selectOption($aparato->getUsuarios(true)) ?>
+<?= Html::form($aparato, 'delegacion_id')->label('Delegación')->selectOption($aparato->getDelegaciones(true)) ?>
+<?= Html::form($aparato, 'tipo')->label('Tipo de aparato')->selectOption($aparato->getTypes(), [
+        'select' => true
+    ]) ?>
 <?= Html::form($aparato, 'marca')->label('Marca')->textInput() ?>
 <?= Html::form($aparato, 'modelo')->label('Modelo')->textInput() ?>
 <?= Html::form($aparato, 'num_serie')->label('Número de serie')->textInput() ?>
@@ -22,7 +25,9 @@ if (!isset($_SESSION)) {
 </fieldset>
 
 <div id="especifico">
-
+    <?php if (isset($aparato->tipo) &&  file_exists('forms-especificos/_' . $aparato->tipo . '.php')): ?>
+        <?php include_once 'forms-especificos/_' . $aparato->tipo . '.php' ?>
+    <?php endif; ?>
 </div>
 
 <fieldset>

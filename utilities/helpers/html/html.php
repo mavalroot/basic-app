@@ -96,6 +96,8 @@ class Html
     {
         $config['message'] = isset($config['message']) ? self::h($config['message']) : '';
         $config['currency'] = isset($config['currency']) ? $config['currency'] : false;
+        $config['locked'] = isset($config['locked']) ? $config['locked'] : true;
+        $config['select'] = isset($config['select']) ? $config['select'] : false;
     }
 
     /**
@@ -368,7 +370,7 @@ class Html
 
                 <div class="form-check">
 
-                    <input type="radio" id=<?= self::h($value) ?> name="<?= $model['name'] ?>" value="<?= self::h($value) ?>" <?= $set ? 'disabled="true"' : '' ?> <?= $set == $value ? 'checked' : '' ?> class="form-check-input <?= $model['valid'] ?>">
+                    <input type="radio" id=<?= self::h($value) ?> name="<?= $model['name'] ?>" value="<?= self::h($value) ?>" <?= $set && $config['locked'] ? 'disabled="true"' : '' ?> <?= $set == $value ? 'checked' : '' ?> class="form-check-input <?= $model['valid'] ?>">
                     <label for="<?= self::h($value) ?>" class="form-check-label"><?= self::h($label) ?></label>
 
                     <small>
@@ -395,8 +397,10 @@ class Html
             <div class="form-group row">
                 <label for="<?= $model['name'] ?>" class="col-sm-2 col-form-label"><?= static::$label ?: $model['prop'] ?></label>
                 <div class="col-sm-10">
-                    <select id="<?= $model['name'] ?>" class="form-control <?= $model['valid'] ?>" name="<?= $model['name'] ?>" <?= $set ? 'disabled="true"' : '' ?>>
-                        <option value="">-- Elegir --</option>
+                    <select id="<?= $model['name'] ?>" class="form-control <?= $model['valid'] ?>" name="<?= $model['name'] ?>" <?= $set && $config['locked'] ? 'disabled="true"' : '' ?>>
+                        <?php if ($config['select']): ?>
+                            <option value="">-- Elegir --</option>
+                        <?php endif; ?>
                         <?php foreach ($options as $key => $value): ?>
                             <option value="<?= $key ?>" <?= $set == $key ? 'selected' : '' ?>><?= $value ?></option>
                         <?php endforeach; ?>
