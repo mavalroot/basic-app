@@ -57,10 +57,16 @@ class AparatosController extends BaseController
     {
         self::permission();
         $model = new Aparatos(['id' => $id]);
-        if (!$model->readOne()) {
+        if ($model->readOne()) {
+            $especifico = $model->getModelByType();
+            $especifico->readOne();
+        } else {
             Errors::notFound();
         }
-        return $model;
+        return [
+        'aparato' => $model,
+        'especifico' => $especifico
+        ];
     }
 
     public function create()

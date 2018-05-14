@@ -20,7 +20,8 @@ $breadcrumps = [
 $pageTitle = "Consultar un registro";
 Components::header($pageTitle, $breadcrumps);
 
-$aparato = AparatosController::view($id);
+$result = AparatosController::view($id);
+extract($result);
 ?>
 
 <div class='right-button-margin'>
@@ -32,6 +33,7 @@ $aparato = AparatosController::view($id);
 <div id="content" class="table-responsive">
     <table class='table table-striped'>
         <?= Html::form($aparato)->multiTrTable(); ?>
+        <?= Html::form($especifico)->multiTrTable(); ?>
     </table>
 </div>
 
