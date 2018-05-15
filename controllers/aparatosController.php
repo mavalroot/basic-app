@@ -113,7 +113,13 @@ class AparatosController extends BaseController
         }
 
         if ($_POST) {
+            $no = ['usuario_id', 'delegacion_id', 'tipo'];
             if (isset($_POST['aparatos'])) {
+                foreach ($no as $value) {
+                    if ($model->$value != '') {
+                        unset($_POST['aparatos'][$value]);
+                    }
+                }
                 $model->load($_POST['aparatos']);
             }
             if (isset($_POST[$model->tipo])) {

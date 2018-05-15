@@ -33,5 +33,17 @@ extract($crear);
     <?php include_once '_form.php' ?>
 </form>
 
+<script type="text/javascript">
+$('select[name="aparatos[tipo]"]').on('change', function() {
+    let eltipo = $(this).children('option:selected').val();
+    $.post('ajax/especifico.php', {tipo: eltipo}, function(data) {
+        $('#especifico').empty();
+        $('#especifico').append(data);
+        // $("#especifico").load(location.href+" #especifico>*","");
+        // $('#especifico').append(data);
+    });
+});
+</script>
+
 <?php
 Components::footer();

@@ -38,15 +38,3 @@ if (!isset($_SESSION)) {
     <button type="submit" class="btn btn-primary">Enviar</button>
 </div>
 </fieldset>
-
-<script type="text/javascript">
-$('select[name="aparatos[tipo]"]').on('change', function() {
-    let eltipo = $(this).children('option:selected').val();
-    $.post('ajax/especifico.php', {tipo: eltipo}, function(data) {
-        $('#especifico').empty();
-        $('#especifico').append(data);
-        // $("#especifico").load(location.href+" #especifico>*","");
-        // $('#especifico').append(data);
-    });
-});
-</script>
