@@ -36,7 +36,7 @@ class Delegaciones extends BaseModel
     {
         return [
             'nombre' => 'Nombre de la delegación',
-        ]
+        ];
     }
 
     public static function getAllDelegaciones($withEmpty = false)
