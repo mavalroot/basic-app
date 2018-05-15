@@ -74,22 +74,24 @@ class AparatosController extends BaseController
         $this->permission();
         $model = new Aparatos();
         $especifico = false;
-        if (isset($_POST['aparatos'])) {
-            $model->load($_POST['aparatos']);
+        if ($_POST) {
+            if (isset($_POST['aparatos'])) {
+                $model->load($_POST['aparatos']);
+            }
             if ($model->validate()) {
                 $especifico = $model->getModelByType();
-                $especifico->load($_POST[$model->tipo]);
-                if ($especifico->validate()) {
-                    if ($model->create()) {
-                        $especifico->aparato_id = $model->id;
-                        $especifico->create();
-                        Html::alert('success', 'Se ha creado el registro. Para verlo haga click <a href="view.php?id=' . $model->id . '" class="alert-link">aquí</a>.', true);
-                        $model->createRecord('insert');
-                        $model->reset();
-                        $especifico->reset();
-                    } else {
-                        Html::alert('danger', 'El registro no ha podido crearse');
-                    }
+                if (isset($_POST[$model->tipo])) {
+                    $especifico->load($_POST[$model->tipo]);
+                }
+                if ($especifico->validate() && $model->create()) {
+                    $especifico->aparato_id = $model->id;
+                    $especifico->create();
+                    Html::alert('success', 'Se ha creado el registro. Para verlo haga click <a href="view.php?id=' . $model->id . '" class="alert-link">aquí</a>.', true);
+                    $model->createRecord('insert');
+                    $model->reset();
+                    $especifico->reset();
+                } else {
+                    Html::alert('danger', 'El registro no ha podido crearse');
                 }
             }
         }
@@ -104,14 +106,21 @@ class AparatosController extends BaseController
     {
         $this->permission();
         $model = $this->findModel($id);
-        if (!$model->readOne()) {
+        $especifico = $model->getModelByType();
+        $especifico->aparato_id = $id;
+        if (!$model->readOne() || !$especifico->readOne()) {
             Errors::notFound();
         }
 
-        if (isset($_POST['aparatos'])) {
-            $model->load($_POST['aparatos']);
+        if ($_POST) {
+            if (isset($_POST['aparatos'])) {
+                $model->load($_POST['aparatos']);
+            }
+            if (isset($_POST[$model->tipo])) {
+                $especifico->load($_POST[$model->tipo]);
+            }
 
-            if ($model->validate() && $model->update()) {
+            if (($model->validate() && $especifico->validate()) && ($model->update() && $especifico->update())) {
                 // Se actualiza el registro.
                 Html::alert('success', 'El registro se ha actualizado');
                 $model->createRecord('update');
@@ -121,6 +130,9 @@ class AparatosController extends BaseController
             }
         }
 
-        return $model;
+        return [
+            'aparato' => $model,
+            'especifico' => $especifico,
+        ];
     }
 }

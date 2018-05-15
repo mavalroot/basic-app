@@ -44,8 +44,8 @@ class Aparatos extends BaseModel
     public static function rules()
     {
         return [
-            [['usuario_id'], 'in', array_keys(static::getUsuarios(true)), 'message' => 'Error: Seleccione una opción válida.'],
-            [['delegacion_id'], 'in', array_keys(static::getDelegaciones(true)), 'message' => 'Error: Seleccione una opción válida.'],
+            [['usuario_id'], 'in', array_keys(Usuarios::getAllUsuarios(true)), 'message' => 'Error: Seleccione una opción válida.'],
+            [['delegacion_id'], 'in', array_keys(Delegaciones::getAllDelegaciones(true)), 'message' => 'Error: Seleccione una opción válida.'],
             [['tipo'], 'in', array_keys(static::getTypes()), 'message' => 'Error: Seleccione una opción válida.']
         ];
     }
@@ -90,13 +90,13 @@ class Aparatos extends BaseModel
         ];
     }
 
-    public static function getUsuarios($withEmpty = false)
+    public static function getAllAparatos($withEmpty = false)
     {
         $db = new Database();
         $db = $db->getConnection();
         $query = QueryBuilder::db($db)
-            ->select('id, nombre')
-            ->from('usuarios')
+            ->select('id, num_serie')
+            ->from('aparatos')
             ->get();
 
         $data = $query->fetchAll();
@@ -106,31 +106,35 @@ class Aparatos extends BaseModel
             $new[''] = 'Ningún';
         }
         foreach ($data as $value) {
-            $new[$value['id']] = $value['nombre'];
+            $new[$value['id']] = $value['num_serie'];
         }
 
         return $new;
     }
 
-    public static function getDelegaciones($withEmpty = false)
+    public function getUsuario($withEmpty = false)
     {
-        $db = new Database();
-        $db = $db->getConnection();
-        $query = QueryBuilder::db($db)
-            ->select('id, nombre')
-            ->from('delegaciones')
+        $query = QueryBuilder::db($this->conn)
+            ->select('*')
+            ->from('usuarios')
+            ->where(['id' => $this->usuario_id])
             ->get();
 
         $data = $query->fetchAll();
 
-        $new = [];
-        if ($withEmpty) {
-            $new[''] = 'Ningún';
-        }
-        foreach ($data as $value) {
-            $new[$value['id']] = $value['nombre'];
-        }
+        return $data;
+    }
 
-        return $new;
+    public function getDelegacion($withEmpty = false)
+    {
+        $query = QueryBuilder::db($this->conn)
+            ->select('id, nombre')
+            ->from('delegaciones')
+            ->where(['usuario_id' => $this->id])
+            ->get();
+
+        $data = $query->fetchAll();
+
+        return $data;
     }
 }

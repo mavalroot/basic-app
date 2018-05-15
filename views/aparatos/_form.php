@@ -1,5 +1,8 @@
 <?php
 include_once '../../config/main-local.php';
+use models\Usuarios;
+use models\Delegaciones;
+
 use utilities\helpers\html\Html;
 use utilities\helpers\validation\Errors;
 
@@ -11,8 +14,8 @@ if (!isset($_SESSION)) {
 <fieldset>
     <legend>General</legend>
 
-<?= Html::form($aparato, 'usuario_id')->label('Usuario')->selectOption($aparato->getUsuarios(true)) ?>
-<?= Html::form($aparato, 'delegacion_id')->label('Delegación')->selectOption($aparato->getDelegaciones(true)) ?>
+<?= Html::form($aparato, 'usuario_id')->label('Usuario')->selectOption(Usuarios::getAllUsuarios(true)) ?>
+<?= Html::form($aparato, 'delegacion_id')->label('Delegación')->selectOption(Delegaciones::getAllDelegaciones(true)) ?>
 <?= Html::form($aparato, 'tipo')->label('Tipo de aparato')->selectOption($aparato->getTypes(), [
         'select' => true
     ]) ?>

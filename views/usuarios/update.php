@@ -18,6 +18,7 @@ $breadcrumps = [
 ];
 $pageTitle = "Actualizar registro";
 Components::header($pageTitle, $breadcrumps);
+
 ?>
 
 <div class='right-button-margin'>
@@ -28,8 +29,7 @@ Components::header($pageTitle, $breadcrumps);
 
 <?php
     $controller = new AparatosController();
-    $result = $controller->update($id);
-    extract($result);
+    $aparato = $controller->update($id);
 ?>
 
 <div class="container">
