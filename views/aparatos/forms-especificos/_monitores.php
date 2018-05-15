@@ -11,5 +11,5 @@ use utilities\helpers\html\Html;
 
 <fieldset>
     <legend>Monitores</legend>
-    <?= Html::form($especifico, 'pulgadas')->label('Pulgadas')->numberInput(['currency' => true]) ?>
+    <?= Html::form($especifico, 'pulgadas')->numberInput(['currency' => true]) ?>
 </fieldset>

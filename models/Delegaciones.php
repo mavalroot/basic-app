@@ -32,6 +32,13 @@ class Delegaciones extends BaseModel
         ];
     }
 
+    protected static function labels()
+    {
+        return [
+            'nombre' => 'Nombre de la delegación',
+        ]
+    }
+
     public static function getAllDelegaciones($withEmpty = false)
     {
         $db = new Database();

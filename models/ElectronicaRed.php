@@ -36,6 +36,15 @@ class ElectronicaRed extends BaseModel
         return 'aparato_id';
     }
 
+    protected static function labels()
+    {
+        return [
+            'ubicacion' => 'Ubicación',
+            'tipo' => 'Tipo',
+            'descripcion' => 'Descripción'
+        ];
+    }
+
     /**
      * Devuelve el aparato asociado.
      * @return Aparatos|null

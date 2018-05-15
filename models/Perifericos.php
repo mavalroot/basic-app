@@ -34,6 +34,13 @@ class Perifericos extends BaseModel
         return 'aparato_id';
     }
 
+    protected static function labels()
+    {
+        return [
+            'descripcion' => 'Descripción'
+        ];
+    }
+
     /**
      * Devuelve el aparato asociado.
      * @return Aparatos|null

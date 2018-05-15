@@ -14,17 +14,17 @@ if (!isset($_SESSION)) {
 <fieldset>
     <legend>General</legend>
 
-<?= Html::form($aparato, 'usuario_id')->label('Usuario')->selectOption(Usuarios::getAllUsuarios(true)) ?>
-<?= Html::form($aparato, 'delegacion_id')->label('Delegación')->selectOption(Delegaciones::getAllDelegaciones(true)) ?>
-<?= Html::form($aparato, 'tipo')->label('Tipo de aparato')->selectOption($aparato->getTypes(), [
+<?= Html::form($aparato, 'usuario_id')->selectOption(Usuarios::getAllUsuarios(true)) ?>
+<?= Html::form($aparato, 'delegacion_id')->selectOption(Delegaciones::getAllDelegaciones(true)) ?>
+<?= Html::form($aparato, 'tipo')->selectOption($aparato->getTypes(), [
         'select' => true
     ]) ?>
-<?= Html::form($aparato, 'marca')->label('Marca')->textInput() ?>
-<?= Html::form($aparato, 'modelo')->label('Modelo')->textInput() ?>
-<?= Html::form($aparato, 'num_serie')->label('Número de serie')->textInput() ?>
-<?= Html::form($aparato, 'fecha_compra')->label('Fecha de compra')->dateInput() ?>
-<?= Html::form($aparato, 'proveedor')->label('Proveedor')->textInput() ?>
-<?= Html::form($aparato, 'observaciones')->label('Observaciones')->textarea() ?>
+<?= Html::form($aparato, 'marca')->textInput() ?>
+<?= Html::form($aparato, 'modelo')->textInput() ?>
+<?= Html::form($aparato, 'num_serie')->textInput() ?>
+<?= Html::form($aparato, 'fecha_compra')->dateInput() ?>
+<?= Html::form($aparato, 'proveedor')->textInput() ?>
+<?= Html::form($aparato, 'observaciones')->textarea() ?>
 </fieldset>
 
 <div id="especifico">

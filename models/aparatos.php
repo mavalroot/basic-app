@@ -50,9 +50,25 @@ class Aparatos extends BaseModel
         ];
     }
 
+    protected static function labels()
+    {
+        return [
+            'usuario_id' => 'Utilizado por el usuario',
+            'delegacion_id' => 'Utilizado por la delegación',
+            'marca' => 'Marca',
+            'modelo' => 'Modelo',
+            'num_serie' => 'Número de serie',
+            'fecha_compra' => 'Fecha de compra',
+            'proveedor' => 'Proveedor',
+            'tipo' => 'Tipo de aparato',
+            'observaciones' => 'Observaciones',
+        ];
+    }
+
     public function getDatosAsociados()
     {
         $model = $this->getModelByType();
+        $model->aparato_id = $this->id;
         if ($model->readOne()) {
             return $model;
         }

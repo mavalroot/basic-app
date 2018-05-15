@@ -106,11 +106,10 @@ class AparatosController extends BaseController
     {
         $this->permission();
         $model = $this->findModel($id);
-        $especifico = $model->getModelByType();
-        $especifico->aparato_id = $id;
-        if (!$model->readOne() || !$especifico->readOne()) {
+        if (!$model->readOne()) {
             Errors::notFound();
         }
+        $especifico = $model->getDatosAsociados();
 
         if ($_POST) {
             $no = ['usuario_id', 'delegacion_id', 'tipo'];

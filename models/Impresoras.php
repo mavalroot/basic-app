@@ -42,6 +42,17 @@ class Impresoras extends BaseModel
         return 'aparato_id';
     }
 
+    protected static function labels()
+    {
+        return [
+            'cartucho' => 'Cartucho',
+            'magenta' => 'Color magenta',
+            'cian' => 'Color cian',
+            'amarillo' => 'Color amarillo',
+            'red' => 'Está en red',
+        ];
+    }
+
     /**
      * Devuelve el aparato asociado.
      * @return Aparatos|null

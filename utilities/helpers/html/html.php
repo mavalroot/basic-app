@@ -156,19 +156,20 @@ class Html
     {
         self::prepareConfig($config);
         if (static::$model) {
-            $model = static::$model; ?>
+            $model = static::$model;
+            extract($model) ?>
             <div class="form-group row">
-                <label for="<?= $model['name'] ?>" class="col-sm-2 col-form-label">
-                    <?= static::$label ?: $model['prop'] ?>
+                <label for="<?= $name ?>" class="col-sm-2 col-form-label">
+                    <?= static::$label ?: $model->getLabel($prop) ?>
                 </label>
                 <div class="col-sm-10">
-                    <input type="text" id="<?= $model['name'] ?>" name="<?= $model['name'] ?>" value="<?= $model['value'] ?>" class="form-control <?= $model['valid'] ?>"  />
+                    <input type="text" id="<?= $name ?>" name="<?= $name ?>" value="<?= $value ?>" class="form-control <?= $valid ?>"  />
 
                     <small>
                         <?= $config['message'] ?>
                     </small>
                     <div class="invalid-feedback">
-                        <i class="fas fa-exclamation-circle"></i> <?= $model['error'] ?>
+                        <i class="fas fa-exclamation-circle"></i> <?= $error ?>
                     </div>
                 </div>
             </div>
@@ -182,6 +183,7 @@ class Html
             </div>
             <?php
         }
+        static::setLabel(false);
     }
 
     /**
@@ -200,18 +202,19 @@ class Html
         self::prepareConfig($config);
         $currency = $config['currency'] == true ? 'step="any"' : '';
         if (static::$model) {
-            $model = static::$model; ?>
+            $model = static::$model;
+            extract($model) ?>
             <div class="form-group row">
-                <label for="<?= $model['name'] ?>" class="col-sm-2 col-form-label">
-                    <?= static::$label ?: $model['prop'] ?>
+                <label for="<?= $name ?>" class="col-sm-2 col-form-label">
+                    <?= static::$label ?: $model->getLabel($prop) ?>
                 </label>
                 <div class="col-sm-10">
-                    <input type="number" id="<?= $model['name'] ?>" name="<?= $model['name'] ?>" value="<?= $model['value'] ?>" class="form-control <?= $model['valid'] ?>" <?= $currency ?>  />
+                    <input type="number" id="<?= $name ?>" name="<?= $name ?>" value="<?= $value ?>" class="form-control <?= $valid ?>" <?= $currency ?>  />
                     <small>
                         <?= $config['message'] ?>
                     </small>
                     <div class="invalid-feedback">
-                        <i class="fas fa-exclamation-circle"></i> <?= $model['error'] ?>
+                        <i class="fas fa-exclamation-circle"></i> <?= $error ?>
                     </div>
                 </div>
             </div>
@@ -225,6 +228,7 @@ class Html
             </div>
             <?php
         }
+        static::setLabel(false);
     }
 
     /**
@@ -242,18 +246,19 @@ class Html
         self::prepareConfig($config);
         if (static::$model) {
             $model = static::$model;
-            $value = $model['value'] != '' ? date('Y-m-d', strtotime($model['value'])) : ''; ?>
+            extract($model);
+            $value = $value != '' ? date('Y-m-d', strtotime($value)) : ''; ?>
             <div class="form-group row">
-                <label for="<?= $model['name'] ?>" class="col-sm-2 col-form-label">
-                    <?= static::$label ?: $model['prop'] ?>
+                <label for="<?= $name ?>" class="col-sm-2 col-form-label">
+                    <?= static::$label ?: $model->getLabel($prop) ?>
                 </label>
                 <div class="col-sm-10">
-                    <input type="date" id="<?= $model['name'] ?>" name="<?= $model['name'] ?>" value="<?= $value ?>" class="form-control <?= $model['valid'] ?>"  />
+                    <input type="date" id="<?= $name ?>" name="<?= $name ?>" value="<?= $value ?>" class="form-control <?= $valid ?>"  />
                     <small>
                         <?= $config['message'] ?>
                     </small>
                     <div class="invalid-feedback">
-                        <i class="fas fa-exclamation-circle"></i> <?= $model['error'] ?>
+                        <i class="fas fa-exclamation-circle"></i> <?= $error ?>
                     </div>
                 </div>
             </div>
@@ -267,6 +272,7 @@ class Html
             </div>
             <?php
         }
+        static::setLabel(false);
     }
 
     /**
@@ -284,18 +290,19 @@ class Html
     {
         self::prepareConfig($config);
         if (static::$model) {
-            $model = static::$model; ?>
+            $model = static::$model;
+            extract($model); ?>
             <div class="form-group row">
-                <label for="<?= $model['name'] ?>" class="col-sm-2 col-form-label">
-                    <?= static::$label ?: $model['prop'] ?>
+                <label for="<?= $name ?>" class="col-sm-2 col-form-label">
+                    <?= static::$label ?: $model->getLabel($prop) ?>
                 </label>
                 <div class="col-sm-10">
-                    <input type="text" id="<?= $model['name'] ?>" value="<?= $model['value'] ?>" class="form-control <?= $model['valid'] ?> <?= $config['class'] ?>" disabled />
+                    <input type="text" id="<?= $name ?>" value="<?= $value ?>" class="form-control <?= $valid ?> <?= $config['class'] ?>" disabled />
                     <small>
                         <?= $config['message'] ?>
                     </small>
                     <div class="invalid-feedback">
-                        <i class="fas fa-exclamation-circle"></i> <?= $model['error'] ?>
+                        <i class="fas fa-exclamation-circle"></i> <?= $error ?>
                     </div>
                 </div>
             </div>
@@ -309,6 +316,7 @@ class Html
             </div>
             <?php
         }
+        static::setLabel(false);
     }
 
     /**
@@ -320,13 +328,15 @@ class Html
         self::prepareConfig($config);
         if (static::$model) {
             $model = static::$model;
-            static::dateForm($model['value']); ?>
+            extract($model);
+            static::dateForm($value); ?>
                 <tr>
-                    <th class="col-sm-2"><?= static::$label ?: $model['prop'] ?></th>
-                    <td class="col-sm-10"><?= $model['value'] ?></td>
+                    <th class="col-sm-2"><?= static::$label ?: $model->getLabel($prop) ?></th>
+                    <td class="col-sm-10"><?= $value ?></td>
                 </tr>
             <?php
         }
+        static::setLabel(false);
     }
 
     /**
@@ -348,8 +358,7 @@ class Html
                     <th class="col-sm-2"><?= $label ? self::h($label) : self::h($column) ?></th>
                     <td class="col-sm-10"><?= self::h($model->$column) ?></td>
                 </tr>
-            <?php endforeach; ?>
-            <?php
+            <?php endforeach;
         }
     }
 
@@ -364,20 +373,21 @@ class Html
         self::prepareConfig($config);
         if (static::$model) {
             $model = static::$model;
-            $set = isset($model['value']) ? $model['value'] : false; ?>
+            extract($model);
+            $set = isset($value) ? $value : false; ?>
             <div class="form-group">
-            <?php foreach ($options as $label => $value): ?>
+            <?php foreach ($options as $label => $valor): ?>
 
                 <div class="form-check">
 
-                    <input type="radio" id=<?= self::h($value) ?> name="<?= $model['name'] ?>" value="<?= self::h($value) ?>" <?= $set && $config['locked'] ? 'disabled="true"' : '' ?> <?= $set == $value ? 'checked' : '' ?> class="form-check-input <?= $model['valid'] ?>">
-                    <label for="<?= self::h($value) ?>" class="form-check-label"><?= self::h($label) ?></label>
+                    <input type="radio" id=<?= self::h($valor) ?> name="<?= $name ?>" value="<?= self::h($valor) ?>" <?= $set && $config['locked'] ? 'disabled="true"' : '' ?> <?= $set == $valor ? 'checked' : '' ?> class="form-check-input <?= $valid ?>">
+                    <label for="<?= self::h($valor) ?>" class="form-check-label"><?= self::h($label) ?></label>
 
                     <small>
                         <?= $config['message'] ?>
                     </small>
                     <div class="invalid-feedback">
-                        <i class="fas fa-exclamation-circle"></i> <?= $model['error'] ?>
+                        <i class="fas fa-exclamation-circle"></i> <?= $error ?>
                     </div>
                 </div>
 
@@ -385,6 +395,7 @@ class Html
 
             </div>
             <?php
+            static::setLabel(false);
         }
     }
 
@@ -393,27 +404,29 @@ class Html
         self::prepareConfig($config);
         if (static::$model) {
             $model = static::$model;
-            $set = isset($model['value']) ? $model['value'] : false; ?>
+            extract($model);
+            $set = isset($value) ? $value : false; ?>
             <div class="form-group row">
-                <label for="<?= $model['name'] ?>" class="col-sm-2 col-form-label"><?= static::$label ?: $model['prop'] ?></label>
+                <label for="<?= $name ?>" class="col-sm-2 col-form-label"><?= static::$label ?: $model->getLabel($prop) ?></label>
                 <div class="col-sm-10">
-                    <select id="<?= $model['name'] ?>" class="form-control <?= $model['valid'] ?>" name="<?= $model['name'] ?>" <?= $set && $config['locked'] ? 'disabled="true"' : '' ?>>
+                    <select id="<?= $name ?>" class="form-control <?= $valid ?>" name="<?= $name ?>" <?= $set && $config['locked'] ? 'disabled="true"' : '' ?>>
                         <?php if ($config['select']): ?>
                             <option value="">-- Elegir --</option>
                         <?php endif; ?>
-                        <?php foreach ($options as $key => $value): ?>
-                            <option value="<?= $key ?>" <?= $set == $key ? 'selected' : '' ?>><?= $value ?></option>
+                        <?php foreach ($options as $key => $valor): ?>
+                            <option value="<?= $key ?>" <?= $set == $key ? 'selected' : '' ?>><?= $valor ?></option>
                         <?php endforeach; ?>
                     </select>
                     <small>
                         <?= $config['message'] ?>
                     </small>
                     <div class="invalid-feedback">
-                        <i class="fas fa-exclamation-circle"></i> <?= $model['error'] ?>
+                        <i class="fas fa-exclamation-circle"></i> <?= $error ?>
                     </div>
                 </div>
             </div>
             <?php
+            static::setLabel(false);
         }
     }
 
@@ -421,19 +434,20 @@ class Html
     {
         self::prepareConfig($config);
         if (static::$model) {
-            $model = static::$model; ?>
+            $model = static::$model;
+            extract($model); ?>
             <div class="form-group row">
-                <label for="<?= $model['name'] ?>" class="col-sm-2 col-form-label">
-                    <?= static::$label ?: $model['prop'] ?>
+                <label for="<?= $name ?>" class="col-sm-2 col-form-label">
+                    <?= static::$label ?: $model->getLabel($prop) ?>
                 </label>
                 <div class="col-sm-10">
-                    <textarea id="<?= $model['name'] ?>" name="<?= $model['name'] ?>" class="form-control <?= $model['valid'] ?>"  ><?= $model['value'] ?></textarea>
+                    <textarea id="<?= $name ?>" name="<?= $name ?>" class="form-control <?= $valid ?>"  ><?= $value ?></textarea>
 
                     <small>
                         <?= $config['message'] ?>
                     </small>
                     <div class="invalid-feedback">
-                        <i class="fas fa-exclamation-circle"></i> <?= $model['error'] ?>
+                        <i class="fas fa-exclamation-circle"></i> <?= $error ?>
                     </div>
                 </div>
             </div>

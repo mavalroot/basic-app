@@ -44,6 +44,18 @@ class Ordenadores extends BaseModel
         return 'aparato_id';
     }
 
+    protected static function labels()
+    {
+        return [
+            'micro' => 'Microprocesador',
+            'memoria' => 'Memoria RAM',
+            'disco_duro' => 'Disco duro',
+            'tipo_disco' => 'Tipo de Disco duro',
+            'ip' => 'IP',
+            'sist_op' => 'Sistema operativo'
+        ];
+    }
+
     /**
      * Devuelve el aparato asociado.
      * @return Aparatos|null

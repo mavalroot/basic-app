@@ -43,6 +43,13 @@ class Roles extends BaseModel
         return 'id';
     }
 
+    protected static function labels()
+    {
+        return [
+            'last_con' => 'Última conexión'
+        ];
+    }
+
     /**
      * Efectúa el loggin.
      */

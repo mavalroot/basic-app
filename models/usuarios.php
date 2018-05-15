@@ -37,6 +37,15 @@ class Usuarios extends BaseModel
         ];
     }
 
+    protected static function labels()
+    {
+        return [
+            'nombre' => 'Nombre completo',
+            'delegacion_id' => 'Delegación',
+            'extension' => 'Extensión de teléfono',
+        ];
+    }
+
     public static function getAllUsuarios($withEmpty = false)
     {
         $db = new Database();

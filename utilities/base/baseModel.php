@@ -152,6 +152,19 @@ class BaseModel
         return;
     }
 
+    protected static function labels()
+    {
+        return [
+
+        ];
+    }
+
+    public static function getLabel($prop)
+    {
+        $labels = static::labels();
+        return isset($labels[$prop]) ? $labels[$prop] : false;
+    }
+
     /**
      * Valida las propiedades del modelo para comprobar que cumple las reglas
      * previamente definidas en rules().

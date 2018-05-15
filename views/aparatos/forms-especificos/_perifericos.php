@@ -11,5 +11,5 @@ use utilities\helpers\html\Html;
 
 <fieldset>
     <legend>Periféricos</legend>
-    <?= Html::form($especifico, 'descripcion')->label('Descripción')->textarea() ?>
+    <?= Html::form($especifico, 'descripcion')->textarea() ?>
 </fieldset>

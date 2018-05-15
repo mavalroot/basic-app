@@ -34,6 +34,13 @@ class Monitores extends BaseModel
         return 'aparato_id';
     }
 
+    protected static function labels()
+    {
+        return [
+            'pulgadas' => 'Pulgadas'
+        ];
+    }
+
     /**
      * Devuelve el aparato asociado.
      * @return Aparatos|null
