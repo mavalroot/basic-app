@@ -32,8 +32,30 @@ extract($result);
 
 <div id="content" class="table-responsive">
     <table class='table table-striped'>
-        <?= Html::form($aparato)->multiTrTable(); ?>
-        <?= Html::form($especifico)->multiTrTable(); ?>
+        <?= Html::form($aparato, 'usuario_id')->trTable([
+            'value' => function ($model) {
+                $user = $model->getUsuario();
+                return isset($user->nombre) ? $user->nombre : '';
+            },
+        ]) ?>
+        <?= Html::form($aparato, 'delegacion_id')->trTable([
+            'value' => function ($model) {
+                $delegacion = $model->getDelegacion();
+                return isset($delegacion->nombre) ? $delegacion->nombre : '';
+            },
+        ]) ?>
+        <?= Html::form($aparato)->multiTrTable([
+            'columns' => [
+                'tipo',
+                'marca',
+                'modelo',
+                'num_serie',
+                'proveedor',
+                'fecha_compra',
+            ],
+        ]); ?>
+        <?= Html::form($especifico)->multiTrTable(['exclude' => ['aparato_id']]); ?>
+        <?= Html::form($aparato, 'observaciones')->trTable(); ?>
     </table>
 </div>
 

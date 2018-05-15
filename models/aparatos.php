@@ -25,15 +25,10 @@ class Aparatos extends BaseModel
     ];
 
     protected $searchBy = [
-        'Usuario' => 'usuario_id',
-        'Delegación' => 'delegacion_id',
+        'Número de serie' => 'num_serie',
+        'Tipo de aparato' => 'tipo',
         'Marca' => 'marca',
         'Modelo' => 'modelo',
-        'Número de serie' => 'num_serie',
-        'Fecha de compra' => 'fecha_compra',
-        'Proveedor' => 'proveedor',
-        'Tipo de aparato' => 'tipo',
-        'Observaciones' => 'observaciones',
     ];
 
     public static function tableName()
@@ -128,29 +123,29 @@ class Aparatos extends BaseModel
         return $new;
     }
 
-    public function getUsuario($withEmpty = false)
+    public function getUsuario()
     {
-        $query = QueryBuilder::db($this->conn)
-            ->select('*')
-            ->from('usuarios')
-            ->where(['id' => $this->usuario_id])
-            ->get();
-
-        $data = $query->fetchAll();
-
-        return $data;
+        if ($this->usuario_id) {
+            $usuario = new Usuarios([
+                'id' => $this->usuario_id
+            ]);
+            if ($usuario->readOne()) {
+                return $usuario;
+            }
+        }
+        return null;
     }
 
     public function getDelegacion($withEmpty = false)
     {
-        $query = QueryBuilder::db($this->conn)
-            ->select('id, nombre')
-            ->from('delegaciones')
-            ->where(['usuario_id' => $this->id])
-            ->get();
-
-        $data = $query->fetchAll();
-
-        return $data;
+        if ($this->delegacion_id) {
+            $usuario = new Delegaciones([
+                'id' => $this->delegacion_id
+            ]);
+            if ($usuario->readOne()) {
+                return $usuario;
+            }
+        }
+        return null;
     }
 }

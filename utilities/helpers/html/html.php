@@ -325,17 +325,29 @@ class Html
      */
     public static function trTable($config = [])
     {
-        self::prepareConfig($config);
+        $prop = false;
+        $value = false;
+        $label = false;
+        $model = false;
         if (static::$model) {
-            $model = static::$model;
-            extract($model);
-            static::dateForm($value); ?>
-                <tr>
-                    <th class="col-sm-2"><?= static::$label ?: $model->getLabel($prop) ?></th>
-                    <td class="col-sm-10"><?= $value ?></td>
-                </tr>
-            <?php
+            $modelo = static::$model;
+            extract($modelo, EXTR_IF_EXISTS);
         }
+        extract($config, EXTR_IF_EXISTS);
+        if (is_string($value)) {
+            static::dateForm($value);
+        } else {
+            $value = call_user_func($value, $model);
+        }
+        if (!$label) {
+            $label = static::$label ?: $model->getLabel($prop);
+        }
+        ?>
+            <tr>
+                <th class="col-sm-2"><?= $label ?></th>
+                <td class="col-sm-10"><?= isset($value) ? nl2br($value) : '' ?></td>
+            </tr>
+        <?php
         static::setLabel(false);
     }
 
@@ -346,17 +358,23 @@ class Html
      * Si no se especifica nada se tomará las columnas especificadas en el
      * modelo.
      */
-    public static function multiTrTable($columns = false)
+    public static function multiTrTable($config)
     {
+        $columns = false;
+        $exclude = [];
+        extract($config, EXTR_IF_EXISTS);
         if (static::$model) {
             $model = static::$model['model'];
-            $columns = $columns ?: $model->getColumnas(); ?>
-            <?php foreach ($columns as $label => $column): ?>
+            $columns = $columns ?: $model->getAllColumns(); ?>
+            <?php foreach ($columns as $column): ?>
+                <?php if (in_array($column, $exclude)): ?>
+                    <?php continue; ?>
+                <?php endif; ?>
                 <?php static::dateForm($model->$column) ?>
                 <?php static::exists($model->$column) ?>
                 <tr>
-                    <th class="col-sm-2"><?= $label ? self::h($label) : self::h($column) ?></th>
-                    <td class="col-sm-10"><?= self::h($model->$column) ?></td>
+                    <th class="col-sm-2"><?= $model->getLabel($column) ?: $column ?></th>
+                    <td class="col-sm-10"><?= nl2br(self::h($model->$column)) ?></td>
                 </tr>
             <?php endforeach;
         }
@@ -441,7 +459,7 @@ class Html
                     <?= static::$label ?: $model->getLabel($prop) ?>
                 </label>
                 <div class="col-sm-10">
-                    <textarea id="<?= $name ?>" name="<?= $name ?>" class="form-control <?= $valid ?>"  ><?= $value ?></textarea>
+                    <textarea id="<?= $name ?>" name="<?= $name ?>" class="form-control <?= $valid ?>"  ><?= preg_replace('/<br\\s*?\/??>/i', '', $value) ?></textarea>
 
                     <small>
                         <?= $config['message'] ?>
