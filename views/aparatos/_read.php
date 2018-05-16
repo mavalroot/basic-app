@@ -36,10 +36,16 @@ if (!isset($_SESSION)) {
     'query' => $query,
     'rows' => [
         [
-            'label' => 'Usuario utilizándolo',
+            'label' => 'Usuario y/o delegación utilizándolo',
             'value' => function ($model) {
                 $user = $model->getUsuario();
-                return isset($user->nombre) ? $user->nombre : '';
+                $delegacion = $model->getDelegacion();
+                $return = isset($user->nombre) ? $user->nombre: '';
+                if ($return != '' && isset($delegacion->nombre)) {
+                    $return .= ', ';
+                }
+                $return .= isset($delegacion->nombre) ? $delegacion->nombre : '';
+                return $return;
             }
         ],
         'tipo' => ['label' => 'Tipo de aparato'],

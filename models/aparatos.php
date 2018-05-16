@@ -148,4 +148,35 @@ class Aparatos extends BaseModel
         }
         return null;
     }
+
+    public function getUsuariosAnteriores()
+    {
+        $query = QueryBuilder::db($this->conn)
+        ->select('au.*, u.nombre')
+        ->from('aparatos_usuarios au')
+        ->join('usuarios u', ['au.usuario_id', 'u.id'])
+        ->where(['aparato_id', $this->id])
+        ->orderBy(['created_at DESC'])
+        ->get();
+
+        return $query->fetchAll();
+    }
+
+    public function getTipoSingular()
+    {
+        switch ($this->tipo) {
+            case 'ordenadores':
+                return 'Ordenador';
+            case 'perifericos':
+                return 'Periférico';
+            case 'impresoras':
+                return 'Impresora';
+            case 'electronica_red':
+                return 'Electrónica de Red';
+            case 'monitores':
+                return 'Monitor';
+            default:
+                return '';
+        }
+    }
 }

@@ -57,9 +57,22 @@ extract($result);
         <?= Html::form($especifico)->multiTrTable(['exclude' => ['aparato_id']]); ?>
         <?= Html::form($aparato, 'observaciones')->trTable(); ?>
     </table>
+
+    <div id="usuarios-anteriores">
+        <h4>Lo usaron anteriormente</h4>
+        <ul>
+            <?php if ($usuarios = $aparato->getUsuariosAnteriores()): ?>
+                <?php foreach ($usuarios as $value): ?>
+                    <li><b><?= $value['nombre'] ?></b>. Hasta <?= date("d-m-Y \a \l\a\s G:i:s", strtotime($value['created_at'])) ?>.</li>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </ul>
+    </div>
 </div>
 
-<button class="btn btn-md btn-success float-right" id="export" data-id="<?= $id ?>" data-name="aparato">
+<?php $name = $aparato->getTipoSingular() . '_' . $aparato->marca . '_' . $aparato->modelo;
+$name = str_replace(' ', '_', $name); ?>
+<button class="btn btn-md btn-success float-right" id="export" data-id="<?= $id ?>" data-name="<?= $name ?>">
     Guardar como PDF
 </button>
 

@@ -1,40 +1,40 @@
 function guardar(nombre) {
+    var doc = new jsPDF('p', 'pt');
+
+    let titulo = nombre.replace(/_/g, ' ');
+    doc.autoTableSetDefaults({
+        addPageContent: function(data) {
+            doc.setFontSize(20);
+            doc.text(titulo, data.settings.margin.left, 40);
+        },
+        margin: {top: 60}
+    });
   var columns = [
         {title: "Título", dataKey: "title"},
         {title: "Contenido", dataKey: "content"}
     ];
-
   var data = [];
-
   let tr = $('#content tr');
+  let li = $('#usuarios-anteriores li');
   $.each(tr, function(index, value) {
       data.push({title: value.cells[0].innerText, content: value.cells[1].innerText})
   });
 
-  var doc = new jsPDF('p', 'pt');
+  let contenido = '';
+  var length = li.length;
+  $.each(li, function(index, value) {
+      contenido += '- ' + value.innerText;
+      if (index != (length - 1)) {
+         contenido += '\r\n';
+      }
+  });
+  data.push({title: 'Usado anteriormente por', content: contenido})
 
-  doc.autoTableSetDefaults({
-        addPageContent: function(data) {
-            doc.setFontSize(20);
-            doc.text('Detalle: ' + nombre, data.settings.margin.left, 40);
-        },
-        margin: {top: 60}
-    });
+  tabla(columns, data, doc, {
+      title: {fillColor: [41, 128, 185], textColor: 255, fontStyle: 'bold'},
+      content: {columnWidth: 'auto'}
+  });
 
-  doc.autoTable(columns, data, {
-      border: true,
-        showHeader: 'never',
-        columnStyles: {
-            title: {fillColor: [41, 128, 185], textColor: 255, fontStyle: 'bold'},
-            content: {columnWidth: 'auto'}
-        },
-        styles: {
-            overflow: 'linebreak',
-            columnWidth: 'wrap',
-            lineWidth: '1',
-            lineColor: '0',
-            textColor: '0'},
-    });
   doc.save(nombre + '.pdf');
 }
 
@@ -44,3 +44,17 @@ $(document).ready(function() {
         guardar(nombre);
     });
 });
+
+function tabla(columns, data, doc, columnStyles = false) {
+    doc.autoTable(columns, data, {
+        border: true,
+          showHeader: 'never',
+          columnStyles: columnStyles,
+          styles: {
+              overflow: 'linebreak',
+              columnWidth: 'wrap',
+              lineWidth: '1',
+              lineColor: '0',
+              textColor: '0'},
+      });
+}
