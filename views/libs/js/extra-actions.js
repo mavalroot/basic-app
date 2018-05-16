@@ -19,33 +19,9 @@ function ventana(name, url, bool = true) {
     $('body').on(ev, name, function (e) {
         e.preventDefault();
 
-        $.post( url, $( this ).serialize(), function(data) {
+        $.get( url, $( this ).serialize(), function(data) {
             $('body').append(data);
         });
-    });
-}
-
-/**
- * Recupera una fila del controlador y la reempla por la actual.
- * @param  {string} name Nombre del formulario.
- * @param  {string} url  Url a la que se le hace la petición ajax.
- */
-function cambiarEstado(name, url) {
-    $('body').one('submit', `form[name="${name}"]`, function (e) {
-        e.preventDefault();
-        let id = $(this).children('input[type="hidden"]').val();
-
-        $.post( url, $( this ).serialize(), function(data) {
-            if (!data.includes('<div id="option-window">')) {
-                $('#row_'+id).replaceWith(data);
-                $('#option-window > #window > #close').trigger('click');
-                cambiarEstado(name, url);
-            } else {
-                $('#option-window').replaceWith(data);
-                cambiarEstado(name, url);
-            }
-        });
-
     });
 }
 
@@ -58,18 +34,18 @@ function cerrarVentana() {
     });
 }
 
-function buscarTitular() {
-    $('form[name="buscar-titular"]').on('submit', function (e) {
+function cambiarUsuario() {
+    $('form[name="cambiar-usuario"]').on('submit', function (e) {
         e.preventDefault();
-        let input = $('input[list="buscar"]');
+        let input = $('input[list="cambiar"]');
         let value = input.val();
-        let titular_id = $('option[value="' + value + '"]').data('id');
+        let usuario = $('option[value="' + value + '"]').data('id');
+        let aparato = $(this).find('input[type="hidden"]').val();
 
-        $.post( 'ajax/buscar-titular.php', {id: titular_id}, function(data) {
-            if (titular_id != undefined) {
-                $('#titular-form').empty();
-                $('#titular-form').append(data);
+        $.post( 'ajax/cambiarUsuario.php', {usuario_id: usuario, id: aparato}, function(data) {
+            if (usuario != undefined) {
                 $('#option-window > #window > #close').trigger('click');
+                $('#row_' + aparato).load(location.href+` #row_${aparato}>*`,"");
             } else {
                 input.addClass('is-invalid');
             }

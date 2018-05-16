@@ -3,6 +3,7 @@
 namespace controllers;
 
 use models\Aparatos;
+use models\AparatosUsuarios;
 use utilities\base\BaseController;
 use utilities\helpers\html\Html;
 use utilities\helpers\validation\Errors;
@@ -90,11 +91,15 @@ class AparatosController extends BaseController
                     $model->createRecord('insert');
                     $model->reset();
                     $especifico->reset();
+                // $url=$_SERVER["REQUEST_URI"];
+                    // header("Location: $url");
                 } else {
                     Html::alert('danger', 'El registro no ha podido crearse');
                 }
             }
         }
+
+
 
         return [
             'aparato' => $model,
@@ -139,5 +144,31 @@ class AparatosController extends BaseController
             'aparato' => $model,
             'especifico' => $especifico,
         ];
+    }
+
+    public function cambiarUsuario()
+    {
+        // $this->permission();
+        if ($_POST) {
+            extract($_POST);
+            if (!isset($id, $usuario_id)) {
+                return false;
+            }
+
+            $model = $this->findModel($id);
+            $old = $model->usuario_id;
+            $model->usuario_id = $usuario_id;
+            if ($usuario_id != $old && $model->validate() && $model->update()) {
+                $record = new AparatosUsuarios([
+                    'aparato_id' => $id,
+                    'usuario_id' => $usuario_id,
+                ]);
+                if ($record->validate()) {
+                    $record->create();
+                }
+                return true;
+            }
+        }
+        return false;
     }
 }

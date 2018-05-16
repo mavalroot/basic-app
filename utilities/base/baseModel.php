@@ -3,7 +3,6 @@
 namespace utilities\base;
 
 use PDO;
-use models\ActividadReciente;
 
 use utilities\base\Database;
 use utilities\helpers\html\Html;

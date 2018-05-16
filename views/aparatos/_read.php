@@ -35,13 +35,39 @@ if (!isset($_SESSION)) {
     'model' => $model,
     'query' => $query,
     'rows' => [
-        'num_serie' => ['label' => 'Número de serie'],
+        [
+            'label' => 'Usuario utilizándolo',
+            'value' => function ($model) {
+                $user = $model->getUsuario();
+                return isset($user->nombre) ? $user->nombre : '';
+            }
+        ],
         'tipo' => ['label' => 'Tipo de aparato'],
+        'num_serie' => ['label' => 'Número de serie'],
         'marca' => ['label' => 'Marca'],
         'modelo' => ['label' => 'Modelo']
+    ],
+    'actions' => [
+        'replace' => false,
+        'add' => [
+            [
+                'value' => function ($model) {
+                    ?>
+                    <form method="POST" style="display: inline" name="cambiar">
+                        <input type="hidden" name="id" value="<?= $model->id ?>" />
+                        <button class="btn btn-sm btn-success" type="submit"><i class="fas fa-sync-alt"></i> Cambiar usuario</button>
+                    </form>
+                    <?php
+                }
+            ],
+        ]
     ],
 ]); ?>
 
 <?php else: ?>
     <?= Html::alert('info', 'No ha habido resultados.'); ?>
 <?php endif ?>
+
+<script type="text/javascript">
+    ventana('cambiar', 'ajax/cambiarUsuario.php');
+</script>

@@ -50,8 +50,8 @@ DROP TABLE IF EXISTS aparatos_usuarios CASCADE;
  */
 CREATE TABLE aparatos_usuarios (
       id            bigserial       PRIMARY KEY
-    , usuario_id    bigint          REFERENCES roles (id)
-    , aparato_id    bigint          REFERENCES aparatos (id)
+    , usuario_id    bigint          NOT NULL REFERENCES roles (id)
+    , aparato_id    bigint          NOT NULL REFERENCES aparatos (id)
                                     ON DELETE CASCADE ON UPDATE CASCADE
     , created_at    timestamp(0)    DEFAULT localtimestamp
 );
@@ -96,7 +96,7 @@ DROP TABLE IF EXISTS monitores CASCADE;
 CREATE TABLE monitores (
       aparato_id    bigint          PRIMARY KEY REFERENCES aparatos (id)
                                     ON DELETE CASCADE ON UPDATE CASCADE
-    , pulgadas      numeric(3,2)
+    , pulgadas      varchar(255)
 );
 
 DROP TABLE IF EXISTS perifericos CASCADE;

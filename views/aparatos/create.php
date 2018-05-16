@@ -39,8 +39,6 @@ $('select[name="aparatos[tipo]"]').on('change', function() {
     $.post('ajax/especifico.php', {tipo: eltipo}, function(data) {
         $('#especifico').empty();
         $('#especifico').append(data);
-        // $("#especifico").load(location.href+" #especifico>*","");
-        // $('#especifico').append(data);
     });
 });
 </script>
