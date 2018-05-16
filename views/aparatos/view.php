@@ -70,6 +70,9 @@ extract($result);
     </div>
 </div>
 
+<h4>Código QR</h4>
+<img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=<?= $_SERVER['REQUEST_URI'] ?>&choe=UTF-8" title="Link al aparato" />
+
 <?php $name = $aparato->getTipoSingular() . '_' . $aparato->marca . '_' . $aparato->modelo;
 $name = str_replace(' ', '_', $name); ?>
 <button class="btn btn-md btn-success float-right" id="export" data-id="<?= $id ?>" data-name="<?= $name ?>">
