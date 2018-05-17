@@ -39,16 +39,6 @@ class BaseModel
     protected $sortBy = 'created_at DESC';
 
     /**
-     * Array de parejas clave => valor.
-     * La clave es utilizado como label, y el valor se utiliza para acceder a
-     * los atributos.
-     * Es muy importante que esté bien formado, y que los valores tengan el
-     * mismo nombre que la columna en la tabla.
-     * @var array
-     */
-    protected $columnas;
-
-    /**
      * Errores obtenidos al hacer un validate().
      * @var array
      */
@@ -194,28 +184,6 @@ class BaseModel
             return isset($this->errors[$attr]) ? $this->errors[$attr] : '';
         }
         return $this->errors;
-    }
-
-    /**
-     * Devuelve el valor del atributo $columnas
-     * @return array
-     */
-    public function getColumnas()
-    {
-        return $this->columnas;
-    }
-
-    /**
-     * Cambia el atributo columnas para esa instancia de la clase.
-     *
-     * @param array $columnas Debe ser un array con parejas clave => valor,
-     * donde clave es el label para mostrar y valor el valor de la columna.
-     */
-    public function setColumnas($columnas)
-    {
-        if (is_array($columnas)) {
-            $this->columnas = $columnas;
-        }
     }
 
     /**
