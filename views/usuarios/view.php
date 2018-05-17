@@ -53,6 +53,24 @@ $name = str_replace(' ', '_', $usuario->nombre);
     </table>
 </div>
 
+<div class="row">
+    <div id="informacion-extra" class="col-sm-12">
+        <h4>Aparatos que usa / ha usado</h4>
+        <ul>
+            <?php if ($aparatos = $usuario->getAparatosActuales()): ?>
+                <?php foreach ($aparatos as $value): ?>
+                    <li><b><?= $value['tipo'] . ': ' . $value['marca'] . ' ' . $value['modelo'] ?></b>. Actualmente.</li>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <?php if ($aparatos = $usuario->getAparatosAnteriores()): ?>
+                <?php foreach ($aparatos as $value): ?>
+                    <li><b><?= $value['tipo'] . ': ' . $value['marca'] . ' ' . $value['modelo'] ?></b>. Hasta <?= date("d-m-Y \a \l\a\s G:i:s", strtotime($value['hasta'])) ?>.</li>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </ul>
+    </div>
+</div>
+
 <?php
 
 Components::footer();

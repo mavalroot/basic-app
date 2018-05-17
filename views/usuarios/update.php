@@ -29,7 +29,7 @@ Components::header($pageTitle, $breadcrumps);
 
 <?php
     $controller = new AparatosController();
-    $aparato = $controller->update($id);
+    $usuario = $controller->update($id);
 ?>
 
 <div class="container">

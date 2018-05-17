@@ -4,14 +4,14 @@ session_start();
 include_once '../../config/main-local.php';
 
 use utilities\helpers\html\Components;
-use controllers\AparatosController;
+use controllers\UsuariosController;
 
+$pageTitle = "Crear nuevo usuario";
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Aparatos' => 'index.php',
-    'Crear aparato' => ''
+    'Usuarios' => 'index.php',
+    $pageTitle => ''
 ];
-$pageTitle = "Nuevo registro";
 Components::header($pageTitle, $breadcrumps);
 
 ?>
@@ -23,8 +23,8 @@ Components::header($pageTitle, $breadcrumps);
 </div>
 
 <?php
-$controller = new AparatosController();
-$aparato = $controller->create();
+$controller = new UsuariosController();
+$usuario = $controller->create();
 ?>
 
 <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">

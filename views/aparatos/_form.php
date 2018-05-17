@@ -33,8 +33,6 @@ if (!isset($_SESSION)) {
     <?php endif; ?>
 </div>
 
-<fieldset>
 <div class="form-group text-center">
     <button type="submit" class="btn btn-primary">Enviar</button>
 </div>
-</fieldset>

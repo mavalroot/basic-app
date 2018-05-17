@@ -66,7 +66,19 @@ class UsuariosController extends BaseController
     public function create()
     {
         $this->permission();
-
+        $model = new Usuarios();
+        if ($_POST) {
+            if (isset($_POST['usuarios'])) {
+                $model->load($_POST['usuarios']);
+            }
+            if ($model->validate() && $model->create()) {
+                Html::alert('success', 'Se ha creado el registro. Para verlo haga click <a href="view.php?id=' . $model->id . '" class="alert-link">aquí</a>.', true);
+                $model->createRecord('insert');
+                $model->reset();
+            } else {
+                Html::alert('danger', 'El registro no ha podido crearse');
+            }
+        }
         return $model;
     }
 

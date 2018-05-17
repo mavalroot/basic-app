@@ -64,7 +64,7 @@ class Usuarios extends BaseModel
         $query = QueryBuilder::db($this->conn)
             ->select('*')
             ->from('aparatos')
-            ->where(['usuario_id' => $this->id])
+            ->where(['usuario_id', $this->id])
             ->get();
 
         $data = $query->fetchAll();
@@ -75,10 +75,11 @@ class Usuarios extends BaseModel
     public function getAparatosAnteriores()
     {
         $query = QueryBuilder::db($this->conn)
-        ->select('a.*')
+        ->select('a.*, b.created_at as hasta')
         ->from('aparatos a')
         ->join('aparatos_usuarios b', ['a.id', 'b.aparato_id'])
         ->where(['a.usuario_id', $this->id])
+        ->orderBy('hasta DESC')
         ->get();
 
         $data = $query->fetchAll();
