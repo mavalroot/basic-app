@@ -14,6 +14,7 @@ class Impresoras extends BaseModel
         'Color magenta' => 'magenta',
         'Color cian' => 'cian',
         'Color amarillo' => 'amarillo',
+        'Color negro' => 'negro',
         'Está en red' => 'red',
     ];
 
@@ -41,6 +42,7 @@ class Impresoras extends BaseModel
             'magenta' => 'Color magenta',
             'cian' => 'Color cian',
             'amarillo' => 'Color amarillo',
+            'negro' => 'Color negro',
             'red' => 'Está en red',
         ];
     }

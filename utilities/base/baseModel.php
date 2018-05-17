@@ -323,7 +323,7 @@ class BaseModel
         $columnas = static::getAllColumns();
         $datos = [];
         foreach ($columnas as $value) {
-            if (isset($this->$value) && $this->$value == true) {
+            if (isset($this->$value) && ($this->$value == true || $this->$value == '0')) {
                 $datos[$value] = $this->$value;
             }
         }

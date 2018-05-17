@@ -186,7 +186,7 @@ class Aparatos extends BaseModel
         . $this->getNombreUsuario() . '.\nDelegación: '
         . $this->getNombreDelegacion() . '.\n';
 
-        $data .= parent::getQRData(['id', 'usuario_id', 'delegacion_id']);
+        $data .= parent::getQRData(['id', 'usuario_id', 'delegacion_id', 'created_at']);
         return $data;
         // $data = '';
         // $columnas = $this->getAllColumns();
