@@ -38,14 +38,12 @@ if (!isset($_SESSION)) {
         [
             'label' => 'Usuario y/o delegación utilizándolo',
             'value' => function ($model) {
-                $user = $model->getUsuario();
-                $delegacion = $model->getDelegacion();
-                $return = isset($user->nombre) ? $user->nombre: '';
-                if ($return != '' && isset($delegacion->nombre)) {
-                    $return .= ', ';
+                $user = $model->getNombreUsuario();
+                $delegacion = $model->getNombreDelegacion();
+                if ($user != '' && $delegacion != '') {
+                    $user .= ', ';
                 }
-                $return .= isset($delegacion->nombre) ? $delegacion->nombre : '';
-                return $return;
+                return $user . $delegacion;
             }
         ],
         'tipo' => ['label' => 'Tipo de aparato'],

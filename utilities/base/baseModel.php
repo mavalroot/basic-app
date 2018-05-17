@@ -498,4 +498,17 @@ class BaseModel
         }
         return $columns;
     }
+
+    public function getQRData($exclude = [])
+    {
+        $data = '';
+        $columnas = $this->getAllColumns();
+        foreach ($columnas as $columna) {
+            if (in_array($columna, $exclude)) {
+                continue;
+            }
+            $data .= ($this->getLabel($columna) ?: $columna) . ': ' . (isset($this->$columna) ? $this->$columna : '') . '.\n';
+        }
+        return $data;
+    }
 }

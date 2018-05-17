@@ -22,26 +22,33 @@ Components::header($pageTitle, $breadcrumps);
 
 $result = AparatosController::view($id);
 extract($result);
-?>
+$name = $aparato->getTipoSingular() . '_' . $aparato->marca . '_' . $aparato->modelo;
+$name = str_replace(' ', '_', $name); ?>
 
-<div class='right-button-margin'>
+<div class="row mb-2">
+    <div class="col-sm-6">
+        <button class="btn btn-md btn-success" id="export" data-id="<?= $id ?>" data-name="<?= $name ?>">
+            Guardar como PDF
+        </button>
+    </div>
+
+<div class='col-sm-6'>
     <a href='index.php' class='btn btn-primary float-right'>
         <i class="fas fa-list-ul"></i> Consultar todos los registros
     </a>
+</div>
 </div>
 
 <div id="content" class="table-responsive">
     <table class='table table-striped'>
         <?= Html::form($aparato, 'usuario_id')->trTable([
             'value' => function ($model) {
-                $user = $model->getUsuario();
-                return isset($user->nombre) ? $user->nombre : '';
+                return $model->getNombreUsuario();
             },
         ]) ?>
         <?= Html::form($aparato, 'delegacion_id')->trTable([
             'value' => function ($model) {
-                $delegacion = $model->getDelegacion();
-                return isset($delegacion->nombre) ? $delegacion->nombre : '';
+                return $model->getNombreDelegacion();
             },
         ]) ?>
         <?= Html::form($aparato)->multiTrTable([
@@ -57,8 +64,9 @@ extract($result);
         <?= Html::form($especifico)->multiTrTable(['exclude' => ['aparato_id']]); ?>
         <?= Html::form($aparato, 'observaciones')->trTable(); ?>
     </table>
-
-    <div id="usuarios-anteriores">
+</div>
+<div class="row">
+    <div class="col-sm-6" id="usuarios-anteriores">
         <h4>Lo usaron anteriormente</h4>
         <ul>
             <?php if ($usuarios = $aparato->getUsuariosAnteriores()): ?>
@@ -68,17 +76,17 @@ extract($result);
             <?php endif; ?>
         </ul>
     </div>
+
+    <div class="col-sm-6">
+        <h4>Código QR</h4>
+        <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=<?= Html::h('http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']) ?>&choe=UTF-8" title="Link al aparato" />
+        <div id="qrcode" title="Información"></div>
+    </div>
 </div>
 
-<h4>Código QR</h4>
-<img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=<?= $_SERVER['REQUEST_URI'] ?>&choe=UTF-8" title="Link al aparato" />
-
-<?php $name = $aparato->getTipoSingular() . '_' . $aparato->marca . '_' . $aparato->modelo;
-$name = str_replace(' ', '_', $name); ?>
-<button class="btn btn-md btn-success float-right" id="export" data-id="<?= $id ?>" data-name="<?= $name ?>">
-    Guardar como PDF
-</button>
-
+<script type="text/javascript">
+    $('#qrcode').qrcode("<?= $aparato->getQRData() ?><?= $especifico->getQRData(['aparato_id']) ?>");
+</script>
 <?php
 
 Components::footer();

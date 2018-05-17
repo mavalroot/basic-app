@@ -136,6 +136,18 @@ class Aparatos extends BaseModel
         return null;
     }
 
+    public function getNombreUsuario()
+    {
+        $user = $this->getUsuario();
+        return isset($user->nombre) ? $user->nombre : '';
+    }
+
+    public function getNombreDelegacion()
+    {
+        $delegacion = $this->getDelegacion();
+        return isset($delegacion->nombre) ? $delegacion->nombre : '';
+    }
+
     public function getDelegacion($withEmpty = false)
     {
         if ($this->delegacion_id) {
@@ -178,5 +190,24 @@ class Aparatos extends BaseModel
             default:
                 return '';
         }
+    }
+
+    public function getQRData($exclude = [])
+    {
+        $data = 'Usuario actual: '
+        . $this->getNombreUsuario() . '.\nDelegación: '
+        . $this->getNombreDelegacion() . '.\n';
+
+        $data .= parent::getQRData(['id', 'usuario_id', 'delegacion_id']);
+        return $data;
+        // $data = '';
+        // $columnas = $this->getAllColumns();
+        // foreach ($columnas as $columna) {
+        //     if (in_array($columna, $exclude)) {
+        //         continue;
+        //     }
+        //     $data .= ($this->getLabel($columna) ?: $columna) . ': ' . (isset($this->$columna) ? $this->$columna : '') . '.\n';
+        // }
+        // return $data;
     }
 }
