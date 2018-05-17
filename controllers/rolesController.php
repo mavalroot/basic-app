@@ -14,7 +14,7 @@ use utilities\helpers\validation\Errors;
  */
 class RolesController extends BaseController
 {
-    protected static $rol = 1;
+    protected static $rol = 2;
 
     public function __construct()
     {
