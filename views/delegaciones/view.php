@@ -17,7 +17,7 @@ $delegacion = DelegacionesController::view($id);
 $pageTitle = $delegacion->nombre;
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Usuarios' => 'index.php',
+    'Delegaciones' => 'index.php',
     $pageTitle => ''
 ];
 Components::header($pageTitle, $breadcrumps);

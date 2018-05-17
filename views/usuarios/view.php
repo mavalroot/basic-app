@@ -22,7 +22,6 @@ $breadcrumps = [
 ];
 Components::header($pageTitle, $breadcrumps);
 
-
 $name = str_replace(' ', '_', $usuario->nombre);
 ?>
 

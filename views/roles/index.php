@@ -5,11 +5,11 @@ use utilities\helpers\html\Components;
 
 use controllers\RolesController;
 
+$pageTitle = 'Roles';
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Roles' => ''
+    $pageTitle => ''
 ];
-$pageTitle = "Lista de roles";
 Components::header($pageTitle, $breadcrumps);
 
 $controller = new RolesController();

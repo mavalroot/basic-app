@@ -6,10 +6,10 @@ include_once '../../config/main-local.php';
 use utilities\helpers\html\Components;
 use controllers\DelegacionesController;
 
-$pageTitle = "Crear nuevo usuario";
+$pageTitle = "Crear un nueva delegación";
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Usuarios' => 'index.php',
+    'Delegaciones' => 'index.php',
     $pageTitle => ''
 ];
 Components::header($pageTitle, $breadcrumps);

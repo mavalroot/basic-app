@@ -6,7 +6,7 @@ include_once '../../config/main-local.php';
 use utilities\helpers\html\Components;
 use controllers\AparatosController;
 
-$pageTitle = "Crear aparato";
+$pageTitle = 'Crear aparato';
 $breadcrumps = [
     'Index' => '../site/index.php',
     'Aparatos' => 'index.php',

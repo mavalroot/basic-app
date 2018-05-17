@@ -5,7 +5,7 @@ use utilities\helpers\html\Components;
 
 use controllers\AparatosController;
 
-$pageTitle = "Aparatos";
+$pageTitle = 'Aparatos';
 $breadcrumps = [
     'Index' => '../site/index.php',
     $pageTitle => ''

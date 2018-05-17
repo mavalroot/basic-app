@@ -11,18 +11,18 @@ if (!isset($_GET['id'])) {
     Errors::notFound();
 }
 $id = $_GET['id'];
+$result = AparatosController::view($id);
+extract($result);
+$name = $aparato->getTipoSingular() . ' ' . $aparato->marca . ' ' . $aparato->modelo;
+$pageTitle = $name;
 
 $breadcrumps = [
     'Index' => '../site/index.php',
     'Aparatos' => 'index.php',
-    "Detalle aparato$id" => ''
+    $name => ''
 ];
-$pageTitle = "Consultar un registro";
 Components::header($pageTitle, $breadcrumps);
 
-$result = AparatosController::view($id);
-extract($result);
-$name = $aparato->getTipoSingular() . '_' . $aparato->marca . '_' . $aparato->modelo;
 $name = str_replace(' ', '_', $name); ?>
 
 <div class="row mb-2">

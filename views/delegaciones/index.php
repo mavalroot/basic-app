@@ -5,11 +5,11 @@ use controllers\DelegacionesController;
 
 use utilities\helpers\html\Components;
 
+$pageTitle = 'Delegaciones';
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Usuarios' => ''
+    $pageTitle => ''
 ];
-$pageTitle = "Registro completo";
 Components::header($pageTitle, $breadcrumps);
 
 $controller = new DelegacionesController();

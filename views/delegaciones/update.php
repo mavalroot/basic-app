@@ -10,13 +10,15 @@ if (!isset($_GET['id'])) {
     Errors::notFound();
 }
 $id = $_GET['id'];
+$controller = new DelegacionesController();
+$delegacion = $controller->update($id);
 
+$pageTitle = "Editar " . $delegacion->nombre;
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Aparatos' => 'index.php',
-    "Editar aparato$id" => ''
+    'Delegaciones' => 'index.php',
+    $pageTitle => ''
 ];
-$pageTitle = "Actualizar registro";
 Components::header($pageTitle, $breadcrumps);
 
 ?>
@@ -26,11 +28,6 @@ Components::header($pageTitle, $breadcrumps);
         <i class="fas fa-list-ul"></i> Consultar todos los registros.
     </a>
 </div>
-
-<?php
-    $controller = new DelegacionesController();
-    $delegacion = $controller->update($id);
-?>
 
 <div class="container">
     <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$id}");?>" method="post">

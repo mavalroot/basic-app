@@ -5,11 +5,11 @@ use controllers\UsuariosController;
 
 use utilities\helpers\html\Components;
 
+$pageTitle = 'Usuarios';
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Usuarios' => ''
+    $pageTitle => ''
 ];
-$pageTitle = "Registro completo";
 Components::header($pageTitle, $breadcrumps);
 
 $controller = new UsuariosController();

@@ -1,6 +1,5 @@
 <?php
 include_once '../../config/main-local.php';
-use models\Delegaciones;
 
 use utilities\helpers\html\Html;
 use utilities\helpers\validation\Errors;
