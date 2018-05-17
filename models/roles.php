@@ -44,6 +44,7 @@ class Roles extends BaseModel
         return [
             'nombre' => 'Nombre de usuario',
             'last_con' => 'Última conexión',
+            'permiso' => 'Permisos'
         ];
     }
 

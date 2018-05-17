@@ -24,10 +24,6 @@ $pageTitle = "Consultar un rol";
 Components::header($pageTitle, $breadcrumps);
 
 $rol = RolesController::view($id);
-$rol->setColumnas([
-    'Nombre de rol' => 'nombre',
-    'Última conexión' => 'last_con'
-])
 ?>
 
 <div class='right-button-margin'>
@@ -38,11 +34,14 @@ $rol->setColumnas([
 
 <div class="table-responsive">
     <table class='table table-striped'>
-        <?= Html::form($rol)->multiTrTable(); ?>
-        <tr>
-            <th class="col-sm-2">Permisos</th>
-            <td class="col-sm-10"><?= $rol->getPermiso() ?></td>
-        </tr>
+        <?= Html::form($rol)->multiTrTable([
+            'columns' => ['nombre', 'last_con']
+        ]); ?>
+        <?= Html::form($rol, 'permiso')->trTable([
+            'value' => function ($model) {
+                return $model->getPermiso();
+            },
+        ]) ?>
     </table>
 </div>
 <hr class="style11">
