@@ -74,11 +74,12 @@ class Usuarios extends BaseModel
 
     public function getAparatosAnteriores()
     {
+        // select aparatos.*, aparatos_usuarios.created_at as hasta from aparatos_usuarios join aparatos on aparatos.id = aparatos_usuarios.aparato_id where aparatos_usuarios.id = 6;
         $query = QueryBuilder::db($this->conn)
-        ->select('a.*, b.created_at as hasta')
-        ->from('aparatos a')
-        ->join('aparatos_usuarios b', ['a.id', 'b.aparato_id'])
-        ->where(['a.usuario_id', $this->id])
+        ->select('a.*, au.usuario_id as anterior, au.created_at as hasta')
+        ->from('aparatos_usuarios au')
+        ->join('aparatos a', ['a.id', 'au.aparato_id'])
+        ->where(['au.usuario_id', $this->id])
         ->orderBy('hasta DESC')
         ->get();
 
@@ -105,6 +106,8 @@ class Usuarios extends BaseModel
         foreach ($data as $value) {
             $new[$value['id']] = $value['nombre'];
         }
+
+        asort($new, SORT_NATURAL | SORT_FLAG_CASE);
 
         return $new;
     }

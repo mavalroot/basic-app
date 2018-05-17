@@ -12,16 +12,16 @@ if (!isset($_GET['id'])) {
     Errors::notFound();
 }
 $id = $_GET['id'];
+$usuario = UsuariosController::view($id);
 
-$pageTitle = "Consultar un registro";
+$pageTitle = $usuario->nombre;
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Aparatos' => 'index.php',
-    "Detalle aparato$id" => ''
+    'Usuarios' => 'index.php',
+    $pageTitle => ''
 ];
 Components::header($pageTitle, $breadcrumps);
 
-$usuario = UsuariosController::view($id);
 
 $name = str_replace(' ', '_', $usuario->nombre);
 ?>
