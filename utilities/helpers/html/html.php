@@ -370,6 +370,11 @@ class Html
                 <?php if (in_array($column, $exclude)): ?>
                     <?php continue; ?>
                 <?php endif; ?>
+                <?php if ($model->$column === false): ?>
+                    <?php $model->$column = 'No' ?>
+                <?php elseif ($model->$column === true): ?>
+                    <?php $model->$column = 'Sí' ?>
+                <?php endif; ?>
                 <?php static::dateForm($model->$column) ?>
                 <?php static::exists($model->$column) ?>
                 <tr>

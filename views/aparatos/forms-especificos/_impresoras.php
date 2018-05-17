@@ -15,6 +15,6 @@ use utilities\helpers\html\Html;
     <?= Html::form($especifico, 'cian')->textInput() ?>
     <?= Html::form($especifico, 'amarillo')->textInput() ?>
     <?= Html::form($especifico, 'negro')->textInput() ?>
-    <?= Html::form($especifico, 'red')->selectOption(['Sí','No'], ['locked' => false]) ?>
+    <?= Html::form($especifico, 'red')->selectOption(['No','Sí'], ['locked' => false]) ?>
 
 </fieldset>
