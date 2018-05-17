@@ -9,10 +9,6 @@ use utilities\base\BaseModel;
  */
 class Monitores extends BaseModel
 {
-    protected $columnas = [
-        'Pulgadas' => 'pulgadas'
-    ];
-
     protected $searchBy = [
         'Pulgadas' => 'pulgadas'
     ];

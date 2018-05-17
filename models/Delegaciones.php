@@ -12,10 +12,6 @@ use utilities\query\QueryBuilder;
  */
 class Delegaciones extends BaseModel
 {
-    protected $columnas = [
-        'Nombre de la delegación' => 'nombre',
-    ];
-
     protected $searchBy = [
         'Nombre de la delegación' => 'nombre',
     ];

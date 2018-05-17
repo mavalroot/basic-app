@@ -1,6 +1,8 @@
 <?php
 session_start();
 include_once '../../config/main-local.php';
+use controllers\UsuariosController;
+
 use utilities\helpers\html\Html;
 use utilities\helpers\validation\Errors;
 use utilities\helpers\html\Components;
@@ -20,7 +22,7 @@ $breadcrumps = [
 $pageTitle = "Consultar un registro";
 Components::header($pageTitle, $breadcrumps);
 
-$aparato = AparatosController::view($id);
+$usuario = UsuariosController::view($id);
 ?>
 
 <div class='right-button-margin'>
@@ -31,7 +33,14 @@ $aparato = AparatosController::view($id);
 
 <div id="content" class="table-responsive">
     <table class='table table-striped'>
-        <?= Html::form($aparato)->multiTrTable(); ?>
+        <?= Html::form($usuario)->multiTrTable([
+            'exclude' => ['id', 'created_at', 'delegacion_id']
+        ]); ?>
+        <?= Html::form($usuario, 'delegacion_id')->trTable([
+            'value' => function ($model) {
+                return $model->getNombreDelegacion();
+            },
+        ]) ?>
     </table>
 </div>
 

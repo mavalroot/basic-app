@@ -9,10 +9,6 @@ use utilities\base\BaseModel;
  */
 class Perifericos extends BaseModel
 {
-    protected $columnas = [
-        'Descripción' => 'descripcion'
-    ];
-
     protected $searchBy = [
         'Descripción' => 'descripcion'
     ];

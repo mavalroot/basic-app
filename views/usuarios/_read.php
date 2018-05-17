@@ -36,8 +36,7 @@ if (!isset($_SESSION)) {
     'query' => $query,
     'rows' => [
         'nombre' => ['label' => 'Nombre'],
-        'dni' => ['label' => 'DNI'],
-        'domicilio' => ['label' => 'Domicilio'],
+        'extension' => ['label' => 'Extensión'],
     ],
 ]); ?>
 

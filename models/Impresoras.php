@@ -9,14 +9,6 @@ use utilities\base\BaseModel;
  */
 class Impresoras extends BaseModel
 {
-    protected $columnas = [
-        'Cartucho' => 'cartucho',
-        'Color magenta' => 'magenta',
-        'Color cian' => 'cian',
-        'Color amarillo' => 'amarillo',
-        'Está en red' => 'red',
-    ];
-
     protected $searchBy = [
         'Cartucho' => 'cartucho',
         'Color magenta' => 'magenta',

@@ -358,7 +358,7 @@ class Html
      * Si no se especifica nada se tomará las columnas especificadas en el
      * modelo.
      */
-    public static function multiTrTable($config)
+    public static function multiTrTable($config = [])
     {
         $columns = false;
         $exclude = [];

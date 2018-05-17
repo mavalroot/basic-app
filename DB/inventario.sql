@@ -20,6 +20,7 @@ CREATE TABLE usuarios (
       id            bigserial       PRIMARY KEY
     , nombre        varchar(255)
     , delegacion_id bigint          REFERENCES delegaciones (id)
+    , extension     varchar(255)    
     , created_at    timestamp(0)    DEFAULT localtimestamp
 );
 

@@ -131,7 +131,7 @@ class tableView
                 <?php if (is_integer($key)): ?>
                     <td><?= $value['raw'] ? call_user_func($value['value'], $model) : Html::h(call_user_func($value['value'], $model)) ?></td>
                 <?php else: ?>
-                    <td><?= Html::h($model->$key) ?></td>
+                    <td><?= isset($model->$key) ? Html::h($model->$key) : '' ?></td>
                 <?php endif; ?>
             <?php endforeach; ?>
             <?= $this->singleButtons([

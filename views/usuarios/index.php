@@ -1,18 +1,18 @@
 <?php
 session_start();
 include_once '../../config/main-local.php';
-use utilities\helpers\html\Components;
+use controllers\UsuariosController;
 
-use controllers\AparatosController;
+use utilities\helpers\html\Components;
 
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Aparatos' => ''
+    'Usuarios' => ''
 ];
 $pageTitle = "Registro completo";
 Components::header($pageTitle, $breadcrumps);
 
-$controller = new AparatosController();
+$controller = new UsuariosController();
 $controller = $controller->index($pagLimit, $pagOffset);
 extract($controller);
 

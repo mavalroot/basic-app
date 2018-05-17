@@ -25,10 +25,6 @@ class Roles extends BaseModel
      */
     public $password_hash;
 
-    protected $columnas = [
-        'Última conexión' => 'last_con',
-    ];
-
     protected $sortBy = 'last_con DESC';
 
     protected $searchBy = ['Nombre de usuario' => 'nombre'];
@@ -46,7 +42,8 @@ class Roles extends BaseModel
     protected static function labels()
     {
         return [
-            'last_con' => 'Última conexión'
+            'nombre' => 'Nombre de usuario',
+            'last_con' => 'Última conexión',
         ];
     }
 

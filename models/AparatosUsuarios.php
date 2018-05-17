@@ -9,8 +9,6 @@ use utilities\base\BaseModel;
  */
 class AparatosUsuarios extends BaseModel
 {
-    protected $columnas = [];
-
     protected $searchBy = [];
 
     public static function tableName()

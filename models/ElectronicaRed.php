@@ -9,12 +9,6 @@ use utilities\base\BaseModel;
  */
 class ElectronicaRed extends BaseModel
 {
-    protected $columnas = [
-        'Ubicación' => 'ubicacion',
-        'Tipo' => 'tipo',
-        'Descripción' => 'descripcion'
-    ];
-
     protected $searchBy = [
         'Descripción' => 'descripcion'
     ];

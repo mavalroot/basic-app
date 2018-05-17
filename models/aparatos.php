@@ -12,18 +12,6 @@ use utilities\query\QueryBuilder;
  */
 class Aparatos extends BaseModel
 {
-    protected $columnas = [
-        'Utilizado por el usuario' => 'usuario_id',
-        'Utilizado por la delegación' => 'delegacion_id',
-        'Marca' => 'marca',
-        'Modelo' => 'modelo',
-        'Número de serie' => 'num_serie',
-        'Fecha de compra' => 'fecha_compra',
-        'Proveedor' => 'proveedor',
-        'Tipo de aparato' => 'tipo',
-        'Observaciones' => 'observaciones',
-    ];
-
     protected $searchBy = [
         'Número de serie' => 'num_serie',
         'Tipo de aparato' => 'tipo',
@@ -142,13 +130,7 @@ class Aparatos extends BaseModel
         return isset($user->nombre) ? $user->nombre : '';
     }
 
-    public function getNombreDelegacion()
-    {
-        $delegacion = $this->getDelegacion();
-        return isset($delegacion->nombre) ? $delegacion->nombre : '';
-    }
-
-    public function getDelegacion($withEmpty = false)
+    public function getDelegacion()
     {
         if ($this->delegacion_id) {
             $usuario = new Delegaciones([
@@ -159,6 +141,12 @@ class Aparatos extends BaseModel
             }
         }
         return null;
+    }
+
+    public function getNombreDelegacion()
+    {
+        $delegacion = $this->getDelegacion();
+        return isset($delegacion->nombre) ? $delegacion->nombre : '';
     }
 
     public function getUsuariosAnteriores()

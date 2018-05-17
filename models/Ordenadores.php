@@ -9,15 +9,6 @@ use utilities\base\BaseModel;
  */
 class Ordenadores extends BaseModel
 {
-    protected $columnas = [
-        'Microprocesador' => 'micro',
-        'Memoria RAM' => 'memoria',
-        'Disco duro' => 'disco_duro',
-        'Tipo de Disco duro' => 'tipo_disco',
-        'IP' => 'ip',
-        'Sistema operativo' => 'sist_op'
-    ];
-
     protected $searchBy = [
         'Microprocesador' => 'micro',
         'Memoria RAM' => 'memoria',

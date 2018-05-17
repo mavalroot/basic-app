@@ -13,12 +13,6 @@ use utilities\query\QueryBuilder;
  */
 class Usuarios extends BaseModel
 {
-    protected $columnas = [
-        'Nombre completo' => 'nombre',
-        'Delegación' => 'delegacion_id',
-        'Extensión de teléfono' => 'extension',
-    ];
-
     protected $searchBy = [
         'Nombre completo' => 'nombre',
         'Extensión de teléfono' => 'extension',
@@ -33,7 +27,7 @@ class Usuarios extends BaseModel
     {
         return [
             [['nombre'], 'required', 'message' => 'Error: este campo es obligatorio.'],
-            [['delegacion_id'], 'in', array_keys(static::getDelegaciones(true)), 'message' => 'Error: Seleccione una opción válida.'],
+            [['delegacion_id'], 'in', array_keys(Delegaciones::getAllDelegaciones(true)), 'message' => 'Error: Seleccione una opción válida.'],
         ];
     }
 
@@ -46,35 +40,30 @@ class Usuarios extends BaseModel
         ];
     }
 
-    public static function getAllUsuarios($withEmpty = false)
+    public function getDelegacion()
     {
-        $db = new Database();
-        $db = $db->getConnection();
-        $query = QueryBuilder::db($db)
-            ->select('id, nombre')
-            ->from('usuarios')
-            ->get();
-
-        $data = $query->fetchAll();
-
-        $new = [];
-        if ($withEmpty) {
-            $new[''] = 'Ningún';
+        if ($this->delegacion_id) {
+            $usuario = new Delegaciones([
+                'id' => $this->delegacion_id
+            ]);
+            if ($usuario->readOne()) {
+                return $usuario;
+            }
         }
-        foreach ($data as $value) {
-            $new[$value['id']] = $value['nombre'];
-        }
-
-        return $new;
+        return null;
     }
 
-    public function getDelegacion($withEmpty = false)
+    public function getNombreDelegacion()
     {
-        $db = new Database();
-        $db = $db->getConnection();
-        $query = QueryBuilder::db($db)
-            ->select('id, nombre')
-            ->from('delegaciones')
+        $delegacion = $this->getDelegacion();
+        return isset($delegacion->nombre) ? $delegacion->nombre : '';
+    }
+
+    public function getAparatosActuales()
+    {
+        $query = QueryBuilder::db($this->conn)
+            ->select('*')
+            ->from('aparatos')
             ->where(['usuario_id' => $this->id])
             ->get();
 
@@ -83,15 +72,14 @@ class Usuarios extends BaseModel
         return $data;
     }
 
-    public function getAparatos()
+    public function getAparatosAnteriores()
     {
-        $db = new Database();
-        $db = $db->getConnection();
-        $query = QueryBuilder::db($db)
-            ->select('id, numero_serie')
-            ->from('aparatos')
-            ->where(['usuario_id' => $this->id])
-            ->get();
+        $query = QueryBuilder::db($this->conn)
+        ->select('a.*')
+        ->from('aparatos a')
+        ->join('aparatos_usuarios b', ['a.id', 'b.aparato_id'])
+        ->where(['a.usuario_id', $this->id])
+        ->get();
 
         $data = $query->fetchAll();
 
