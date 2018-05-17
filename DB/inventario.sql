@@ -7,8 +7,9 @@ DROP TABLE IF EXISTS delegaciones CASCADE;
  * Delegaciones.
  */
 CREATE TABLE delegaciones (
-      id        bigserial       PRIMARY KEY
-    , nombre    varchar(255)    NOT NULL
+      id            bigserial       PRIMARY KEY
+    , nombre        varchar(255)    NOT NULL
+    , created_at    timestamp(0)    DEFAULT localtimestamp
 );
 
 DROP TABLE IF EXISTS usuarios CASCADE;
@@ -20,7 +21,7 @@ CREATE TABLE usuarios (
       id            bigserial       PRIMARY KEY
     , nombre        varchar(255)
     , delegacion_id bigint          REFERENCES delegaciones (id)
-    , extension     varchar(255)    
+    , extension     varchar(255)
     , created_at    timestamp(0)    DEFAULT localtimestamp
 );
 
