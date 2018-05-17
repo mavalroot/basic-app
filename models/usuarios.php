@@ -85,4 +85,26 @@ class Usuarios extends BaseModel
 
         return $data;
     }
+
+    public static function getAllUsuarios($withEmpty = false)
+    {
+        $db = new Database();
+        $db = $db->getConnection();
+        $query = QueryBuilder::db($db)
+            ->select('id, nombre')
+            ->from('usuarios')
+            ->get();
+
+        $data = $query->fetchAll();
+
+        $new = [];
+        if ($withEmpty) {
+            $new[''] = 'Ningún';
+        }
+        foreach ($data as $value) {
+            $new[$value['id']] = $value['nombre'];
+        }
+
+        return $new;
+    }
 }

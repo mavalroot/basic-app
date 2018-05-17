@@ -10,13 +10,16 @@ if (!isset($_GET['id'])) {
     Errors::notFound();
 }
 $id = $_GET['id'];
+$controller = new AparatosController();
+$result = $controller->update($id);
+extract($result);
 
+$pageTitle = $aparato->getTipoSingular() . ' ' . $aparato->marca . ' ' . $aparato->modelo;;
 $breadcrumps = [
     'Index' => '../site/index.php',
     'Aparatos' => 'index.php',
-    "Editar aparato$id" => ''
+    $pageTitle => ''
 ];
-$pageTitle = "Actualizar registro";
 Components::header($pageTitle, $breadcrumps);
 ?>
 
@@ -27,9 +30,6 @@ Components::header($pageTitle, $breadcrumps);
 </div>
 
 <?php
-    $controller = new AparatosController();
-    $result = $controller->update($id);
-    extract($result);
 ?>
 
 <div class="container">

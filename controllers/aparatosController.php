@@ -91,16 +91,11 @@ class AparatosController extends BaseController
                     $model->createRecord('insert');
                     $model->reset();
                     $especifico->reset();
-                // $url=$_SERVER["REQUEST_URI"];
-                    // header("Location: $url");
                 } else {
                     Html::alert('danger', 'El registro no ha podido crearse');
                 }
             }
         }
-
-
-
         return [
             'aparato' => $model,
             'especifico' => $especifico,
@@ -159,15 +154,17 @@ class AparatosController extends BaseController
             $old = $model->usuario_id;
             $model->usuario_id = $usuario_id;
             if ($usuario_id != $old && $model->validate() && $model->update()) {
-                $record = new AparatosUsuarios([
-                    'aparato_id' => $id,
-                    'usuario_id' => $usuario_id,
-                ]);
-                if ($record->validate()) {
-                    $record->create();
+                if ($old) {
+                    $record = new AparatosUsuarios([
+                        'aparato_id' => $id,
+                        'usuario_id' => $usuario_id,
+                    ]);
+                    if ($record->validate()) {
+                        $record->create();
+                    }
                 }
-                return true;
             }
+            return true;
         }
         return false;
     }

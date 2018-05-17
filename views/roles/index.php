@@ -3,11 +3,11 @@ session_start();
 include_once '../../config/main-local.php';
 use utilities\helpers\html\Components;
 
-use controllers\rolesController;
+use controllers\RolesController;
 
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'roles' => ''
+    'Roles' => ''
 ];
 $pageTitle = "Lista de roles";
 Components::header($pageTitle, $breadcrumps);

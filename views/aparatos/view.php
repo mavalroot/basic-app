@@ -66,7 +66,7 @@ $name = str_replace(' ', '_', $name); ?>
     </table>
 </div>
 <div class="row">
-    <div class="col-sm-6" id="usuarios-anteriores">
+    <div class="col-sm-6" id="informacion-extra">
         <h4>Lo usaron anteriormente</h4>
         <ul>
             <?php if ($usuarios = $aparato->getUsuariosAnteriores()): ?>

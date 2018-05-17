@@ -14,16 +14,16 @@ if (!isset($_GET['id'])) {
     Errors::notFound();
 }
 $id = $_GET['id'];
+$rol = RolesController::view($id);
 
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'roles' => 'index.php',
-    "Detalle" => ''
+    'Roles' => 'index.php',
+    $rol->nombre => ''
 ];
-$pageTitle = "Consultar un rol";
+$pageTitle = $rol->nombre;
 Components::header($pageTitle, $breadcrumps);
 
-$rol = RolesController::view($id);
 ?>
 
 <div class='right-button-margin'>

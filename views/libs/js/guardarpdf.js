@@ -15,20 +15,23 @@ function guardar(nombre) {
     ];
   var data = [];
   let tr = $('#content tr');
-  let li = $('#usuarios-anteriores li');
+  let li = $('#informacion-extra li');
+  let h4 = $('#informacion-extra h4').text();
   $.each(tr, function(index, value) {
       data.push({title: value.cells[0].innerText, content: value.cells[1].innerText})
   });
 
   let contenido = '';
   var length = li.length;
-  $.each(li, function(index, value) {
-      contenido += '- ' + value.innerText;
-      if (index != (length - 1)) {
-         contenido += '\r\n';
-      }
-  });
-  data.push({title: 'Usado anteriormente por', content: contenido})
+  if (length) {
+      $.each(li, function(index, value) {
+          contenido += '- ' + value.innerText;
+          if (index != (length - 1)) {
+             contenido += '\r\n';
+          }
+      });
+      data.push({title: h4, content: contenido})
+  }
 
   tabla(columns, data, doc, {
       title: {fillColor: [41, 128, 185], textColor: 255, fontStyle: 'bold'},
@@ -40,7 +43,7 @@ function guardar(nombre) {
 
 $(document).ready(function() {
     $('#export').on('click', function() {
-        let nombre = $(this).data('name') + $(this).data('id');
+        let nombre = $(this).data('name');
         guardar(nombre);
     });
 });

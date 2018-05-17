@@ -5,11 +5,11 @@ use utilities\helpers\html\Components;
 
 use controllers\AparatosController;
 
+$pageTitle = "Aparatos";
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Aparatos' => ''
+    $pageTitle => ''
 ];
-$pageTitle = "Registro completo";
 Components::header($pageTitle, $breadcrumps);
 
 $controller = new AparatosController();

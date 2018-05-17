@@ -6,12 +6,12 @@ include_once '../../config/main-local.php';
 use utilities\helpers\html\Components;
 use controllers\AparatosController;
 
+$pageTitle = "Crear aparato";
 $breadcrumps = [
     'Index' => '../site/index.php',
     'Aparatos' => 'index.php',
-    'Crear aparato' => ''
+    $pageTitle => ''
 ];
-$pageTitle = "Nuevo registro";
 Components::header($pageTitle, $breadcrumps);
 
 ?>
