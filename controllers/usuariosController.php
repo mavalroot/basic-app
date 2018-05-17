@@ -86,7 +86,23 @@ class UsuariosController extends BaseController
     {
         $this->permission();
         $model = $this->findModel($id);
+        if (!$model->readOne()) {
+            Errors::notFound();
+        }
 
+        if ($_POST) {
+            if (isset($_POST['usuarios'])) {
+                $model->load($_POST['usuarios']);
+            }
+            if ($model->validate() && $model->update()) {
+                // Se actualiza el registro.
+                Html::alert('success', 'El registro se ha actualizado');
+                $model->createRecord('update');
+            } else {
+                // Si no se pudo actualizar, se da un aviso al usuario.
+                Html::alert('danger', 'No se ha podido actualizar el registro.');
+            }
+        }
         return $model;
     }
 }
