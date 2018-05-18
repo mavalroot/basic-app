@@ -55,11 +55,11 @@ class RolesController extends BaseController
     }
 
     /**
-     * Construye los datos para la visualización del index. Sólo visible para
-     * administradores.
-     * @param  int      $pagLimit   Limit.
-     * @param  int      $pagOffset  Offset.
-     * @return array                Array con los datos.
+     * Devuelve las variables necesarias para la creación del index del modelo.
+     * @param  int      $pagLimit   LIMIT del paginador.
+     * @param  int      $pagOffset  OFFSET del paginador.
+     * @return array                Valores en formato clave => valor listo
+     * para un extract en el index.
      */
     public function index($pagLimit, $pagOffset)
     {
@@ -94,9 +94,9 @@ class RolesController extends BaseController
     }
 
     /**
-     * Devuelve un modelo al detalle para visualizar en la view.
-     * @param  string    $name      Nombre del rol a visualizar.
-     * @return Roles   Modelo.
+     * Devuelve el modelo necesario para la creación del view del modelo.
+     * @param  int      $id Id del modelo a visualizar.
+     * @return Roles        Modelo de la clase.
      */
     public function view($id)
     {

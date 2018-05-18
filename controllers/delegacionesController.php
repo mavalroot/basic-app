@@ -20,6 +20,13 @@ class DelegacionesController extends BaseController
         $this->model = $model;
     }
 
+    /**
+     * Devuelve las variables necesarias para la creación del index del modelo.
+     * @param  int      $pagLimit   LIMIT del paginador.
+     * @param  int      $pagOffset  OFFSET del paginador.
+     * @return array                Valores en formato clave => valor listo
+     * para un extract en el index.
+     */
     public function index($pagLimit, $pagOffset)
     {
         $this->permission();
@@ -53,6 +60,11 @@ class DelegacionesController extends BaseController
         ];
     }
 
+    /**
+     * Devuelve el modelo necesario para la creación del view del modelo.
+     * @param  int          $id Id del modelo a visualizar.
+     * @return Delegaciones     Modelo de la clase.
+     */
     public function view($id)
     {
         self::permission();
@@ -63,6 +75,11 @@ class DelegacionesController extends BaseController
         return $model;
     }
 
+    /**
+     * Crea una nueva fila de la tabla "delegaciones" con los datos obtenidos
+     * del formulario.
+     * @return Delegaciones Modelo vacío para usar con el formulario.
+     */
     public function create()
     {
         $this->permission();
@@ -82,6 +99,14 @@ class DelegacionesController extends BaseController
         return $model;
     }
 
+    /**
+     * Actualiza una fila de la tabla "delegaciones" con los datos obtenidos a
+     * través del formulario.
+     * @param  int              $id Id de la fila a modificar.
+     * @return Delegaciones         Modelo de la clase cargado con sus datos
+     * correspondientes, listo para un extract y la visualización en el
+     * formulario.
+     */
     public function update($id)
     {
         $this->permission();

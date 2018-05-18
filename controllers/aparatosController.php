@@ -21,6 +21,13 @@ class AparatosController extends BaseController
         $this->model = $model;
     }
 
+    /**
+     * Devuelve las variables necesarias para la creación del index del modelo.
+     * @param  int      $pagLimit   LIMIT del paginador.
+     * @param  int      $pagOffset  OFFSET del paginador.
+     * @return array                Valores en formato clave => valor listo
+     * para un extract en el index.
+     */
     public function index($pagLimit, $pagOffset)
     {
         $this->permission();
@@ -54,6 +61,12 @@ class AparatosController extends BaseController
         ];
     }
 
+    /**
+     * Devuelve las variables necesarias para la creación del view del modelo.
+     * @param  int      $id Id del modelo a visualizar.
+     * @return array        Valores en formato clave => valor listos para un
+     * extract en view.
+     */
     public function view($id)
     {
         self::permission();
@@ -70,6 +83,14 @@ class AparatosController extends BaseController
         ];
     }
 
+    /**
+     * Crea una nueva fila de la tabla "aparatos"  con los datos obtenidos a
+     * través del formulario, y también una de las tablas relacionadas con ésta
+     * (monitores, ordenadores, perifericos, impresoras, electronica_red).
+     * @return array Valores en formato clave => valor listos para un extract.
+     * En caso de que no se cree nada se devuelven los modelos vacíos para usar
+     * en los fomularios.
+     */
     public function create()
     {
         $this->permission();
@@ -102,6 +123,15 @@ class AparatosController extends BaseController
         ];
     }
 
+    /**
+     * Actualiza una fila de la tabla "aparatos" con los datos obtenidos a
+     * través del formulario, y también una de las tablas relacionadas con ésta
+     * (monitores, ordenadores, perifericos, impresoras, electronica_red).
+     * @param  int      $id Id de la fila a modificar.
+     * @return array        Valores en formato clave => valor ya cargados con
+     * los datos correspondientes para mostrar en el formulario. Listo para
+     * hacer un extract.
+     */
     public function update($id)
     {
         $this->permission();
@@ -141,6 +171,11 @@ class AparatosController extends BaseController
         ];
     }
 
+    /**
+     * Cambia el usuario que está utilizando actualmente un aparato, y
+     * posteriormente lo guarda en el historial "aparatos_usuarios".
+     * @return bool
+     */
     public function cambiarUsuario()
     {
         // $this->permission();
