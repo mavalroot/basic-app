@@ -192,7 +192,7 @@ class AparatosController extends BaseController
                 if ($old) {
                     $record = new AparatosUsuarios([
                         'aparato_id' => $id,
-                        'usuario_id' => $usuario_id,
+                        'usuario_id' => $old,
                     ]);
                     if ($record->validate()) {
                         $record->create();
