@@ -35,6 +35,17 @@ class Delegaciones extends BaseModel
         ];
     }
 
+    /**
+     * Devuelve todas las delegaciones en un array del siguiente formato:
+     *  [
+     *      'id' => 'nombre',
+     *      'id' => 'nombre',
+     *  ]
+     * @param  bool     $withEmpty  Determina si se añade un valor "vacío" que
+     * sería [''] => 'Ningún' con el propósito de servir para una lista
+     * desplegable.
+     * @return array                Valores en el formato ya citado arriba.
+     */
     public static function getAllDelegaciones($withEmpty = false)
     {
         $db = new Database();
@@ -57,10 +68,22 @@ class Delegaciones extends BaseModel
         return $new;
     }
 
+    /**
+     * Devuelve un array con los usuarios que están asociados a esta delegación.
+     * @return array    Array con los datos necesarios, en el siguiente formato:
+     *  [
+     *      [
+     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
+     *      ],
+     *      [
+     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
+     *      ],
+     *  ]
+     */
     public function getUsuarios()
     {
         $query = QueryBuilder::db($this->conn)
-            ->select('id, nombre')
+            ->select('*')
             ->from('usuarios')
             ->where(['delegacion_id' => $this->id])
             ->get();
@@ -70,6 +93,19 @@ class Delegaciones extends BaseModel
         return $data;
     }
 
+    /**
+     * Devuelve un array con los aparatos que esta delegación está usando
+     * actualmente.
+     * @return array    Array con los datos necesarios, en el siguiente formato:
+     *  [
+     *      [
+     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
+     *      ],
+     *      [
+     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
+     *      ],
+     *  ]
+     */
     public function getAparatos()
     {
         $query = QueryBuilder::db($this->conn)

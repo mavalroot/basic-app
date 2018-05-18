@@ -113,7 +113,7 @@ class Aparatos extends BaseModel
      * @param  bool     $withEmpty  Determina si se añade un valor "vacío" que
      * sería [''] => 'Ningún' con el propósito de servir para una lista
      * desplegable.
-     * @return array                Valores en el formato ya de citado arriba.
+     * @return array                Valores en el formato ya citado arriba.
      */
     public static function getAllAparatos($withEmpty = false)
     {
