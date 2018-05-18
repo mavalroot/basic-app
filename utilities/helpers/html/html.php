@@ -353,10 +353,7 @@ class Html
 
     /**
      * Devuelve múltiples filas para una tabla, pensado para los view.
-     * @param  bool|array $columns Columnas a ser mostradas como conjunto
-     * clave => valor, donde clave es el label y valor el valor de la fila.
-     * Si no se especifica nada se tomará las columnas especificadas en el
-     * modelo.
+     * @param  array $config Configuración adicional opcional.
      */
     public static function multiTrTable($config = [])
     {

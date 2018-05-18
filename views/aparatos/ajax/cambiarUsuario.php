@@ -23,7 +23,7 @@ if ($controller->cambiarUsuario()) {
                     <i class="fas fa-exclamation-circle"></i> No se ha elegido una opción válida
                 </div>
                 <datalist id="cambiar">
-                    <?php foreach (Usuarios::getAllUsuarios() as $key => $value): ?>
+                    <?php foreach (Usuarios::getAll() as $key => $value): ?>
                         <option value="<?= $value ?>" data-id="<?= $key ?>">
                     <?php endforeach; ?>
                 </datalist>

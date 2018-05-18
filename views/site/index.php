@@ -4,6 +4,7 @@ include_once '../../config/main-local.php';
 
 use models\Aparatos;
 use models\Permisos;
+use models\Historial;
 use models\ActividadReciente;
 
 use utilities\base\Database;
@@ -35,8 +36,16 @@ Components::header($pageTitle, $breadcrumps);
 
 <?php
 
-$aparato = new Aparatos(['id' => 5]);
-var_dump($aparato->getUsuario());
+$historial = new Historial([
+    'tipo' => 'aparatos',
+    'referencia' => 2,
+    'accion' => 'hola',
+]);
+$historial->validate();
+var_dump($historial->getErrors());
+
+// $aparato = new Aparatos(['id' => 5]);
+// var_dump($aparato->getUsuario());
 // $prueba = new ActividadReciente(['id' => 2]);
 // $prueba->readOne();
 // var_dump($prueba->referencia);

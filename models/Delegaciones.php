@@ -46,7 +46,7 @@ class Delegaciones extends BaseModel
      * desplegable.
      * @return array                Valores en el formato ya citado arriba.
      */
-    public static function getAllDelegaciones($withEmpty = false)
+    public static function getAll($withEmpty = false)
     {
         $db = new Database();
         $db = $db->getConnection();

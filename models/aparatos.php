@@ -27,8 +27,8 @@ class Aparatos extends BaseModel
     public static function rules()
     {
         return [
-            [['usuario_id'], 'in', array_keys(Usuarios::getAllUsuarios(true)), 'message' => 'Error: Seleccione una opción válida.'],
-            [['delegacion_id'], 'in', array_keys(Delegaciones::getAllDelegaciones(true)), 'message' => 'Error: Seleccione una opción válida.'],
+            [['usuario_id'], 'in', array_keys(Usuarios::getAll(true)), 'message' => 'Error: Seleccione una opción válida.'],
+            [['delegacion_id'], 'in', array_keys(Delegaciones::getAll(true)), 'message' => 'Error: Seleccione una opción válida.'],
             [['tipo'], 'in', array_keys(static::getTypes()), 'message' => 'Error: Seleccione una opción válida.']
         ];
     }
@@ -115,7 +115,7 @@ class Aparatos extends BaseModel
      * desplegable.
      * @return array                Valores en el formato ya citado arriba.
      */
-    public static function getAllAparatos($withEmpty = false)
+    public static function getAll($withEmpty = false)
     {
         $db = new Database();
         $db = $db->getConnection();

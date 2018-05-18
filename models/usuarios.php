@@ -27,7 +27,7 @@ class Usuarios extends BaseModel
     {
         return [
             [['nombre'], 'required', 'message' => 'Error: este campo es obligatorio.'],
-            [['delegacion_id'], 'in', array_keys(Delegaciones::getAllDelegaciones(true)), 'message' => 'Error: Seleccione una opción válida.'],
+            [['delegacion_id'], 'in', array_keys(Delegaciones::getAll(true)), 'message' => 'Error: Seleccione una opción válida.'],
         ];
     }
 
@@ -133,7 +133,7 @@ class Usuarios extends BaseModel
      * desplegable.
      * @return array                Valores en el formato ya citado arriba.
      */
-    public static function getAllUsuarios($withEmpty = false)
+    public static function getAll($withEmpty = false)
     {
         $db = new Database();
         $db = $db->getConnection();

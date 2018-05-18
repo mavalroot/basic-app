@@ -14,8 +14,8 @@ if (!isset($_SESSION)) {
 <fieldset>
     <legend>General</legend>
 
-<?= Html::form($aparato, 'usuario_id')->selectOption(Usuarios::getAllUsuarios(true)) ?>
-<?= Html::form($aparato, 'delegacion_id')->selectOption(Delegaciones::getAllDelegaciones(true)) ?>
+<?= Html::form($aparato, 'usuario_id')->selectOption(Usuarios::getAll(true)) ?>
+<?= Html::form($aparato, 'delegacion_id')->selectOption(Delegaciones::getAll(true)) ?>
 <?= Html::form($aparato, 'tipo')->selectOption($aparato->getTypes(), [
         'select' => true
     ]) ?>

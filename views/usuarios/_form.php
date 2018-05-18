@@ -12,7 +12,7 @@ if (!isset($_SESSION)) {
 ?>
 <fieldset>
 <?= Html::form($usuario, 'nombre')->textInput() ?>
-<?= Html::form($usuario, 'delegacion_id')->selectOption(Delegaciones::getAllDelegaciones(true)) ?>
+<?= Html::form($usuario, 'delegacion_id')->selectOption(Delegaciones::getAll(true)) ?>
 <?= Html::form($usuario, 'extension')->textInput() ?>
 </fieldset>
 
