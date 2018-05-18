@@ -35,6 +35,15 @@ class Delegaciones extends BaseModel
         ];
     }
 
+    protected function actionMessages()
+    {
+        return [
+            'insert' => 'Ha registrado una nueva delegación.',
+            'update' => 'Ha hecho modificaciones en una delegación.',
+            'delete' => 'Ha borrado la delegación "' . $this->nombre . '".',
+        ];
+    }
+
     /**
      * Devuelve todas las delegaciones en un array del siguiente formato:
      *  [

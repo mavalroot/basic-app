@@ -10,10 +10,8 @@ if (!isset($_GET['id'])) {
     Errors::notFound();
 }
 $id = $_GET['id'];
-$controller = new UsuariosController();
-$usuario = $controller->update($id);
 
-$pageTitle = 'Editar ' . $usuario->nombre;
+$pageTitle = 'Editar usuario';
 $breadcrumps = [
     'Index' => '../site/index.php',
     'Usuarios' => 'index.php',
@@ -21,6 +19,8 @@ $breadcrumps = [
 ];
 Components::header($pageTitle, $breadcrumps);
 
+$controller = new UsuariosController();
+$usuario = $controller->update($id);
 ?>
 
 <div class='right-button-margin'>

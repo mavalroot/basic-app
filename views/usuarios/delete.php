@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once '../../config/main-local.php';
 
 use controllers\UsuariosController;

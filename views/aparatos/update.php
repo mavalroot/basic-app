@@ -10,17 +10,18 @@ if (!isset($_GET['id'])) {
     Errors::notFound();
 }
 $id = $_GET['id'];
-$controller = new AparatosController();
-$result = $controller->update($id);
-extract($result);
 
-$pageTitle = $aparato->getTipoSingular() . ' ' . $aparato->marca . ' ' . $aparato->modelo;;
+$pageTitle = 'Editar aparato';
 $breadcrumps = [
     'Index' => '../site/index.php',
     'Aparatos' => 'index.php',
     $pageTitle => ''
 ];
 Components::header($pageTitle, $breadcrumps);
+
+$controller = new AparatosController();
+$result = $controller->update($id);
+extract($result);
 ?>
 
 <div class='right-button-margin'>

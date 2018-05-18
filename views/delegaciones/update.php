@@ -10,10 +10,8 @@ if (!isset($_GET['id'])) {
     Errors::notFound();
 }
 $id = $_GET['id'];
-$controller = new DelegacionesController();
-$delegacion = $controller->update($id);
 
-$pageTitle = "Editar " . $delegacion->nombre;
+$pageTitle = "Editar delegación";
 $breadcrumps = [
     'Index' => '../site/index.php',
     'Delegaciones' => 'index.php',
@@ -21,6 +19,8 @@ $breadcrumps = [
 ];
 Components::header($pageTitle, $breadcrumps);
 
+$controller = new DelegacionesController();
+$delegacion = $controller->update($id);
 ?>
 
 <div class='right-button-margin'>

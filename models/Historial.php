@@ -11,6 +11,11 @@ use utilities\helpers\html\Html;
  */
 class Historial extends BaseModel
 {
+    protected $searchBy = [
+        'Acción' => 'accion',
+        'Tipo' => 'tipo',
+    ];
+
     public static function tableName()
     {
         return 'historial';
@@ -19,7 +24,7 @@ class Historial extends BaseModel
     public function rules()
     {
         $modelo = self::getModelByType();
-        $modelo = isset($modelo) ? $modelo->getAll() : ['' => ''];
+        $modelo = isset($modelo) ? $modelo->getAll(true) : ['' => ''];
         return [
             [['tipo'], 'in', array_keys(static::getTypes()), 'message' => 'Error: Seleccione una opción válida.'],
             [['tipo'], 'required'],

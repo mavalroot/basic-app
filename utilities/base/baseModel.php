@@ -47,24 +47,6 @@ class BaseModel
     protected $errors = [];
 
     /**
-     * Mensajes para la creación de acciones del historial. Se puede
-     * personalizar en cada clase o dejar el estandar definido a continuación.
-     * @var array
-     *
-     * Sigue el siguiente formato:
-     * [
-     *      'accion' => 'mensaje'
-     * ]
-     *
-     * Las acciones deben ser: insert, update y delete
-     */
-    protected $actionMessage = [
-        'insert' => 'Ha creado un registro.',
-        'update' => 'Ha hecho modificaciones en un registro.',
-        'delete' => 'Ha marcado para borrar un registro.',
-    ];
-
-    /**
      * Constructor de nuestra clase.
      * @param array $config Es un array clave => valor opcional, que se le
      * podrá pasar al modelo para incializar sus propiedades.
@@ -171,6 +153,39 @@ class BaseModel
     {
         $labels = static::labels();
         return isset($labels[$prop]) ? $labels[$prop] : false;
+    }
+
+    /**
+     * Mensajes para la creación de acciones del historial. Se puede
+     * personalizar en cada clase o dejar el estandar definido a continuación.
+     * @var array
+     *
+     * Sigue el siguiente formato:
+     * [
+     *      'accion' => 'mensaje'
+     * ]
+     *
+     * Las acciones deben ser: insert, update y delete
+     */
+    protected function actionMessages()
+    {
+        return [
+            'insert' => 'Ha creado un registro.',
+            'update' => 'Ha hecho modificaciones en un registro.',
+            'delete' => 'Ha marcado para borrar un registro.',
+        ];
+    }
+
+    /**
+     * Devuelve un mensaje de acción en concreto.
+     * @param  string $action   Puede ser insert, update o delete.
+     * @return string           El mensaje si este fuera válido o cadena vacía
+     * si no.
+     */
+    public function getActionMessage($action)
+    {
+        $messages = $this->actionMessages();
+        return isset($messages[$action]) ? $messages[$action] : '';
     }
 
     /**
@@ -456,9 +471,9 @@ class BaseModel
     public function createRecord($action)
     {
         $record = new Historial([
-            'accion' => $this->actionMessage[$action],
+            'accion' => $this->getActionMessage($action),
             'tipo' => $this->tableName(),
-            'referencia' => $this->id,
+            'referencia' => ($action != 'delete' ? $this->id : ''),
             'created_by' => $_SESSION['id']
         ]);
 

@@ -40,6 +40,15 @@ class Usuarios extends BaseModel
         ];
     }
 
+    protected function actionMessages()
+    {
+        return [
+            'insert' => 'Ha registrado un nuevo usuario.',
+            'update' => 'Ha hecho modificaciones en un usuario.',
+            'delete' => 'Ha borrado el usuario "' . $this->nombre . '".',
+        ];
+    }
+
     /**
      * Devuelve la delegación de este usuario.
      * @return Delegaciones|null Devuelve la delegación correspondiente o null

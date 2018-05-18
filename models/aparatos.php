@@ -48,6 +48,14 @@ class Aparatos extends BaseModel
         ];
     }
 
+    protected function actionMessages()
+    {
+        return [
+            'insert' => 'Ha registrado un nuevo aparato.',
+            'update' => 'Ha hecho modificaciones en un aparato.',
+            'delete' => 'Ha borrado un aparato.',
+        ];
+    }
     /**
      * Devuelve el modelo secundario que está relacionado con este modelo de
      * aparatos, relleno con sus datos correspondientes.

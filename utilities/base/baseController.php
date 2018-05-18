@@ -38,10 +38,13 @@ class BaseController
     public function delete($id)
     {
         $model = $this->findModel($id);
-        if ($model->delete()) {
-            echo 'El registro ha sido eliminado.';
-        } else {
-            echo 'El registro no ha podido ser eliminado.';
+        if (isset($model)) {
+            $model->createRecord('delete');
+            if ($model->delete()) {
+                echo 'El registro ha sido eliminado.';
+            } else {
+                echo 'El registro no ha podido ser eliminado.';
+            }
         }
     }
 
@@ -54,8 +57,10 @@ class BaseController
     {
         $model = $this->model;
         $pk = $model->primaryKey();
-        $model->readOne([$pk, $id]);
-        return $model;
+        if ($model->readOne([$pk, $id])) {
+            return $model;
+        }
+        return null;
     }
 
     /**
