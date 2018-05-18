@@ -7,7 +7,7 @@ use utilities\helpers\html\Components;
 
 $pageTitle = 'Usuarios';
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     $pageTitle => ''
 ];
 Components::header($pageTitle, $breadcrumps);

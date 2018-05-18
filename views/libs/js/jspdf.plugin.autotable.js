@@ -1505,7 +1505,7 @@ var ES6 = assign(assign({}, ES5), {
 	},
 
 	// http://www.ecma-international.org/ecma-262/6.0/#sec-canonicalnumericindexstring
-	CanonicalNumericIndexString: function CanonicalNumericIndexString(argument) {
+	CanonicalNumericInicioString: function CanonicalNumericInicioString(argument) {
 		if (toStr.call(argument) !== '[object String]') {
 			throw new TypeError('must be a string');
 		}
@@ -1961,15 +1961,15 @@ var gOPD = Object.getOwnPropertyDescriptor;
 
 var tryRegexExecCall = function tryRegexExec(value) {
 	try {
-		var lastIndex = value.lastIndex;
-		value.lastIndex = 0;
+		var lastInicio = value.lastInicio;
+		value.lastInicio = 0;
 
 		regexExec.call(value);
 		return true;
 	} catch (e) {
 		return false;
 	} finally {
-		value.lastIndex = lastIndex;
+		value.lastInicio = lastInicio;
 	}
 };
 var toStr = Object.prototype.toString;
@@ -1984,9 +1984,9 @@ module.exports = function isRegex(value) {
 		return toStr.call(value) === regexClass;
 	}
 
-	var descriptor = gOPD(value, 'lastIndex');
-	var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
-	if (!hasLastIndexDataProperty) {
+	var descriptor = gOPD(value, 'lastInicio');
+	var hasLastInicioDataProperty = descriptor && has(descriptor, 'value');
+	if (!hasLastInicioDataProperty) {
 		return false;
 	}
 
@@ -2074,7 +2074,7 @@ var excludedKeys = {
 	$scrollX: true,
 	$scrollY: true,
 	$self: true,
-	$webkitIndexedDB: true,
+	$webkitInicioedDB: true,
 	$webkitStorageInfo: true,
 	$window: true
 };

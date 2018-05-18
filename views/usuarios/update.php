@@ -13,7 +13,7 @@ $id = $_GET['id'];
 
 $pageTitle = 'Editar usuario';
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     'Usuarios' => 'index.php',
     $pageTitle => ''
 ];

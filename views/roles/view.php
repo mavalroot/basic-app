@@ -18,7 +18,7 @@ $id = $_GET['id'];
 $rol = RolesController::view($id);
 
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     'Roles' => 'index.php',
     $rol->nombre => ''
 ];

@@ -8,7 +8,7 @@ use controllers\DelegacionesController;
 
 $pageTitle = "Crear un nueva delegación";
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     'Delegaciones' => 'index.php',
     $pageTitle => ''
 ];

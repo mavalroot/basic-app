@@ -12,7 +12,7 @@ if (!isset($_GET['id'])) {
 $id = $_GET['id'];
 
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     'Aparatos' => 'index.php',
     "Editar aparato$id" => ''
 ];

@@ -16,7 +16,7 @@ $usuario = UsuariosController::view($id);
 
 $pageTitle = $usuario->nombre;
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     'Usuarios' => 'index.php',
     $pageTitle => ''
 ];

@@ -8,7 +8,7 @@ use controllers\AparatosController;
 
 $pageTitle = 'Crear aparato';
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     'Aparatos' => 'index.php',
     $pageTitle => ''
 ];

@@ -13,7 +13,7 @@ $id = $_GET['id'];
 
 $pageTitle = "Editar delegación";
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     'Delegaciones' => 'index.php',
     $pageTitle => ''
 ];

@@ -16,7 +16,7 @@ $delegacion = DelegacionesController::view($id);
 
 $pageTitle = $delegacion->nombre;
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     'Delegaciones' => 'index.php',
     $pageTitle => ''
 ];

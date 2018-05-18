@@ -6,7 +6,7 @@ use utilities\helpers\html\Components;
 use controllers\AparatosController;
 
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     'Aparatos' => ''
 ];
 $pageTitle = "Registro completo";

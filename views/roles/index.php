@@ -7,7 +7,7 @@ use controllers\RolesController;
 
 $pageTitle = 'Roles';
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     $pageTitle => ''
 ];
 Components::header($pageTitle, $breadcrumps);

@@ -17,7 +17,7 @@ $name = $aparato->getFullName();
 $pageTitle = $name;
 
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     'Aparatos' => 'index.php',
     $name => ''
 ];

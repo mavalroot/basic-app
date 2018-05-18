@@ -7,7 +7,7 @@ use controllers\HistorialController;
 
 $pageTitle = 'Historial';
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     $pageTitle => ''
 ];
 Components::header($pageTitle, $breadcrumps);

@@ -8,7 +8,7 @@ use controllers\UsuariosController;
 
 $pageTitle = "Crear nuevo usuario";
 $breadcrumps = [
-    'Index' => '../site/index.php',
+    'Inicio' => '../site/index.php',
     'Usuarios' => 'index.php',
     $pageTitle => ''
 ];
