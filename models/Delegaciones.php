@@ -38,8 +38,8 @@ class Delegaciones extends BaseModel
     protected function actionMessages()
     {
         return [
-            'insert' => 'Ha registrado una nueva delegación.',
-            'update' => 'Ha hecho modificaciones en una delegación.',
+            'insert' => 'Ha registrado una nueva delegación: "' . $this->nombre . '".',
+            'update' => 'Ha hecho modificaciones en la delegación "' . $this->nombre . '".',
             'delete' => 'Ha borrado la delegación "' . $this->nombre . '".',
         ];
     }

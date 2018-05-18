@@ -51,8 +51,8 @@ class Aparatos extends BaseModel
     protected function actionMessages()
     {
         return [
-            'insert' => 'Ha registrado un nuevo aparato.',
-            'update' => 'Ha hecho modificaciones en un aparato.',
+            'insert' => 'Ha registrado "' . $this->getFullName() . '".',
+            'update' => 'Ha hecho modificaciones "' . $this->getFullName() . '".',
             'delete' => 'Ha borrado "' . $this->getFullName() . '".',
         ];
     }

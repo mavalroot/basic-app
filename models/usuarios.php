@@ -43,8 +43,8 @@ class Usuarios extends BaseModel
     protected function actionMessages()
     {
         return [
-            'insert' => 'Ha registrado un nuevo usuario.',
-            'update' => 'Ha hecho modificaciones en un usuario.',
+            'insert' => 'Ha registrado un nuevo usuario: "' . $this->nombre . '".',
+            'update' => 'Ha hecho modificaciones en el usuario "' . $this->nombre . '".',
             'delete' => 'Ha borrado el usuario "' . $this->nombre . '".',
         ];
     }

@@ -28,7 +28,7 @@ if (!isset($_SESSION)) {
     'rows' => [
         'nombre' => ['label' => 'Nombre de usuario'],
         [
-            'label' => 'Permiso',
+            'label' => 'Permisos',
             'value' => function ($model) {
                 return $model->getPermiso();
             }
