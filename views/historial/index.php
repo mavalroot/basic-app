@@ -5,11 +5,11 @@ use utilities\helpers\html\Components;
 
 use controllers\HistorialController;
 
+$pageTitle = 'Historial';
 $breadcrumps = [
     'Index' => '../site/index.php',
-    'Aparatos' => ''
+    $pageTitle => ''
 ];
-$pageTitle = "Registro completo";
 Components::header($pageTitle, $breadcrumps);
 
 $controller = new HistorialController();

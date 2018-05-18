@@ -507,7 +507,11 @@ class Html
     public static function dateForm(&$date)
     {
         if (DateTime::createFromFormat('Y-m-d G:i:s', $date) !== false) {
-            $date = date('d/m/Y', strtotime($date));
+            if (date('G:i:s', strtotime($date)) == '0:00:00') {
+                $date = date('d/m/Y', strtotime($date));
+            } else {
+                $date = date('d/m/Y  G:i:s', strtotime($date));
+            }
         }
     }
 

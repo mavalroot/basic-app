@@ -99,17 +99,22 @@ class Roles extends BaseModel
         ;
     }
 
-    public function getActividad($config)
+    /**
+     * Devuelve las entradas del historial relacionados con este rol.
+     * @param  array $config Configuración adicional, puede ser: limit, offset.
+     */
+    public function getHistorial($config)
     {
         $limit = false;
         $offset = false;
-        extract($config);
+        extract($config, EXTR_IF_EXISTS);
         $query = QueryBuilder::db($this->conn)
         ->select('*')
-        ->from('actividad_reciente')
-        ->where(['created_by', $this->nombre])
+        ->from('historial')
+        ->where(['created_by', $this->id])
         ->limit($limit)
         ->offset($offset)
+        ->orderBy('created_at DESC')
         ->get();
 
         return $query;

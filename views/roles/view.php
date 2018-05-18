@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once '../../config/main-local.php';
+use models\Historial;
 use models\ActividadReciente;
 
 use utilities\helpers\html\Html;
@@ -46,31 +47,22 @@ Components::header($pageTitle, $breadcrumps);
 </div>
 <hr class="style11">
 <div class="row-fluid">
-    <h3>Actividad reciente</h3>
+    <h3>Actividad reciente (10 últimos)</h3>
     <?php new tableView([
-        'model' => new ActividadReciente(),
-        'query' => $rol->getActividad([
+        'model' => new Historial(),
+        'query' => $rol->getHistorial([
             'limit' => 10,
         ]),
         'rows' => [
             [
-                'label' => 'Historial',
                 'raw' => true,
+                'label' => 'Acción',
                 'value' => function ($model) {
-                    return '<small>[' . $model->created_at . ']</small> <b>' . $model->created_by . '</b>: ' . $model->accion;
-                },
+                    return $model->getAction();
+                }
             ]
         ],
-        'actions' => [
-            'replace' => true,
-            'add' => [
-                [
-                    'value' => function ($model) {
-                        return $model->getUrl();
-                    },
-                ],
-            ]
-        ],
+        'actions' => false,
     ]); ?>
 
 </div>
