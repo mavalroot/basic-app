@@ -18,7 +18,7 @@ class Monitores extends BaseModel
         return 'monitores';
     }
 
-    public static function rules()
+    public function rules()
     {
         return [
 

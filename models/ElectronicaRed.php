@@ -18,7 +18,7 @@ class ElectronicaRed extends BaseModel
         return 'electronica_red';
     }
 
-    public static function rules()
+    public function rules()
     {
         return [
 

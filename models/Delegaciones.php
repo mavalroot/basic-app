@@ -21,7 +21,7 @@ class Delegaciones extends BaseModel
         return 'delegaciones';
     }
 
-    public static function rules()
+    public function rules()
     {
         return [
             [['nombre'], 'required', 'message' => 'Error: este campo es obligatorio.']

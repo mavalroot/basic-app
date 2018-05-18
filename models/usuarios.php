@@ -23,7 +23,7 @@ class Usuarios extends BaseModel
         return 'usuarios';
     }
 
-    public static function rules()
+    public function rules()
     {
         return [
             [['nombre'], 'required', 'message' => 'Error: este campo es obligatorio.'],

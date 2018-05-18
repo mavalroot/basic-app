@@ -24,7 +24,7 @@ class Aparatos extends BaseModel
         return 'aparatos';
     }
 
-    public static function rules()
+    public function rules()
     {
         return [
             [['usuario_id'], 'in', array_keys(Usuarios::getAll(true)), 'message' => 'Error: Seleccione una opción válida.'],

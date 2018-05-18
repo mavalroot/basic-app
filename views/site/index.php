@@ -40,6 +40,7 @@ $historial = new Historial([
     'tipo' => 'aparatos',
     'referencia' => 2,
     'accion' => 'hola',
+    'created_by' => 2
 ]);
 $historial->validate();
 var_dump($historial->getErrors());

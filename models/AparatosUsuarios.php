@@ -16,7 +16,7 @@ class AparatosUsuarios extends BaseModel
         return 'aparatos_usuarios';
     }
 
-    public static function rules()
+    public function rules()
     {
         return [
             [['aparato_id', 'usuario_id'], 'required', 'message' => 'Faltan el id del aparato o del usuario.']

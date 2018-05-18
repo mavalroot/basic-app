@@ -23,7 +23,7 @@ class Impresoras extends BaseModel
         return 'impresoras';
     }
 
-    public static function rules()
+    public function rules()
     {
         return [
             [['red'], 'in', [0,1,'0', '1'], 'message' => 'Error: elija una opción correcta.'],

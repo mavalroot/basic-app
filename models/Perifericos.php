@@ -18,7 +18,7 @@ class Perifericos extends BaseModel
         return 'perifericos';
     }
 
-    public static function rules()
+    public function rules()
     {
         return [
 

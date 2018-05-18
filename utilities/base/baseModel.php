@@ -136,7 +136,7 @@ class BaseModel
      *
      * @return array
      */
-    public static function rules()
+    public function rules()
     {
         return;
     }

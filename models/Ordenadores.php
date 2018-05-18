@@ -23,7 +23,7 @@ class Ordenadores extends BaseModel
         return 'ordenadores';
     }
 
-    public static function rules()
+    public function rules()
     {
         return [
 
