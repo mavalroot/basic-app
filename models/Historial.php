@@ -93,6 +93,10 @@ class Historial extends BaseModel
         ];
     }
 
+    /**
+     * Devuelve el rol que es responsable de esta acción.
+     * @return Roles|null
+     */
     public function getCreator()
     {
         $model = new Roles([
@@ -104,15 +108,24 @@ class Historial extends BaseModel
         return null;
     }
 
+    /**
+     * Devuelve el nombre del rol que es responsable de esta acción.
+     * @return string
+     */
     public function getCreatorName()
     {
         $model = $this->getCreator();
         if (isset($model)) {
             return $model->nombre;
         }
-        return null;
+        return '';
     }
 
+    /**
+     * Devuelve la acción formateada como un link (o sin serlo en caso de que
+     * se trate de un delete).
+     * @return string
+     */
     public function getAction()
     {
         $accion = '[' . $this->created_at . '] ' . $this->getCreatorName() . ': ' . $this->accion;

@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once '../../config/main-local.php';
-use models\Aparatos;
 
 use utilities\helpers\html\Components;
 
@@ -13,7 +12,6 @@ $pageTitle = "Inicio";
 Components::header($pageTitle, []);
 ?>
 
-<!-- <h3>Instrucciones</h3> -->
 <div class="row">
     <div class="col-sm-3">
         <h4>Aparatos</h4>
@@ -76,9 +74,5 @@ Components::header($pageTitle, []);
     </div>
 </div>
 <?php
-
-$model = new Aparatos(['id' => 3]);
-$model->readOne();
-var_dump($model->createRecord('cambiar'));
 
 Components::footer();

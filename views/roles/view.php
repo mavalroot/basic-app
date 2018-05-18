@@ -2,7 +2,6 @@
 session_start();
 include_once '../../config/main-local.php';
 use models\Historial;
-use models\ActividadReciente;
 
 use utilities\helpers\html\Html;
 use utilities\helpers\html\tableView;
