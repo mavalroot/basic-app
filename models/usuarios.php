@@ -154,14 +154,14 @@ class Usuarios extends BaseModel
         $data = $query->fetchAll();
 
         $new = [];
-        if ($withEmpty) {
-            $new[''] = 'Ningún';
-        }
         foreach ($data as $value) {
             $new[$value['id']] = $value['nombre'];
         }
-
         asort($new, SORT_NATURAL | SORT_FLAG_CASE);
+
+        if ($withEmpty) {
+            $new = ['' => 'Ningún'] + $new;
+        }
 
         return $new;
     }

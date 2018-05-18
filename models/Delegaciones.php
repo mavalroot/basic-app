@@ -67,11 +67,12 @@ class Delegaciones extends BaseModel
         $data = $query->fetchAll();
 
         $new = [];
-        if ($withEmpty) {
-            $new[''] = 'Ningún';
-        }
         foreach ($data as $value) {
             $new[$value['id']] = $value['nombre'];
+        }
+
+        if ($withEmpty) {
+            $new = ['' => 'Ningún'] + $new;
         }
 
         return $new;
