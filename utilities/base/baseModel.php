@@ -141,6 +141,18 @@ class BaseModel
         return;
     }
 
+    /**
+     * Labels relacionados con la propiedad de la clase, con motivo de su mejor
+     * visualización en las vistas.
+     * @return array En formato clave => valor donde "clave" es la propiedad y
+     * "valor" el label.
+     * Por ejemplo:
+     *  [
+     *      'id' => 'Id de la clase',
+     *      'nombre' => 'Nombre completo',
+     *      'created_at' => 'Fecha de creación',
+     *  ]
+     */
     protected static function labels()
     {
         return [
@@ -148,6 +160,11 @@ class BaseModel
         ];
     }
 
+    /**
+     * Devuelve el label de una propiedad en específico.
+     * @param  string $prop Propiedad de la que se desea obtener el label.
+     * @return string       Label de la propiedad proporcionada.
+     */
     public static function getLabel($prop)
     {
         $labels = static::labels();
@@ -467,6 +484,13 @@ class BaseModel
         return $columns;
     }
 
+    /**
+     * Devuelve los datos del modelo en formato string, con sus correspondientes
+     * saltos de linea, para crear un código QR que muestre dicho texto.
+     * @param  array  $exclude  Array que recoge los valores del modelo que no
+     * se incluirán en el QR, como por ejemplo: ['id', 'created_at'].
+     * @return string           string con los datos para el código QR.
+     */
     public function getQRData($exclude = [])
     {
         $data = '';
