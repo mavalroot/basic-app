@@ -54,6 +54,7 @@ class Aparatos extends BaseModel
             'insert' => 'Ha registrado "' . $this->getFullName() . '".',
             'update' => 'Ha hecho modificaciones "' . $this->getFullName() . '".',
             'delete' => 'Ha borrado "' . $this->getFullName() . '".',
+            'cambiar' => 'Ha cambiado el usuario de "' . $this->getFullName() . '" por "' . $this->getNombreUsuario() . '".',
         ];
     }
     /**

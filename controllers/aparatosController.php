@@ -196,6 +196,7 @@ class AparatosController extends BaseController
                     ]);
                     if ($record->validate()) {
                         $record->create();
+                        $model->createRecord('cambiar');
                     }
                 }
             }

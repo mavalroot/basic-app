@@ -1,6 +1,8 @@
 <?php
 session_start();
 include_once '../../config/main-local.php';
+use models\Aparatos;
+
 use utilities\helpers\html\Components;
 
 // $breadcrumps = [
@@ -74,4 +76,9 @@ Components::header($pageTitle, []);
     </div>
 </div>
 <?php
+
+$model = new Aparatos(['id' => 3]);
+$model->readOne();
+var_dump($model->createRecord('cambiar'));
+
 Components::footer();
