@@ -13,7 +13,7 @@ if (!isset($_GET['id'])) {
 $id = $_GET['id'];
 $result = AparatosController::view($id);
 extract($result);
-$name = $aparato->getTipoSingular() . ' ' . $aparato->marca . ' ' . $aparato->modelo;
+$name = $aparato->getFullName();
 $pageTitle = $name;
 
 $breadcrumps = [

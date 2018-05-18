@@ -26,6 +26,7 @@ if (!isset($_SESSION)) {
     </div>
 </div>
 
+<div id="table-result">
 <?php if ($searchTerm): ?>
     <h3>Has buscado <?= $searchTerm ?>:</h3>
 <?php endif; ?>
@@ -49,3 +50,4 @@ if (!isset($_SESSION)) {
 <?php else: ?>
     <?= Html::alert('info', 'No ha habido resultados.'); ?>
 <?php endif ?>
+</div>

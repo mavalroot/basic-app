@@ -9,8 +9,10 @@ $(document).ready(function() {
             $.post('delete.php', {
                 object_id: id
             }, function(data){
-                alert(data);
-                location.reload();
+                $('#alert-delete').remove();
+                $('#table-result').before('<div id="alert-delete" class="alert alert-warning">' + data + '</div>');
+                $('#table-result').load(location.href+'` #table-result>*',"");
+                $('ul.pagination').load(location.href+'` ul.pagination>*',"");
             });
         }
     });

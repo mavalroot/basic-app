@@ -30,6 +30,7 @@ if (!isset($_SESSION)) {
     <h3>Has buscado <?= $searchTerm ?>:</h3>
 <?php endif; ?>
 
+<div id="table-result">
 <?php if ($rows > 0): ?>
 <?php new tableView([
     'model' => $model,
@@ -71,7 +72,7 @@ if (!isset($_SESSION)) {
 <?php else: ?>
     <?= Html::alert('info', 'No ha habido resultados.'); ?>
 <?php endif ?>
-
+</div>
 <script type="text/javascript">
     ventana('cambiar', 'ajax/cambiarUsuario.php');
 </script>

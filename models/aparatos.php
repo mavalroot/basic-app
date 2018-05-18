@@ -53,7 +53,7 @@ class Aparatos extends BaseModel
         return [
             'insert' => 'Ha registrado un nuevo aparato.',
             'update' => 'Ha hecho modificaciones en un aparato.',
-            'delete' => 'Ha borrado un aparato.',
+            'delete' => 'Ha borrado "' . $this->getFullName() . '".',
         ];
     }
     /**
@@ -263,5 +263,10 @@ class Aparatos extends BaseModel
 
         $data .= parent::getQRData(['id', 'usuario_id', 'delegacion_id', 'created_at']);
         return $data;
+    }
+
+    public function getFullName()
+    {
+        return $this->getTipoSingular() . ' ' . $this->marca . ' ' . $this->modelo;
     }
 }
