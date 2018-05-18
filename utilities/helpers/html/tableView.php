@@ -166,12 +166,12 @@ class tableView
         extract($config); ?>
         <td class="text-center">
         <?php
-        if (isset($actions)) {
+        if (isset($actions) && $actions) {
             foreach ($actions['add'] as $value) {
                 call_user_func($value['value'], $model);
             }
         }
-        if (!isset($actions) || $actions['replace'] == false) {
+        if ($actions !== false && (!isset($actions) || $actions['replace'] == false)) {
             Html::a(['<i class="fas fa-eye"></i> Ver', ['view.php', 'id' => Html::h($id)], ['class' => 'btn btn-info btn-sm']], true);
 
             Html::a(['<i class="fas fa-edit"></i> Editar', ['update.php', 'id' => Html::h($id)], ['class' => 'btn btn-primary btn-sm']], true);
@@ -201,7 +201,9 @@ class tableView
                 <?php foreach ($rows as $value): ?>
                     <th scope="col"><?= $value['label'] ?></th>
                 <?php endforeach; ?>
-                <th scope="col" class="text-center">Acciones</th>
+                <?php if (!isset($actions) || $actions !== false): ?>
+                    <th scope="col" class="text-center">Acciones</th>
+                <?php endif; ?>
             </tr>
         </thead>
         <?php

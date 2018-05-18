@@ -19,7 +19,7 @@ class Historial extends BaseModel
     public function rules()
     {
         $modelo = self::getModelByType();
-        $modelo = isset($model) ? $model->getAll() : ['' => ''];
+        $modelo = isset($modelo) ? $modelo->getAll() : ['' => ''];
         return [
             [['tipo'], 'in', array_keys(static::getTypes()), 'message' => 'Error: Seleccione una opción válida.'],
             [['tipo'], 'required'],

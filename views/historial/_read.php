@@ -43,15 +43,7 @@ if (!isset($_SESSION)) {
             }
         ]
     ],
-    'actions' => [
-        'replace' => true,
-        'add' => [
-            [
-                'value' => function ($model) {
-                }
-            ],
-        ]
-    ]
+    'actions' => false
 ]); ?>
 
 <?php else: ?>

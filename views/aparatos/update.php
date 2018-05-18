@@ -32,11 +32,9 @@ Components::header($pageTitle, $breadcrumps);
 <?php
 ?>
 
-<div class="container">
-    <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$id}");?>" method="post">
-        <?php include_once '_form.php' ?>
-    </form>
-</div>
+<form action="<?= htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$id}");?>" method="post">
+    <?php include_once '_form.php' ?>
+</form>
 
 <?php
 Components::footer();
