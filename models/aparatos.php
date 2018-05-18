@@ -48,6 +48,11 @@ class Aparatos extends BaseModel
         ];
     }
 
+    /**
+     * Devuelve el modelo secundario que está relacionado con este modelo de
+     * aparatos, relleno con sus datos correspondientes.
+     * @return ElectronicaRed|Impresoras|Monitores|Ordenadores|Perifericos|null
+     */
     public function getDatosAsociados()
     {
         $model = $this->getModelByType();
@@ -58,6 +63,11 @@ class Aparatos extends BaseModel
         return null;
     }
 
+    /**
+     * Devuelve un modelo vacío dependiendo del tipo del aparato, que
+     * corresponderá con su modelo secundario.
+     * @return ElectronicaRed|Impresoras|Monitores|Ordenadores|Perifericos|null
+     */
     public function getModelByType()
     {
         $id = isset($this->id) ? ['aparato_id' => $this->id] : false;
@@ -78,6 +88,11 @@ class Aparatos extends BaseModel
         }
     }
 
+    /**
+     * Devuelve los tipos posibles.
+     * @return array Valores en formato clave => valor donde "clave" es el
+     * valor que se guarda en tabla y "valor" el label.
+     */
     public static function getTypes()
     {
         return [
@@ -89,6 +104,17 @@ class Aparatos extends BaseModel
         ];
     }
 
+    /**
+     * Devuelve todos los aparatos en un array del siguiente formato:
+     *  [
+     *      'id' => 'num_serie',
+     *      'id' => 'num_serie',
+     *  ]
+     * @param  bool     $withEmpty  Determina si se añade un valor "vacío" que
+     * sería [''] => 'Ningún' con el propósito de servir para una lista
+     * desplegable.
+     * @return array                Valores en el formato ya de citado arriba.
+     */
     public static function getAllAparatos($withEmpty = false)
     {
         $db = new Database();
@@ -111,6 +137,11 @@ class Aparatos extends BaseModel
         return $new;
     }
 
+    /**
+     * Devuelve el modelo del usuario que actualmente está usando este aparato.
+     * @return Usuarios|null    Usuario con sus datos correspondientes, o null
+     * en caso de que el aparato no tenga un usuario asignado.
+     */
     public function getUsuario()
     {
         if ($this->usuario_id) {
@@ -124,12 +155,24 @@ class Aparatos extends BaseModel
         return null;
     }
 
+    /**
+     * Devuelve el nombre de usuario (si lo hubiera) que corresponde al
+     * usuario que actualmente está usando este aparato.
+     * @return string   Nombre del usuario en formato string o cadena vacía
+     * en el caso de que el aparato no tenga un usuario asignado.
+     */
     public function getNombreUsuario()
     {
         $user = $this->getUsuario();
         return isset($user->nombre) ? $user->nombre : '';
     }
 
+    /**
+     * Devuelve el modelo de la delegación que actualmente está usando este
+     * aparato.
+     * @return Delegaciones|null    Delegacion con sus datos correspondientes, o
+     * null en caso de que el aparato no tenga una delegación asignada.
+     */
     public function getDelegacion()
     {
         if ($this->delegacion_id) {
@@ -143,12 +186,31 @@ class Aparatos extends BaseModel
         return null;
     }
 
+    /**
+     * Devuelve el nombre de la delegación (si la hubiera) que corresponde a la
+     * delegación que actualmente está usando este aparato.
+     * @return string   Nombre de la delegación en formato string o cadena vacía
+     * en el caso de que el aparato no tenga una delegación asignada.
+     */
     public function getNombreDelegacion()
     {
         $delegacion = $this->getDelegacion();
         return isset($delegacion->nombre) ? $delegacion->nombre : '';
     }
 
+    /**
+     * Devuelve un array con los usuarios que anteriormente usaron este aparato,
+     * según los datos guardados en la tabla "aparatos_usuarios".
+     * @return array    Array con los datos necesarios, en el siguiente formato:
+     *  [
+     *      [
+     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
+     *      ],
+     *      [
+     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
+     *      ],
+     *  ]
+     */
     public function getUsuariosAnteriores()
     {
         $query = QueryBuilder::db($this->conn)
@@ -162,6 +224,11 @@ class Aparatos extends BaseModel
         return $query->fetchAll();
     }
 
+    /**
+     * Devuelve el tipo del aparato en singular y bien formateado, con idea de
+     * usarlo para visualizar.
+     * @return string
+     */
     public function getTipoSingular()
     {
         switch ($this->tipo) {
@@ -180,6 +247,13 @@ class Aparatos extends BaseModel
         }
     }
 
+    /**
+     * Devuelve los datos formateados para el código QR. Complementa la función
+     * de la clase padre.
+     * @param  array  $exclude Valores excluidos, que no serán mostrados en el
+     * código QR.
+     * @return string
+     */
     public function getQRData($exclude = [])
     {
         $data = 'Usuario actual: '
@@ -188,14 +262,5 @@ class Aparatos extends BaseModel
 
         $data .= parent::getQRData(['id', 'usuario_id', 'delegacion_id', 'created_at']);
         return $data;
-        // $data = '';
-        // $columnas = $this->getAllColumns();
-        // foreach ($columnas as $columna) {
-        //     if (in_array($columna, $exclude)) {
-        //         continue;
-        //     }
-        //     $data .= ($this->getLabel($columna) ?: $columna) . ': ' . (isset($this->$columna) ? $this->$columna : '') . '.\n';
-        // }
-        // return $data;
     }
 }
