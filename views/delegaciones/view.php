@@ -50,16 +50,11 @@ $name = str_replace(' ', '_', $delegacion->nombre);
 
 <div class="row">
     <div id="informacion-extra" class="col-sm-12">
-        <h4>Aparatos que usa / ha usado</h4>
+        <h4>Aparatos que usa</h4>
         <ul>
-            <?php if ($aparatos = $usuario->getAparatosActuales()): ?>
+            <?php if ($aparatos = $delegacion->getAparatos()): ?>
                 <?php foreach ($aparatos as $value): ?>
-                    <li><b><?= $value['tipo'] . ': ' . $value['marca'] . ' ' . $value['modelo'] ?></b>. Actualmente.</li>
-                <?php endforeach; ?>
-            <?php endif; ?>
-            <?php if ($aparatos = $usuario->getAparatosAnteriores()): ?>
-                <?php foreach ($aparatos as $value): ?>
-                    <li><b><?= $value['tipo'] . ': ' . $value['marca'] . ' ' . $value['modelo'] ?></b>. Hasta <?= date("d-m-Y \a \l\a\s G:i:s", strtotime($value['hasta'])) ?>.</li>
+                    <li><b><?= $value['tipo'] . ':</b> ' . $value['marca'] . ' ' . $value['modelo'] . ' (' . $value['num_serie'] . ')' ?></b>.</li>
                 <?php endforeach; ?>
             <?php endif; ?>
         </ul>

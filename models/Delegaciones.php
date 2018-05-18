@@ -119,9 +119,9 @@ class Delegaciones extends BaseModel
     public function getAparatos()
     {
         $query = QueryBuilder::db($this->conn)
-            ->select('id, numero_serie')
+            ->select('*')
             ->from('aparatos')
-            ->where(['delegacion_id' => $this->id])
+            ->where(['delegacion_id', $this->id])
             ->get();
 
         $data = $query->fetchAll();

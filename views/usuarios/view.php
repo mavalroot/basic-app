@@ -58,7 +58,7 @@ $name = str_replace(' ', '_', $usuario->nombre);
         <ul>
             <?php if ($aparatos = $usuario->getAparatosActuales()): ?>
                 <?php foreach ($aparatos as $value): ?>
-                    <li><b><?= $value['tipo'] . ': ' . $value['marca'] . ' ' . $value['modelo'] ?></b>. Actualmente.</li>
+                    <li><b><?= $value['tipo'] . ':</b> ' . $value['marca'] . ' ' . $value['modelo'] . ' (' . $value['num_serie'] . ')' ?></b>. Actualmente.</li>
                 <?php endforeach; ?>
             <?php endif; ?>
             <?php if ($aparatos = $usuario->getAparatosAnteriores()): ?>
