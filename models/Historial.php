@@ -4,6 +4,8 @@ namespace models;
 
 use utilities\base\BaseModel;
 
+use utilities\helpers\html\Html;
+
 /**
  *
  */
@@ -17,9 +19,11 @@ class Historial extends BaseModel
     public function rules()
     {
         $modelo = self::getModelByType();
+        $modelo = isset($model) ? $model->getAll() : ['' => ''];
         return [
             [['tipo'], 'in', array_keys(static::getTypes()), 'message' => 'Error: Seleccione una opción válida.'],
-            [['referencia'], 'in', array_keys($modelo->getAll())],
+            [['tipo'], 'required'],
+            [['referencia'], 'in', array_keys($modelo)],
             [['created_by'], 'in', array_keys(Roles::getAll())],
         ];
     }
@@ -57,8 +61,8 @@ class Historial extends BaseModel
     public function getModelByType()
     {
         $id = isset($this->referencia) ? ['id' => $this->referencia] : false;
-
-        switch ($this->tipo) {
+        $tipo = isset($this->tipo) ? $this->tipo : '';
+        switch ($tipo) {
             case 'aparatos':
                 return new Aparatos($id);
             case 'usuarios':
@@ -82,5 +86,34 @@ class Historial extends BaseModel
             'usuarios' => 'Usuarios',
             'delegaciones' => 'Delegaciones',
         ];
+    }
+
+    public function getCreator()
+    {
+        $model = new Roles([
+            'id' => $this->created_by,
+        ]);
+        if ($model->readOne()) {
+            return $model;
+        }
+        return null;
+    }
+
+    public function getCreatorName()
+    {
+        $model = $this->getCreator();
+        if (isset($model)) {
+            return $model->nombre;
+        }
+        return null;
+    }
+
+    public function getAction()
+    {
+        $accion = '[' . $this->created_at . '] ' . $this->getCreatorName() . ': ' . $this->accion;
+        if (isset($this->referencia)) {
+            return Html::a([$accion, ['/' . $this->tipo . '/view.php', 'id' => $this->referencia]]);
+        }
+        return $accion;
     }
 }

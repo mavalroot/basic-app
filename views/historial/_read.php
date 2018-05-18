@@ -35,8 +35,23 @@ if (!isset($_SESSION)) {
     'model' => $model,
     'query' => $query,
     'rows' => [
-        'accion' => ['label' => 'accion'],
+        [
+            'raw' => true,
+            'label' => 'Acción',
+            'value' => function ($model) {
+                return $model->getAction();
+            }
+        ]
     ],
+    'actions' => [
+        'replace' => true,
+        'add' => [
+            [
+                'value' => function ($model) {
+                }
+            ],
+        ]
+    ]
 ]); ?>
 
 <?php else: ?>
