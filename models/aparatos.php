@@ -247,13 +247,6 @@ class Aparatos extends BaseModel
         }
     }
 
-    /**
-     * Devuelve los datos formateados para el código QR. Complementa la función
-     * de la clase padre.
-     * @param  array  $exclude Valores excluidos, que no serán mostrados en el
-     * código QR.
-     * @return string
-     */
     public function getQRData($exclude = [])
     {
         $data = 'Usuario actual: '
