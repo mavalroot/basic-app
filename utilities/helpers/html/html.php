@@ -422,6 +422,17 @@ class Html
         }
     }
 
+    /**
+     * Genera un select con sus opciones.
+     * @param  array $options options para el select, deben seguir el formato:
+     * ['valor' => 'label', 'valor' => 'label'].
+     * Por ejemplo:
+     * ['0' => 'No', '1' => 'Sí'].
+     * @param  array  $config  Configuracióna adicional opcional. Incluye:
+     * 'locked' => True o false. Indica si una vez relleno dicho select se
+     * queda "disabled".
+     * 'select' => True o false. Indica si se añade una opción "--Elegir--".
+     */
     public static function selectOption($options, $config = [])
     {
         self::prepareConfig($config);
@@ -453,6 +464,10 @@ class Html
         }
     }
 
+    /**
+     * Genera un textarea.
+     * @param  array  $config Configuración adicional opcional.
+     */
     public static function textarea($config = [])
     {
         self::prepareConfig($config);
