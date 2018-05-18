@@ -40,25 +40,47 @@ class Usuarios extends BaseModel
         ];
     }
 
+    /**
+     * Devuelve la delegación de este usuario.
+     * @return Delegaciones|null Devuelve la delegación correspondiente o null
+     * en caso de que no tenga ninguna asignada.
+     */
     public function getDelegacion()
     {
         if ($this->delegacion_id) {
-            $usuario = new Delegaciones([
+            $delegacion = new Delegaciones([
                 'id' => $this->delegacion_id
             ]);
-            if ($usuario->readOne()) {
-                return $usuario;
+            if ($delegacion->readOne()) {
+                return $delegacion;
             }
         }
         return null;
     }
 
+    /**
+     * Devuelve el nombre de la delegación asignada a este usuario.
+     * @return string   Nombre de la delegación o cadena vacía en caso de que
+     * no tenga ninguna asignada.
+     */
     public function getNombreDelegacion()
     {
         $delegacion = $this->getDelegacion();
         return isset($delegacion->nombre) ? $delegacion->nombre : '';
     }
 
+    /**
+     * Devuelve los aparatos que este usuario está usando actualmente.
+     * @return array    Array con los datos necesarios, en el siguiente formato:
+     *  [
+     *      [
+     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
+     *      ],
+     *      [
+     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
+     *      ],
+     *  ]
+     */
     public function getAparatosActuales()
     {
         $query = QueryBuilder::db($this->conn)
@@ -72,9 +94,21 @@ class Usuarios extends BaseModel
         return $data;
     }
 
+    /**
+     * Devuelve los aparatos que este usuario ha usado anteriormente según los
+     * datos de la tabla "aparatos_usuarios".
+     * @return array    Array con los datos necesarios, en el siguiente formato:
+     *  [
+     *      [
+     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
+     *      ],
+     *      [
+     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
+     *      ],
+     *  ]
+     */
     public function getAparatosAnteriores()
     {
-        // select aparatos.*, aparatos_usuarios.created_at as hasta from aparatos_usuarios join aparatos on aparatos.id = aparatos_usuarios.aparato_id where aparatos_usuarios.id = 6;
         $query = QueryBuilder::db($this->conn)
         ->select('a.*, au.usuario_id as anterior, au.created_at as hasta')
         ->from('aparatos_usuarios au')
@@ -88,6 +122,17 @@ class Usuarios extends BaseModel
         return $data;
     }
 
+    /**
+     * Devuelve todos los usuarios en un array del siguiente formato:
+     *  [
+     *      'id' => 'nombre',
+     *      'id' => 'nombre',
+     *  ]
+     * @param  bool     $withEmpty  Determina si se añade un valor "vacío" que
+     * sería [''] => 'Ningún' con el propósito de servir para una lista
+     * desplegable.
+     * @return array                Valores en el formato ya citado arriba.
+     */
     public static function getAllUsuarios($withEmpty = false)
     {
         $db = new Database();
