@@ -4,6 +4,8 @@ namespace utilities\base;
 
 use PDO;
 
+use models\Historial;
+
 use utilities\base\Database;
 use utilities\helpers\html\Html;
 use utilities\helpers\validation\ModelValidator;
@@ -453,14 +455,14 @@ class BaseModel
      */
     public function createRecord($action)
     {
-        // $record = new ActividadReciente([
-        //     'accion' => $this->actionMessage[$action],
-        //     'tipo' => $this->tableName(),
-        //     'referencia' => $this->id,
-        //     'created_by' => $_SESSION['rol']
-        // ]);
-        // $record->create();
-        return;
+        $record = new Historial([
+            'accion' => $this->actionMessage[$action],
+            'tipo' => $this->tableName(),
+            'referencia' => $this->id,
+            'created_by' => $_SESSION['id']
+        ]);
+
+        return $record->validate() && $record->create();
     }
 
     /**

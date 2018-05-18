@@ -227,7 +227,7 @@ class Components
                       Administración
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="../actividad-reciente/index.php">Actividad reciente</a>
+                      <a class="dropdown-item" href="../historial/index.php">Historial</a>
                       <a class="dropdown-item" href="../roles/index.php">Roles</a>
                     </div>
                 </li>

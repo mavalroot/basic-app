@@ -3,25 +3,15 @@
 namespace models;
 
 use utilities\base\BaseModel;
-use utilities\base\Database;
-
-use utilities\query\QueryBuilder;
 
 /**
  *
  */
 class Historial extends BaseModel
 {
-    protected $searchBy = [
-        'Número de serie' => 'num_serie',
-        'Tipo de aparato' => 'tipo',
-        'Marca' => 'marca',
-        'Modelo' => 'modelo',
-    ];
-
     public static function tableName()
     {
-        return 'aparatos';
+        return 'historial';
     }
 
     public function rules()

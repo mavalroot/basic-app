@@ -136,7 +136,7 @@ DROP TABLE IF EXISTS historial CASCADE;
 CREATE TABLE historial (
       id            bigserial       PRIMARY KEY
     , accion        varchar(255)    NOT NULL
-    , tipo          bigint          NOT NULL
+    , tipo          varchar(255)    NOT NULL
     , referencia    bigint
     , created_at    timestamp(0)    DEFAULT localtimestamp
     , created_by    bigint          NOT NULL REFERENCES roles (id)
