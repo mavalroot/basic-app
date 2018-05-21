@@ -38,11 +38,12 @@ class Checker
             }
         }
         if (is_array($check)) {
+            $new = [];
             foreach ($check as $value) {
-                $permiso = Permisos::getPermisoId($value);
-                if (!isset($permiso) || !isset($actual) || $actual !== $permiso) {
-                    return false;
-                }
+                $new[] = Permisos::getPermisoId($value);
+            }
+            if (!isset($actual) || !in_array($actual, $new)) {
+                return false;
             }
         }
         return true;

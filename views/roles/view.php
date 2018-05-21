@@ -37,7 +37,7 @@ Components::header($pageTitle, $breadcrumps);
         <?= Html::form($rol)->multiTrTable([
             'columns' => ['nombre', 'last_con']
         ]); ?>
-        <?= Html::form($rol, 'permiso')->trTable([
+        <?= Html::form($rol, 'permiso_id')->trTable([
             'value' => function ($model) {
                 return $model->getPermiso();
             },
