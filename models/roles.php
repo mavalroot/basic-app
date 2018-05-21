@@ -63,6 +63,15 @@ class Roles extends BaseModel
         $this->password_hash = password_hash($this->password_hash, PASSWORD_DEFAULT);
     }
 
+    protected function actionMessages()
+    {
+        return [
+            'insert' => 'Ha registrado un nuevo rol: "' . $this->nombre . '".',
+            'update' => 'Ha hecho modificaciones en el rol "' . $this->nombre . '".',
+            'delete' => 'Ha borrado el rol "' . $this->nombre . '".',
+        ];
+    }
+
     /**
      * Efectúa el loggin.
      */

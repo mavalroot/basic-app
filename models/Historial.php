@@ -48,7 +48,7 @@ class Historial extends BaseModel
     /**
      * Devuelve el modelo secundario que está relacionado con este modelo de
      * historial, relleno con sus datos correspondientes.
-     * @return Aparatos|Usuarios|Delegaciones|null
+     * @return Aparatos|Usuarios|Delegaciones|Roles|null
      */
     public function getDatosAsociados()
     {
@@ -61,7 +61,7 @@ class Historial extends BaseModel
 
     /**
      * Devuelve un modelo vacío dependiendo del tipo del historial.
-     * @return Aparatos|Usuarios|Delegaciones|null
+     * @return Aparatos|Usuarios|Delegaciones|Roles|null
      */
     public function getModelByType()
     {
@@ -74,6 +74,8 @@ class Historial extends BaseModel
                 return new Usuarios($id);
             case 'delegaciones':
                 return new Delegaciones($id);
+            case 'roles':
+                return new Roles($id);
             default:
                 return null;
         }
@@ -90,6 +92,7 @@ class Historial extends BaseModel
             'aparatos' => 'Aparatos',
             'usuarios' => 'Usuarios',
             'delegaciones' => 'Delegaciones',
+            'roles' => 'Roles',
         ];
     }
 

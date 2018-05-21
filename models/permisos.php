@@ -74,4 +74,10 @@ class Permisos extends BaseModel
         $all = static::getAll();
         return isset($all[$string]) ? $all[$string] : null;
     }
+
+    public static function getPermisoNombre($id)
+    {
+        $all = array_flip(static::getAll());
+        return isset($all[$id]) ? $all[$id] : null;
+    }
 }
