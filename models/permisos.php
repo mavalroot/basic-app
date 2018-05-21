@@ -2,6 +2,7 @@
 
 namespace models;
 
+use utilities\base\Database;
 use utilities\base\BaseModel;
 
 use utilities\query\QueryBuilder;
@@ -36,5 +37,33 @@ class Permisos extends BaseModel
             ->get();
 
         return $query->fetchAll();
+    }
+
+    /**
+     * Devuelve todos los permisos en un array del siguiente formato:
+     *  [
+     *      'id' => 'permiso',
+     *      'id' => 'permiso',
+     *  ]
+     * @return array                Valores en el formato ya citado arriba.
+     */
+    public static function getAll()
+    {
+        $db = new Database();
+        $db = $db->getConnection();
+        $query = QueryBuilder::db($db)
+            ->select('id, permiso')
+            ->from('permisos')
+            ->get();
+
+        $data = $query->fetchAll();
+
+        $new = [];
+        foreach ($data as $value) {
+            $new[$value['id']] = $value['permiso'];
+        }
+        asort($new, SORT_NATURAL | SORT_FLAG_CASE);
+
+        return $new;
     }
 }

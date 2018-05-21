@@ -45,8 +45,22 @@ class Roles extends BaseModel
         return [
             'nombre' => 'Nombre de usuario',
             'last_con' => 'Última conexión',
-            'permiso' => 'Permisos',
+            'permiso_id' => 'Permisos',
+            'password_hash' => 'Contraseña'
         ];
+    }
+
+    public function rules()
+    {
+        return [
+            [['nombre', 'password_hash'], 'required'],
+            [['permiso_id'], 'in', array_keys(Permisos::getAll())],
+        ];
+    }
+
+    protected function beforeInsert()
+    {
+        $this->password_hash = password_hash($this->password_hash, PASSWORD_DEFAULT);
     }
 
     /**

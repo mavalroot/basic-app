@@ -187,6 +187,50 @@ class Html
     }
 
     /**
+     * Genera un input de tipo text. En caso de tener cargado previamente un
+     * modelo se usará éste como base, en caso contrario se mostrará un input
+     * de tipo text corriente, con la cofiguración que se le haya pasado.
+     * @param  array  $config Configuración para el input, es un array de
+     * formato clave => valor.
+     *  [
+     *      'message' => 'mensaje que se mostrará bajo el input'
+     *  ]
+     */
+    public static function passwordInput($config = [])
+    {
+        self::prepareConfig($config);
+        if (static::$model) {
+            $model = static::$model;
+            extract($model) ?>
+            <div class="form-group row">
+                <label for="<?= $name ?>" class="col-sm-2 col-form-label">
+                    <?= static::$label ?: $model->getLabel($prop) ?>
+                </label>
+                <div class="col-sm-10">
+                    <input type="password" id="<?= $name ?>" name="<?= $name ?>" class="form-control <?= $valid ?>"  />
+
+                    <small>
+                        <?= $config['message'] ?>
+                    </small>
+                    <div class="invalid-feedback">
+                        <i class="fas fa-exclamation-circle"></i> <?= $error ?>
+                    </div>
+                </div>
+            </div>
+            <?php
+        } else {
+            ?>
+            <div class="form-group">
+                <label>
+                    <input type="text" name="" value="" class="form-control">
+                </label>
+            </div>
+            <?php
+        }
+        static::setLabel(false);
+    }
+
+    /**
      * Genera un input de tipo number. En caso de tener cargado previamente un
      * modelo se usará éste como base, en caso contrario se mostrará un input
      * de tipo number corriente, con la cofiguración que se le haya pasado.

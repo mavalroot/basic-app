@@ -107,4 +107,66 @@ class RolesController extends BaseController
         }
         return $model;
     }
+
+    /**
+     * Crea una nueva fila de la tabla "usuarios" con los datos obtenidos
+     * del formulario.
+     * @return Roles Modelo vacío para usar con el formulario.
+     */
+    public function create()
+    {
+        $this->permission();
+        $model = new Roles();
+        if ($_POST) {
+            if (isset($_POST['roles'])) {
+                $model->load($_POST['roles']);
+            }
+            if ($model->validate() && $model->create()) {
+                Html::alert('success', 'Se ha creado el registro. Para verlo haga click <a href="view.php?id=' . $model->id . '" class="alert-link">aquí</a>.', true);
+                $model->createRecord('insert');
+                $model->reset();
+            } else {
+                Html::alert('danger', 'El registro no ha podido crearse');
+            }
+        }
+        return $model;
+    }
+
+    /**
+     * Actualiza una fila de la tabla "delegaciones" con los datos obtenidos a
+     * través del formulario.
+     * @param  int      $id Id de la fila a modificar.
+     * @return Roles     Modelo de la clase cargado con sus datos
+     * correspondientes, listo para un extract y la visualización en el
+     * formulario.
+     */
+    public function update($id)
+    {
+        $this->permission();
+        $model = $this->findModel($id);
+        if (!$model->readOne()) {
+            Errors::notFound();
+        }
+        $old = $model->password_hash;
+
+        if ($_POST) {
+            if (isset($_POST['roles'])) {
+                $model->load($_POST['roles']);
+            }
+            if (isset($_POST['roles']['password_hash']) && $_POST['roles']['password_hash'] == '') {
+                $model->password_hash = $old;
+            } else {
+                $model->password_hash = password_hash($model->password_hash, PASSWORD_DEFAULT);
+            }
+            if ($model->validate() && $model->update()) {
+                // Se actualiza el registro.
+                Html::alert('success', 'El registro se ha actualizado');
+                $model->createRecord('update');
+            } else {
+                // Si no se pudo actualizar, se da un aviso al usuario.
+                Html::alert('danger', 'No se ha podido actualizar el registro.');
+            }
+        }
+        return $model;
+    }
 }

@@ -354,6 +354,7 @@ class BaseModel
      */
     public function create()
     {
+        $this->beforeInsert();
         $columnas = static::getAllColumns();
         $datos = [];
         foreach ($columnas as $value) {
@@ -368,7 +369,6 @@ class BaseModel
                     (" . implode(', ', preg_filter('/^/', ':', array_keys($datos))) . ")";
 
         $stmt = $this->conn->prepare($query);
-        $this->beforeInsert();
         if ($stmt->execute($datos)) {
             $this->id = $this->conn->lastInsertId();
             $this->afterInsert();
