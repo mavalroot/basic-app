@@ -6,7 +6,7 @@ use models\Permisos;
 use models\Historial;
 use utilities\base\BaseController;
 use utilities\helpers\html\Html;
-use utilities\helpers\validation\Errors;
+use utilities\helpers\validation\Checker;
 
 /**
  *
@@ -30,7 +30,7 @@ class HistorialController extends BaseController
      */
     public function index($pagLimit, $pagOffset)
     {
-        $this->permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
+        Checker::permission(Permisos::getPermisoId(Permisos::ADMIN));
         $searchTerm = isset($_GET['search']) ? Html::h($_GET['search']) : '';
         $searchBy = isset($_GET['by']) ? Html::h($_GET['by']) : '';
         $model = new Historial();
@@ -59,20 +59,5 @@ class HistorialController extends BaseController
             'model' => $model,
             'searchTerm' => $searchTerm
         ];
-    }
-
-    /**
-     * Devuelve el modelo necesario para la creación del view del modelo.
-     * @param  int          $id Id del modelo a visualizar.
-     * @return Historial        Modelo de la clase.
-     */
-    public function view($id)
-    {
-        $this->permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
-        $model = new Historial(['id' => $id]);
-        if (!$model->readOne()) {
-            Errors::notFound();
-        }
-        return $model;
     }
 }

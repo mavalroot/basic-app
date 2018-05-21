@@ -2,7 +2,6 @@
 namespace utilities\helpers\validation;
 
 use models\Roles;
-use models\Permisos;
 
 /**
  * Clase que se encarga de hacer diversas comprobaciones.

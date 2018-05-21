@@ -5,6 +5,7 @@ namespace controllers;
 use models\Permisos;
 use models\Delegaciones;
 use utilities\base\BaseController;
+use utilities\helpers\validation\Checker;
 use utilities\helpers\html\Html;
 use utilities\helpers\validation\Errors;
 
@@ -30,7 +31,7 @@ class DelegacionesController extends BaseController
      */
     public function index($pagLimit, $pagOffset)
     {
-        $this->permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
+        Checker::permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
         $searchTerm = isset($_GET['search']) ? Html::h($_GET['search']) : '';
         $searchBy = isset($_GET['by']) ? Html::h($_GET['by']) : '';
         $model = new Delegaciones();
@@ -68,7 +69,7 @@ class DelegacionesController extends BaseController
      */
     public function view($id)
     {
-        $this->permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
+        Checker::permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
         $model = new Delegaciones(['id' => $id]);
         if (!$model->readOne()) {
             Errors::notFound();
@@ -83,7 +84,7 @@ class DelegacionesController extends BaseController
      */
     public function create()
     {
-        $this->permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
+        Checker::permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
         $model = new Delegaciones();
         if ($_POST) {
             if (isset($_POST['delegaciones'])) {
@@ -110,7 +111,7 @@ class DelegacionesController extends BaseController
      */
     public function update($id)
     {
-        $this->permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
+        Checker::permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
         $model = $this->findModel($id);
         if (!$model->readOne()) {
             Errors::notFound();

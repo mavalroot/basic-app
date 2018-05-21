@@ -6,6 +6,7 @@ use models\Aparatos;
 use models\Permisos;
 use models\AparatosUsuarios;
 use utilities\base\BaseController;
+use utilities\helpers\validation\Checker;
 use utilities\helpers\html\Html;
 use utilities\helpers\validation\Errors;
 
@@ -31,7 +32,7 @@ class AparatosController extends BaseController
      */
     public function index($pagLimit, $pagOffset)
     {
-        $this->permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
+        Checker::permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
         $searchTerm = isset($_GET['search']) ? Html::h($_GET['search']) : '';
         $searchBy = isset($_GET['by']) ? Html::h($_GET['by']) : '';
         $model = new Aparatos();
@@ -70,7 +71,7 @@ class AparatosController extends BaseController
      */
     public function view($id)
     {
-        $this->permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
+        Checker::permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
         $model = new Aparatos(['id' => $id]);
         if ($model->readOne()) {
             $especifico = $model->getModelByType();
@@ -94,7 +95,7 @@ class AparatosController extends BaseController
      */
     public function create()
     {
-        $this->permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
+        Checker::permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
         $model = new Aparatos();
         $especifico = false;
         if ($_POST) {
@@ -135,7 +136,7 @@ class AparatosController extends BaseController
      */
     public function update($id)
     {
-        $this->permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
+        Checker::permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
         $model = $this->findModel($id);
         if (!$model->readOne()) {
             Errors::notFound();
@@ -179,7 +180,7 @@ class AparatosController extends BaseController
      */
     public function cambiarUsuario()
     {
-        $this->permission(Permisos::getPermisoId(Permisos::ADMIN));
+        Checker::permission(Permisos::getPermisoId(Permisos::ADMIN));
         if ($_POST) {
             extract($_POST);
             if (!isset($id, $usuario_id)) {
