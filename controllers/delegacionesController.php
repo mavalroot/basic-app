@@ -31,7 +31,7 @@ class DelegacionesController extends BaseController
      */
     public function index($pagLimit, $pagOffset)
     {
-        Checker::permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
+        Checker::permission([Permisos::ADMIN, Permisos::NORMAL]);
         $searchTerm = isset($_GET['search']) ? Html::h($_GET['search']) : '';
         $searchBy = isset($_GET['by']) ? Html::h($_GET['by']) : '';
         $model = new Delegaciones();
@@ -69,7 +69,7 @@ class DelegacionesController extends BaseController
      */
     public function view($id)
     {
-        Checker::permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
+        Checker::permission([Permisos::ADMIN, Permisos::NORMAL]);
         $model = new Delegaciones(['id' => $id]);
         if (!$model->readOne()) {
             Errors::notFound();
@@ -84,7 +84,7 @@ class DelegacionesController extends BaseController
      */
     public function create()
     {
-        Checker::permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
+        Checker::permission([Permisos::ADMIN, Permisos::NORMAL]);
         $model = new Delegaciones();
         if ($_POST) {
             if (isset($_POST['delegaciones'])) {
@@ -111,7 +111,7 @@ class DelegacionesController extends BaseController
      */
     public function update($id)
     {
-        Checker::permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
+        Checker::permission([Permisos::ADMIN, Permisos::NORMAL]);
         $model = $this->findModel($id);
         if (!$model->readOne()) {
             Errors::notFound();

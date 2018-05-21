@@ -63,7 +63,7 @@ class RolesController extends BaseController
      */
     public function index($pagLimit, $pagOffset)
     {
-        Checker::permission(Permisos::getPermisoId(Permisos::ADMIN));
+        Checker::permission(Permisos::ADMIN);
         $searchTerm = isset($_GET['search']) ? Html::h($_GET['search']) : '';
         $searchBy = isset($_GET['by']) ? Html::h($_GET['by']) : '';
         $model = new Roles();
@@ -100,7 +100,7 @@ class RolesController extends BaseController
      */
     public function view($id)
     {
-        Checker::permission(Permisos::getPermisoId(Permisos::ADMIN));
+        Checker::permission(Permisos::ADMIN);
         $model = new Roles(['id' => $id]);
         if (!$model->readOne()) {
             Errors::notFound();
@@ -115,7 +115,7 @@ class RolesController extends BaseController
      */
     public function create()
     {
-        Checker::permission(Permisos::getPermisoId(Permisos::ADMIN));
+        Checker::permission(Permisos::ADMIN);
         $model = new Roles();
         if ($_POST) {
             if (isset($_POST['roles'])) {
@@ -142,7 +142,7 @@ class RolesController extends BaseController
      */
     public function update($id)
     {
-        Checker::permission(Permisos::getPermisoId(Permisos::ADMIN));
+        Checker::permission(Permisos::ADMIN);
         $model = $this->findModel($id);
         if (!$model->readOne()) {
             Errors::notFound();

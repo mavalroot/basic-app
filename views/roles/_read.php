@@ -35,16 +35,6 @@ if (!isset($_SESSION)) {
         ],
         'last_con' => ['label' => 'Última conexión'],
     ],
-    'actions' => [
-        'replace' => true,
-        'add' => [
-            [
-                'value' => function ($model) {
-                    return Html::a(['<i class="fas fa-eye"></i> Ver', ['view.php', 'id' => $model->id], ['class' => 'btn btn-info btn-sm']], true);
-                },
-            ],
-        ]
-    ],
 ]); ?>
 
 <?php else: ?>

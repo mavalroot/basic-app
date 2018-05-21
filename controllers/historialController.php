@@ -30,7 +30,7 @@ class HistorialController extends BaseController
      */
     public function index($pagLimit, $pagOffset)
     {
-        Checker::permission(Permisos::getPermisoId(Permisos::ADMIN));
+        Checker::permission(Permisos::ADMIN);
         $searchTerm = isset($_GET['search']) ? Html::h($_GET['search']) : '';
         $searchBy = isset($_GET['by']) ? Html::h($_GET['by']) : '';
         $model = new Historial();

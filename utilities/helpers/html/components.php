@@ -2,6 +2,8 @@
 
 namespace utilities\helpers\html;
 
+use models\Permisos;
+
 use utilities\helpers\validation\Checker;
 
 /**
@@ -221,7 +223,7 @@ class Components
                 <li><a href="../aparatos/index.php" class="nav-link">Aparatos</a></li>
                 <li><a href="../usuarios/index.php" class="nav-link">Usuarios</a></li>
                 <li><a href="../delegaciones/index.php" class="nav-link">Delegaciones</a></li>
-                <?php if (Checker::checkPermission(2)): ?>
+                <?php if (Checker::checkPermission(Permisos::ADMIN)): ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Administración

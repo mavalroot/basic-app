@@ -2,6 +2,7 @@
 namespace utilities\helpers\validation;
 
 use models\Roles;
+use models\Permisos;
 
 /**
  * Clase que se encarga de hacer diversas comprobaciones.
@@ -29,7 +30,22 @@ class Checker
      */
     public static function checkPermission($check)
     {
-        return isset($_SESSION['permiso_id']) && $_SESSION['permiso_id'] == $check;
+        $actual = $_SESSION['permiso_id'];
+        if (is_string($check)) {
+            $permiso = Permisos::getPermisoId($check);
+            if (!isset($permiso) || !isset($actual) || $actual !== $permiso) {
+                return false;
+            }
+        }
+        if (is_array($check)) {
+            foreach ($check as $value) {
+                $permiso = Permisos::getPermisoId($value);
+                if (!isset($permiso) || !isset($actual) || $actual !== $permiso) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -38,18 +54,10 @@ class Checker
      * de la tabla permisos.
      * @return bool
      */
-    public function permission($check)
+    public static function permission($check)
     {
-        $actual = $_SESSION['permiso_id'];
-        if (is_string($check)) {
-            if (!isset($actual) || $actual !== $check) {
-                Errors::forbidden();
-            }
-        }
-        if (is_array($check)) {
-            if (!isset($actual) || !in_array($actual, $check)) {
-                Errors::forbidden();
-            }
+        if (!static::checkPermission($check)) {
+            Errors::forbidden();
         }
     }
 }
