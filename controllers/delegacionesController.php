@@ -31,7 +31,7 @@ class DelegacionesController extends BaseController
      */
     public function index($pagLimit, $pagOffset)
     {
-        Checker::permission([Permisos::ADMIN, Permisos::NORMAL]);
+        Checker::permission([Permisos::LECTOR, Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
         $searchTerm = isset($_GET['search']) ? Html::h($_GET['search']) : '';
         $searchBy = isset($_GET['by']) ? Html::h($_GET['by']) : '';
         $model = new Delegaciones();
@@ -69,7 +69,7 @@ class DelegacionesController extends BaseController
      */
     public function view($id)
     {
-        Checker::permission([Permisos::ADMIN, Permisos::NORMAL]);
+        Checker::permission([Permisos::LECTOR, Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
         $model = new Delegaciones(['id' => $id]);
         if (!$model->readOne()) {
             Errors::notFound();
@@ -84,7 +84,7 @@ class DelegacionesController extends BaseController
      */
     public function create()
     {
-        Checker::permission([Permisos::ADMIN, Permisos::NORMAL]);
+        Checker::permission([Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
         $model = new Delegaciones();
         if ($_POST) {
             if (isset($_POST['delegaciones'])) {
@@ -111,7 +111,7 @@ class DelegacionesController extends BaseController
      */
     public function update($id)
     {
-        Checker::permission([Permisos::ADMIN, Permisos::NORMAL]);
+        Checker::permission([Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
         $model = $this->findModel($id);
         if (!$model->readOne()) {
             Errors::notFound();
@@ -139,7 +139,7 @@ class DelegacionesController extends BaseController
      */
     public function delete($id)
     {
-        if (!Checker::checkPermission(Permisos::ADMIN)) {
+        if (!Checker::checkPermission(Permisos::ADMIN, Permisos::NORMAL)) {
             echo '<i class="fas fa-exclamation-circle"></i> No tienes permiso de borrado.';
             return;
         }

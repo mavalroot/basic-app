@@ -174,19 +174,21 @@ CREATE TABLE roles (
 ----- INSERTS ------
 --------------------
 INSERT INTO permisos (permiso) VALUES
-      ('admin')
+      ('lector')
+    , ('editor')
     , ('normal')
+    , ('admin')
 ;
 
 INSERT INTO roles (nombre, password_hash, permiso_id) VALUES
       (
           'usuario'
         , crypt('usuario', gen_salt('md5'))
-        , 2
+        , 3
     )
     , (
           'administrador'
         , crypt('administrador', gen_salt('md5'))
-        , 1
+        , 4
     )
 ;

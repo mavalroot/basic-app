@@ -10,6 +10,17 @@ if (!isset($_SESSION)) {
 }
 
 ?>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class='right-button-margin'>
+            <a href='create.php' class='btn btn-success float-right'>
+                <i class="fas fa-plus"></i> Nuevo registro
+            </a>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-sm-12 mb-4">
         <?= Components::search($model->getSearchBy(), $searchTerm); ?>

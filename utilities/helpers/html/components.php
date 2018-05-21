@@ -234,6 +234,7 @@ class Components
                     </div>
                 </li>
                 <?php endif; ?>
+                <li><a href="../site/permisos.php" class="nav-link">Tabla de permisos</a></li>
             </ul>
             <?php if (isset($_SESSION['nombre'])): ?>
             <ul class="nav navbar-nav navbar-right">

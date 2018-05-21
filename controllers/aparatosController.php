@@ -32,7 +32,7 @@ class AparatosController extends BaseController
      */
     public function index($pagLimit, $pagOffset)
     {
-        Checker::permission([Permisos::ADMIN, Permisos::NORMAL]);
+        Checker::permission([Permisos::LECTOR, Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
         $searchTerm = isset($_GET['search']) ? Html::h($_GET['search']) : '';
         $searchBy = isset($_GET['by']) ? Html::h($_GET['by']) : '';
         $model = new Aparatos();
@@ -71,7 +71,7 @@ class AparatosController extends BaseController
      */
     public function view($id)
     {
-        Checker::permission([Permisos::ADMIN, Permisos::NORMAL]);
+        Checker::permission([Permisos::LECTOR, Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
         $model = new Aparatos(['id' => $id]);
         if ($model->readOne()) {
             $especifico = $model->getModelByType();
@@ -95,7 +95,7 @@ class AparatosController extends BaseController
      */
     public function create()
     {
-        Checker::permission([Permisos::ADMIN, Permisos::NORMAL]);
+        Checker::permission([Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
         $model = new Aparatos();
         $especifico = false;
         if ($_POST) {
@@ -136,7 +136,7 @@ class AparatosController extends BaseController
      */
     public function update($id)
     {
-        Checker::permission([Permisos::ADMIN, Permisos::NORMAL]);
+        Checker::permission([Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
         $model = $this->findModel($id);
         if (!$model->readOne()) {
             Errors::notFound();
@@ -180,7 +180,7 @@ class AparatosController extends BaseController
      */
     public function cambiarUsuario()
     {
-        Checker::permission(Permisos::ADMIN);
+        Checker::permission(Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL);
         if ($_POST) {
             extract($_POST);
             if (!isset($id, $usuario_id)) {
@@ -213,7 +213,7 @@ class AparatosController extends BaseController
      */
     public function delete($id)
     {
-        if (!Checker::checkPermission(Permisos::ADMIN)) {
+        if (!Checker::checkPermission(Permisos::ADMIN, Permisos::NORMAL)) {
             echo '<i class="fas fa-exclamation-circle"></i> No tienes permiso de borrado.';
             return;
         }

@@ -30,7 +30,7 @@ class Checker
      */
     public static function checkPermission($check)
     {
-        $actual = $_SESSION['permiso_id'];
+        $actual = isset($_SESSION['permiso_id']) ? $_SESSION['permiso_id'] : null;
         if (is_string($check)) {
             $permiso = Permisos::getPermisoId($check);
             if (!isset($permiso) || !isset($actual) || $actual !== $permiso) {
