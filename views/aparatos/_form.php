@@ -9,8 +9,16 @@ use utilities\helpers\validation\Errors;
 if (!isset($_SESSION)) {
     Errors::forbidden();
 }
-
 ?>
+
+<div class="row">
+    <div class="col-sm-12 text-right mb-2">
+        <a href='index.php' class='btn btn-danger'>
+            <i class="fas fa-trash-alt"></i> Descartar
+        </a>
+    </div>
+</div>
+
 <fieldset>
     <legend>General</legend>
 

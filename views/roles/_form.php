@@ -10,6 +10,15 @@ if (!isset($_SESSION)) {
 }
 
 ?>
+
+<div class="row">
+    <div class="col-sm-12 text-right mb-2">
+        <a href='index.php' class='btn btn-danger'>
+            <i class="fas fa-trash-alt"></i> Descartar
+        </a>
+    </div>
+</div>
+
 <fieldset>
     <?= Html::form($rol, 'nombre')->textInput(['message' => 'El nombre de usuario no puede repetirse.']) ?>
     <?= Html::form($rol, 'password_hash')->passwordInput() ?>

@@ -12,12 +12,10 @@ if (!isset($_SESSION)) {
 ?>
 
 <div class="row">
-    <div class="col-sm-12">
-        <div class='right-button-margin'>
-            <a href='create.php' class='btn btn-success float-right'>
-                <i class="fas fa-plus"></i> Nuevo usuario
-            </a>
-        </div>
+    <div class="col-sm-12 text-right mb-2">
+        <a href='create.php' class='btn btn-success float-right'>
+            <i class="fas fa-plus"></i> Nuevo usuario
+        </a>
     </div>
 </div>
 <div class="row">
