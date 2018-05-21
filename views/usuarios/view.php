@@ -63,7 +63,7 @@ $name = str_replace(' ', '_', $usuario->nombre);
             <?php endif; ?>
             <?php if ($aparatos = $usuario->getAparatosAnteriores()): ?>
                 <?php foreach ($aparatos as $value): ?>
-                    <li><b><?= $value['tipo'] . ': ' . $value['marca'] . ' ' . $value['modelo'] ?></b>. Hasta <?= date("d-m-Y \a \l\a\s G:i:s", strtotime($value['hasta'])) ?>.</li>
+                    <li><b><?= $value['tipo'] . ': ' . $value['marca'] . ' ' . $value['modelo'] . ' (' . $value['num_serie'] . ')' ?></b>. Hasta <?= date("d-m-Y \a \l\a\s G:i:s", strtotime($value['hasta'])) ?>.</li>
                 <?php endforeach; ?>
             <?php endif; ?>
         </ul>
