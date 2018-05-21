@@ -20,7 +20,7 @@ function ventana(name, url, bool = true) {
         e.preventDefault();
 
         $.get( url, $( this ).serialize(), function(data) {
-            $('body').append(data);
+            $('body').append(`<div id="option-window"><div id="window"><div id="close"><i class="fas fa-times"></i></div>${data}</div></div>`);
         });
     });
 }

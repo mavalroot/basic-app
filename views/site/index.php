@@ -68,6 +68,9 @@ Components::header($pageTitle, []);
                 <a href="../roles/index.php">Ver roles</a>
             </li>
             <li>
+                <a href="../roles/create.php">Crear rol</a>
+            </li>
+            <li>
                 <a href="../historial/index.php">Ver historial</a>
             </li>
         </ul>

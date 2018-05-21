@@ -32,4 +32,25 @@ class Checker
     {
         return isset($_SESSION['permiso_id']) && $_SESSION['permiso_id'] == $check;
     }
+
+    /**
+     * Comprueba que el permiso del rol actual sea administrador.
+     * @param string|array $check Valor a comprobar. Debe ser un permiso existente
+     * de la tabla permisos.
+     * @return bool
+     */
+    public function permission($check)
+    {
+        $actual = $_SESSION['permiso_id'];
+        if (is_string($check)) {
+            if (!isset($actual) || $actual !== $check) {
+                Errors::forbidden();
+            }
+        }
+        if (is_array($check)) {
+            if (!isset($actual) || !in_array($actual, $check)) {
+                Errors::forbidden();
+            }
+        }
+    }
 }

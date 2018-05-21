@@ -12,9 +12,7 @@ if ($controller->cambiarUsuario()) {
 };
 
 ?>
-<div id="option-window">
-    <div id="window">
-        <div id="close"><i class="fas fa-times"></i></div>
+
         <h2>Buscar:</h2>
         <form action="" method="post" name="cambiar-usuario">
             <div class="form-group">
@@ -33,8 +31,7 @@ if ($controller->cambiarUsuario()) {
                 <button type="submit" name="button" class="btn btn-success">Enviar</button>
             </div>
         </form>
-    </div>
-</div>
+
 <script>
 $('input').focus();
 cambiarUsuario();

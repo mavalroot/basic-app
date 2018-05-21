@@ -3,9 +3,7 @@
 namespace utilities\base;
 
 use models\Permisos;
-
 use utilities\helpers\validation\Errors;
-use utilities\helpers\validation\Checker;
 
 /**
  *
@@ -75,8 +73,7 @@ class BaseController
     {
         $actual = $_SESSION['permiso_id'];
         if (is_string($check)) {
-            $permiso = Permisos::getPermisoId($check);
-            if (!isset($permiso) || !isset($actual) || $actual !== $permiso) {
+            if (!isset($actual) || $actual !== $check) {
                 Errors::forbidden();
             }
         }

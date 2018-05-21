@@ -2,6 +2,7 @@
 
 namespace controllers;
 
+use models\Permisos;
 use models\Historial;
 use utilities\base\BaseController;
 use utilities\helpers\html\Html;
@@ -29,7 +30,7 @@ class HistorialController extends BaseController
      */
     public function index($pagLimit, $pagOffset)
     {
-        $this->permission();
+        $this->permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
         $searchTerm = isset($_GET['search']) ? Html::h($_GET['search']) : '';
         $searchBy = isset($_GET['by']) ? Html::h($_GET['by']) : '';
         $model = new Historial();
@@ -67,7 +68,7 @@ class HistorialController extends BaseController
      */
     public function view($id)
     {
-        self::permission();
+        $this->permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::NORMAL)]);
         $model = new Historial(['id' => $id]);
         if (!$model->readOne()) {
             Errors::notFound();
