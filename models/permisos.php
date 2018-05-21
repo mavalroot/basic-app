@@ -13,9 +13,9 @@ use utilities\query\QueryBuilder;
  */
 class Permisos extends BaseModel
 {
-    const ADMIN = '';
+    const ADMIN = 'admin';
 
-    const NORMAL = '';
+    const NORMAL = 'normal';
 
     protected $sortBy = false;
 
@@ -71,7 +71,7 @@ class Permisos extends BaseModel
 
     public static function getPermisoId($string)
     {
-        $all = $this->getAll();
-        return $all[$string];
+        $all = static::getAll();
+        return isset($all[$string]) ? $all[$string] : null;
     }
 }

@@ -76,18 +76,14 @@ class BaseController
         $actual = $_SESSION['permiso_id'];
         if (is_string($check)) {
             $permiso = Permisos::getPermisoId($check);
-            if (isset($permiso) && isset($actual)) {
-                return $actual == $permiso;
+            if (!isset($permiso) || !isset($actual) || $actual !== $permiso) {
+                Errors::forbidden();
             }
         }
         if (is_array($check)) {
-            foreach ($check as $value) {
-                $permiso = Permisos::getPermisoId($value);
-                if (isset($permiso) && isset($actual) && $actual == $permiso) {
-                    return true;
-                }
+            if (!isset($actual) || !in_array($actual, $check)) {
+                Errors::forbidden();
             }
         }
-        return false;
     }
 }

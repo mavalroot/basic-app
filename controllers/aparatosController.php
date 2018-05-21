@@ -3,6 +3,7 @@
 namespace controllers;
 
 use models\Aparatos;
+use models\Permisos;
 use models\AparatosUsuarios;
 use utilities\base\BaseController;
 use utilities\helpers\html\Html;
@@ -30,7 +31,7 @@ class AparatosController extends BaseController
      */
     public function index($pagLimit, $pagOffset)
     {
-        $this->permission();
+        $this->permission([Permisos::getPermisoId(Permisos::ADMIN), Permisos::getPermisoId(Permisos::ADMIN)]);
         $searchTerm = isset($_GET['search']) ? Html::h($_GET['search']) : '';
         $searchBy = isset($_GET['by']) ? Html::h($_GET['by']) : '';
         $model = new Aparatos();
@@ -69,7 +70,7 @@ class AparatosController extends BaseController
      */
     public function view($id)
     {
-        self::permission();
+        self::permission([Permisos::ADMIN, Permisos::NORMAL]);
         $model = new Aparatos(['id' => $id]);
         if ($model->readOne()) {
             $especifico = $model->getModelByType();
@@ -93,7 +94,7 @@ class AparatosController extends BaseController
      */
     public function create()
     {
-        $this->permission();
+        $this->permission(Permisos::ADMIN);
         $model = new Aparatos();
         $especifico = false;
         if ($_POST) {
