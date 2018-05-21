@@ -11,9 +11,9 @@ if (!isset($_SESSION)) {
 
 ?>
 <fieldset>
-    <?= Html::form($rol, 'nombre')->textInput() ?>
+    <?= Html::form($rol, 'nombre')->textInput(['message' => 'El nombre de usuario no puede repetirse.']) ?>
     <?= Html::form($rol, 'password_hash')->passwordInput() ?>
-    <?= Html::form($rol, 'permiso_id')->selectOption(Permisos::getAll(), ['locked' => false]) ?>
+    <?= Html::form($rol, 'permiso_id')->selectOption(array_flip(Permisos::getAll()), ['locked' => false]) ?>
 </fieldset>
 
 <fieldset>

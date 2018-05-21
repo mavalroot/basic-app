@@ -2,6 +2,8 @@
 
 namespace utilities\base;
 
+use models\Permisos;
+
 use utilities\helpers\validation\Errors;
 use utilities\helpers\validation\Checker;
 
@@ -64,12 +66,28 @@ class BaseController
     }
 
     /**
-     * Comprueba el rol del rol actual para ver si tiene permisos.
+     * Comprueba que el permiso del rol actual sea administrador.
+     * @param string|array $check Valor a comprobar. Debe ser un permiso existente
+     * de la tabla permisos.
+     * @return bool
      */
-    public function permission()
+    public function permission($check)
     {
-        if (!Checker::checkPermission(static::$rol) && !Checker::checkPermission(1)) {
-            Errors::forbidden();
+        $actual = $_SESSION['permiso_id'];
+        if (is_string($check)) {
+            $permiso = Permisos::getPermisoId($check);
+            if (isset($permiso) && isset($actual)) {
+                return $actual == $permiso;
+            }
         }
+        if (is_array($check)) {
+            foreach ($check as $value) {
+                $permiso = Permisos::getPermisoId($value);
+                if (isset($permiso) && isset($actual) && $actual == $permiso) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

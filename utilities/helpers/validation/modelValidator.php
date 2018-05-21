@@ -113,7 +113,10 @@ class ModelValidator
             static::addError(($array[0] !== $array[2]), $key, $array, $errores);
             break;
             case 'in':
-            static::addError(self::checkIn($array[0], $array[2]), $key, $array, $errores);
+            static::addError(in_array($array[0], $array[2]), $key, $array, $errores);
+            break;
+            case 'not in':
+            static::addError(!in_array($array[0], $array[2]), $key, $array, $errores);
             break;
             default:
             break;

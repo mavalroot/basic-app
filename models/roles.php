@@ -54,7 +54,7 @@ class Roles extends BaseModel
     {
         return [
             [['nombre', 'password_hash'], 'required'],
-            [['permiso_id'], 'in', array_keys(Permisos::getAll())],
+            [['permiso_id'], 'in', array_values(Permisos::getAll())],
         ];
     }
 

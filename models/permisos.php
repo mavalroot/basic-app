@@ -13,6 +13,10 @@ use utilities\query\QueryBuilder;
  */
 class Permisos extends BaseModel
 {
+    const ADMIN = '';
+
+    const NORMAL = '';
+
     protected $sortBy = false;
 
     public static function tableName()
@@ -60,10 +64,14 @@ class Permisos extends BaseModel
 
         $new = [];
         foreach ($data as $value) {
-            $new[$value['id']] = $value['permiso'];
+            $new[$value['permiso']] = $value['id'];
         }
-        asort($new, SORT_NATURAL | SORT_FLAG_CASE);
-
         return $new;
+    }
+
+    public static function getPermisoId($string)
+    {
+        $all = $this->getAll();
+        return $all[$string];
     }
 }

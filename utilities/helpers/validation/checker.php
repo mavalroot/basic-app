@@ -2,6 +2,7 @@
 namespace utilities\helpers\validation;
 
 use models\Roles;
+use models\Permisos;
 
 /**
  * Clase que se encarga de hacer diversas comprobaciones.
@@ -30,5 +31,23 @@ class Checker
     public static function checkPermission($check)
     {
         return isset($_SESSION['permiso_id']) && $_SESSION['permiso_id'] == $check;
+    }
+
+    /**
+     * Comprueba que el permiso del rol actual sea administrador.
+     * @return bool
+     */
+    public static function checkPermissionAdmin()
+    {
+        return isset($_SESSION['permiso_id']) && $_SESSION['permiso_id'] == Permisos::getPermisoId(Permisos::ADMIN);
+    }
+
+    /**
+     * Comprueba que el permiso del rol actual sea administrador.
+     * @return bool
+     */
+    public static function checkPermissionNormal()
+    {
+        return isset($_SESSION['permiso_id']) && $_SESSION['permiso_id'] == Permisos::getPermisoId(Permisos::NORMAL);
     }
 }
