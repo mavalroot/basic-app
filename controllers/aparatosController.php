@@ -180,7 +180,7 @@ class AparatosController extends BaseController
      */
     public function cambiarUsuario()
     {
-        Checker::permission(Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL);
+        Checker::permission([Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
         if ($_POST) {
             extract($_POST);
             if (!isset($id, $usuario_id)) {
