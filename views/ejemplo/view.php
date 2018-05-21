@@ -36,7 +36,7 @@ $aparato = AparatosController::view($id);
 </div>
 
 <button class="btn btn-md btn-success float-right" id="export" data-id="<?= $id ?>" data-name="aparato">
-    Guardar como PDF
+    <i class="fas fa-download"></i> Guardar como PDF
 </button>
 
 <?php

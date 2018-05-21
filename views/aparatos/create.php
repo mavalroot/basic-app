@@ -5,7 +5,7 @@ include_once '../../config/main-local.php';
 use utilities\helpers\html\Components;
 use controllers\AparatosController;
 
-$pageTitle = 'Crear aparato';
+$pageTitle = 'Crear nuevo aparato';
 $breadcrumps = [
     'Inicio' => '../site/index.php',
     'Aparatos' => 'index.php',
@@ -13,15 +13,6 @@ $breadcrumps = [
 ];
 Components::header($pageTitle, $breadcrumps);
 
-?>
-
-<div class='right-button-margin'>
-    <a href='index.php' class='btn btn-primary float-right'>
-        <i class="fas fa-list-ul"></i> Consultar todos los registros
-    </a>
-</div>
-
-<?php
 $controller = new AparatosController();
 $crear = $controller->create();
 extract($crear);

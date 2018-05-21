@@ -14,15 +14,6 @@ $breadcrumps = [
 ];
 Components::header($pageTitle, $breadcrumps);
 
-?>
-
-<div class='right-button-margin'>
-    <a href='index.php' class='btn btn-primary float-right'>
-        <i class="fas fa-list-ul"></i> Consultar todos los registros
-    </a>
-</div>
-
-<?php
 $controller = new UsuariosController();
 $usuario = $controller->create();
 ?>

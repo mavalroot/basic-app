@@ -27,17 +27,20 @@ $name = str_replace(' ', '_', $delegacion->nombre);
 ?>
 
 <div class="row mb-2">
-    <div class="col-sm-6">
-        <button class="btn btn-md btn-success" id="export" data-id="<?= $id ?>" data-name="<?= $name ?>">
-            Guardar como PDF
+    <div class='col-sm-12 text-right'>
+        <button class="btn btn-sm btn-primary" id="export" data-id="<?= $id ?>" data-name="<?= $name ?>">
+            <i class="fas fa-download"></i> Guardar como PDF
         </button>
-    </div>
 
-<div class='col-sm-6'>
-    <a href='index.php' class='btn btn-primary float-right'>
-        <i class="fas fa-list-ul"></i> Consultar todos los registros
-    </a>
-</div>
+
+        <a href='create.php' class='btn btn-sm btn-primary'>
+            <i class="fas fa-plus"></i> Nueva delegación
+        </a>
+        <a href='update.php?id=<?= $delegacion->id ?>' class='btn btn-sm btn-primary'>
+            <i class="fas fa-edit"></i> Modificar delegación
+        </a>
+
+    </div>
 </div>
 
 <div id="content" class="table-responsive">

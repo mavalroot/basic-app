@@ -6,12 +6,13 @@ use models\Permisos;
 
 use utilities\helpers\html\Components;
 
-// $breadcrumps = [
-//     'Inicio' => '',
-// ];
 $pageTitle = "Tabla de permisos";
+$breadcrumps = [
+    'Inicio' => '../site/index.php',
+    $pageTitle => ''
+];
 
-Components::header($pageTitle, []);
+Components::header($pageTitle, $breadcrumps);
 $miPermiso = Permisos::getPermisoNombre($_SESSION['permiso_id']);
 ?>
 <p>

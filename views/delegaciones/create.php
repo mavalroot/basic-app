@@ -6,7 +6,7 @@ include_once '../../config/main-local.php';
 use utilities\helpers\html\Components;
 use controllers\DelegacionesController;
 
-$pageTitle = "Crear un nueva delegación";
+$pageTitle = "Crear nueva delegación";
 $breadcrumps = [
     'Inicio' => '../site/index.php',
     'Delegaciones' => 'index.php',
@@ -14,15 +14,6 @@ $breadcrumps = [
 ];
 Components::header($pageTitle, $breadcrumps);
 
-?>
-
-<div class='right-button-margin'>
-    <a href='index.php' class='btn btn-primary float-right'>
-        <i class="fas fa-list-ul"></i> Consultar todos los registros
-    </a>
-</div>
-
-<?php
 $controller = new DelegacionesController();
 $delegacion = $controller->create();
 ?>

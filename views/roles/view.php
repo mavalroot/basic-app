@@ -26,10 +26,16 @@ Components::header($pageTitle, $breadcrumps);
 
 ?>
 
-<div class='right-button-margin'>
-    <a href='index.php' class='btn btn-primary float-right'>
-        <i class="fas fa-list-ul"></i> Consultar todos los roles
-    </a>
+<div class="row mb-2">
+    <div class='col-sm-12 text-right'>
+        <a href='create.php' class='btn btn-sm btn-primary'>
+            <i class="fas fa-plus"></i> Nuevo rol
+        </a>
+        <a href='update.php?id=<?= $rol->id ?>' class='btn btn-sm btn-primary'>
+            <i class="fas fa-edit"></i> Modificar rol
+        </a>
+
+    </div>
 </div>
 
 <div class="table-responsive">
