@@ -31,23 +31,6 @@ class BaseController
     }
 
     /**
-     * Borra un registro ya existente.
-     * @param  int $id Identificador del registro que se va a borrar.
-     */
-    public function delete($id)
-    {
-        $model = $this->findModel($id);
-        if (isset($model)) {
-            $model->createRecord('delete');
-            if ($model->delete()) {
-                echo 'El registro ha sido eliminado.';
-            } else {
-                echo 'El registro no ha podido ser eliminado.';
-            }
-        }
-    }
-
-    /**
      * Encuentra un modelo a través de un identificador.
      * @param  int $id Identificador para encontrar el modelo.
      * @return BaseModel

@@ -169,4 +169,25 @@ class RolesController extends BaseController
         }
         return $model;
     }
+
+    /**
+     * Borra un registro ya existente.
+     * @param  int $id Identificador del registro que se va a borrar.
+     */
+    public function delete($id)
+    {
+        if (!Checker::checkPermission(Permisos::ADMIN)) {
+            echo '<i class="fas fa-exclamation-circle"></i> No tienes permiso de borrado.';
+            return;
+        }
+        $model = $this->findModel($id);
+        if (isset($model)) {
+            $model->createRecord('delete');
+            if ($model->delete()) {
+                echo 'El registro ha sido eliminado.';
+            } else {
+                echo 'El registro no ha podido ser eliminado.';
+            }
+        }
+    }
 }

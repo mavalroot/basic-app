@@ -83,9 +83,6 @@ Components::header($pageTitle, []);
             <li>
                 <a href="../site/permisos.php">Tabla de permisos</a>
             </li>
-            <li>
-                <a href="../site/permisos.php">Api</a>
-            </li>
         </ul>
     </div>
 </div>
