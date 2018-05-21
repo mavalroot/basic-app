@@ -8,7 +8,7 @@ use utilities\helpers\html\Html;
 /**
  * Clase que ayuda en la construcción de tablas.
  */
-class tableView
+class TableView
 {
     /**
      * Constructor de la clase.

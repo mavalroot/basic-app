@@ -1,7 +1,7 @@
 <?php
 include_once '../../config/main-local.php';
 use utilities\helpers\html\Html;
-use utilities\helpers\html\tableView;
+use utilities\helpers\html\TableView;
 use utilities\helpers\validation\Errors;
 use utilities\helpers\html\Components;
 
@@ -32,7 +32,7 @@ if (!isset($_SESSION)) {
 
 <div id="table-result">
 <?php if ($rows > 0): ?>
-<?php new tableView([
+<?php new TableView([
     'model' => $model,
     'query' => $query,
     'rows' => [

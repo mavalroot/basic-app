@@ -76,6 +76,19 @@ Components::header($pageTitle, []);
         </ul>
     </div>
 </div>
+<div class="row">
+    <div class="col-sm-3">
+        <h4>Otros</h4>
+        <ul>
+            <li>
+                <a href="../site/permisos.php">Tabla de permisos</a>
+            </li>
+            <li>
+                <a href="../site/permisos.php">Api</a>
+            </li>
+        </ul>
+    </div>
+</div>
 <?php
 
 Components::footer();

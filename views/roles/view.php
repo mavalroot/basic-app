@@ -4,7 +4,7 @@ include_once '../../config/main-local.php';
 use models\Historial;
 
 use utilities\helpers\html\Html;
-use utilities\helpers\html\tableView;
+use utilities\helpers\html\TableView;
 use utilities\helpers\validation\Errors;
 use utilities\helpers\html\Components;
 use controllers\RolesController;
@@ -47,7 +47,7 @@ Components::header($pageTitle, $breadcrumps);
 <hr class="style11">
 <div class="row-fluid">
     <h3>Actividad reciente (10 últimos)</h3>
-    <?php new tableView([
+    <?php new TableView([
         'model' => new Historial(),
         'query' => $rol->getHistorial([
             'limit' => 10,
