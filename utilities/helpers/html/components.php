@@ -83,17 +83,20 @@ class Components
 
     /**
      * Muestra el footer.
+     * @param bool $bool
      */
-    public static function footer()
+    public static function footer($bool = true)
     {
         ?>
             </div>
         </div>
+        <?php if ($bool): ?>
             <footer class="page-footer font-small bg-dark text-white mt-5">
                 <div class="footer-copyright py-3 text-center">
                     © <?= date("Y"); ?> Ayto. de Chipiona
                 </div>
             </footer>
+        <?php endif; ?>
         </body>
         </html>
         <?php
