@@ -221,9 +221,9 @@ class AparatosController extends BaseController
         if (isset($model)) {
             $model->createRecord('delete');
             if ($model->delete()) {
-                echo 'El registro ha sido eliminado.';
+                echo '<i class="fas fa-check"></i> El aparato ha sido eliminado.';
             } else {
-                echo 'El registro no ha podido ser eliminado.';
+                echo '<i class="fas fa-exclamation-circle"></i> El aparato no ha podido ser eliminado.';
             }
         }
     }

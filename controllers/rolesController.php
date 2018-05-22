@@ -184,9 +184,9 @@ class RolesController extends BaseController
         if (isset($model)) {
             $model->createRecord('delete');
             if ($model->delete()) {
-                echo 'El registro ha sido eliminado.';
+                echo '<i class="fas fa-check"></i> El rol ha sido eliminado.';
             } else {
-                echo 'El registro no ha podido ser eliminado.';
+                echo '<i class="fas fa-exclamation-circle"></i> El rol no ha podido ser eliminado.';
             }
         }
     }
