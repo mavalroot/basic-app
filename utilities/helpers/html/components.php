@@ -57,6 +57,7 @@ class Components
             <script src="../libs/js/jspdf.plugin.autotable.js" charset="utf-8"></script>
             <script src="../libs/js/delete.js"></script>
             <script src="../libs/js/guardarpdf.js"></script>
+            <script src="../libs/js/guardarqr.js"></script>
             <script src="../libs/js/extra-actions.js"></script>
             <script type="text/javascript" src="../libs/js/jquery.qrcode.min.js"></script>
         </head>
@@ -74,7 +75,7 @@ class Components
                     <?php endif; ?>
 
                     <h1 class='page-header'>
-                            <h1><?= $pageTitle ?></h1>
+                        <h1><?= $pageTitle ?></h1>
                     </h1>
 
         <?php

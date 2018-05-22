@@ -26,12 +26,16 @@ Components::header($pageTitle, $breadcrumps);
 $name = str_replace(' ', '_', $name); ?>
 
 <div class="row mb-2">
-    <div class='col-sm-12 text-right'>
+    <div class="col-sm-6">
+        <button type="button" class="guardar-qr btn btn-sm btn-primary">
+            <i class="fas fa-download"></i> Guardar Código QR
+        </button>
+
         <button class="btn btn-sm btn-primary" id="export" data-id="<?= $id ?>" data-name="<?= $name ?>">
             <i class="fas fa-download"></i> Guardar como PDF
         </button>
-
-
+    </div>
+    <div class='col-sm-6 text-right'>
         <a href='create.php' class='btn btn-sm btn-primary'>
             <i class="fas fa-plus"></i> Nuevo aparato
         </a>
@@ -81,9 +85,16 @@ $name = str_replace(' ', '_', $name); ?>
     </div>
 
     <div class="col-sm-6">
-        <h4>Código QR</h4>
-        <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=<?= Html::h('http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']) ?>&choe=UTF-8" title="Link al aparato" />
-        <div id="qrcode" title="Información"></div>
+        <div id="printable-qrcode" style="background: white;">
+            <img src="http://inventario.local/libs/images/ayto.png" style="height: 80px;" alt=""> <h1 style="display: inline">Ayuntamiento de Chipiona</h1>
+            <div style="display: flex" class="mt-2">
+                <div id="qrcode" title="Información"></div>
+                <div class="ml-2">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+            </div>
+        </div>
+        <a href="#" class="guardar-qr">Guardar</a>
     </div>
 </div>
 
