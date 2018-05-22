@@ -27,7 +27,7 @@ $name = str_replace(' ', '_', $name); ?>
 
 <div class="row mb-2">
     <div class="col-sm-6">
-        <button type="button" class="guardar-qr btn btn-sm btn-primary">
+        <button type="button" class="guardar-qr btn btn-sm btn-primary" data-name="<?= $name ?>">
             <i class="fas fa-download"></i> Guardar Código QR
         </button>
 
@@ -94,7 +94,7 @@ $name = str_replace(' ', '_', $name); ?>
                 </div>
             </div>
         </div>
-        <a href="#" class="guardar-qr">Guardar</a>
+        <a href="#" class="guardar-qr" data-name="<?= $name ?>">Guardar</a>
     </div>
 </div>
 
