@@ -139,7 +139,7 @@ class UsuariosController extends BaseController
      */
     public function delete($id)
     {
-        if (!Checker::checkPermission(Permisos::ADMIN, Permisos::NORMAL)) {
+        if (!Checker::checkPermission([Permisos::ADMIN, Permisos::NORMAL])) {
             echo '<i class="fas fa-exclamation-circle"></i> No tienes permiso de borrado.';
             return;
         }

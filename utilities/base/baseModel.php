@@ -518,6 +518,6 @@ class BaseModel
             }
             $data .= ($this->getLabel($columna) ?: $columna) . ': ' . (isset($this->$columna) ? $this->$columna : '') . '.\n';
         }
-        return $data;
+        return $val = iconv('UTF-8','ASCII//TRANSLIT',$data);;
     }
 }
