@@ -54,7 +54,7 @@ Components::header($pageTitle, []);
         <h4>Delegaciones</h4>
         <ul>
             <li>
-                <a href="../usuarios/index.php">Crear delegación</a>
+                <a href="../delegaciones/create.php">Crear delegación</a>
             </li>
             <li>
                 <a href="../delegaciones/index.php">Ver todas</a>
