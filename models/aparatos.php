@@ -258,9 +258,9 @@ class Aparatos extends BaseModel
 
     public function getQRData($exclude = [])
     {
-        // $data = 'Usuario actual: '
-        // . $this->getNombreUsuario() . '.\nDelegación: '
-        // . $this->getNombreDelegacion() . '.\n';
+        $data = 'Usuario actual: '
+        . $this->getNombreUsuario() . ".\nDelegación: "
+        . $this->getNombreDelegacion() . ".\n";
 
         $data = parent::getQRData(['id', 'usuario_id', 'delegacion_id', 'created_at']);
         return $data;

@@ -516,8 +516,8 @@ class BaseModel
             if (in_array($columna, $exclude)) {
                 continue;
             }
-            $data .= ($this->getLabel($columna) ?: $columna) . ': ' . (isset($this->$columna) ? $this->$columna : '') . '.\n';
+            $data .= ($this->getLabel($columna) ?: $columna) . ': ' . (isset($this->$columna) ? $this->$columna : '') . ".\n";
         }
-        return $val = iconv('UTF-8','ASCII//TRANSLIT',$data);;
+        return Html::h($data);
     }
 }

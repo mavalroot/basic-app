@@ -46,6 +46,11 @@ class RolesController extends BaseController
             $rol->password_hash = $_POST['password_hash'];
 
             if ($rol->login()) {
+                if (isset($_SESSION['previousUrl'])) {
+                    header("Location: " . $_SESSION['previousUrl']);
+                    unset($_SESSION['previousUrl']);
+                    exit;
+                }
                 header("Location: ../site/index.php");
                 exit;
             } else {

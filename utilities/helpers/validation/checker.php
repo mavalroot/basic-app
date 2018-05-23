@@ -18,6 +18,7 @@ class Checker
         $rol = new Roles();
         if (!$rol->isLogged()) {
             header("Location: ../roles/login.php");
+            $_SESSION['previousUrl'] = $_SERVER['REQUEST_URI'];
             exit;
         }
     }

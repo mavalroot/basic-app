@@ -99,7 +99,7 @@ $name = str_replace(' ', '_', $name); ?>
 </div>
 
 <script type="text/javascript">
-    $('#qrcode').qrcode("<?= $aparato->getQRData() ?><?= $especifico->getQRData(['aparato_id']) ?>");
+    $('#qrcode').qrcode({width: 80, height: 80, text: 'http://192.168.0.103/qr/view.php?id=3'});
 </script>
 <?php
 

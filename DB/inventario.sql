@@ -178,17 +178,33 @@ INSERT INTO permisos (permiso) VALUES
     , ('editor')
     , ('normal')
     , ('admin')
+    , ('qronly')
 ;
 
 INSERT INTO roles (nombre, password_hash, permiso_id) VALUES
       (
-          'usuario'
+          'administrador'
         , crypt('usuario', gen_salt('md5'))
+        , 4
+    )
+    , (
+          'normal'
+        , crypt('administrador', gen_salt('md5'))
         , 3
     )
     , (
-          'administrador'
-        , crypt('administrador', gen_salt('md5'))
-        , 4
+          'lector'
+        , crypt('lector', gen_salt('md5'))
+        , 1
+    )
+    , (
+          'editor'
+        , crypt('editor', gen_salt('md5'))
+        , 2
+    )
+    , (
+          'qronly'
+        , crypt('qronly', gen_salt('md5'))
+        , 5
     )
 ;

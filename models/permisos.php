@@ -16,10 +16,12 @@ class Permisos extends BaseModel
     const ADMIN = 'admin';
 
     const NORMAL = 'normal';
-    
+
     const LECTOR = 'lector';
 
     const EDITOR = 'editor';
+
+    const QRONLY = 'qronly';
 
 
     protected $sortBy = false;

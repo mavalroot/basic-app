@@ -63,6 +63,14 @@ $miPermiso = Permisos::getPermisoNombre($_SESSION['permiso_id']);
                 <td>---</td>
                 <td>---</td>
             </tr>
+            <tr <?= $miPermiso == Permisos::QRONLY ? 'class="bg-warning"' : '' ?>>
+                <th>QRONLY</th>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+            </tr>
         </tbody>
     </table>
 </div>
