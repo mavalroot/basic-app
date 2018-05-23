@@ -55,6 +55,7 @@ class Roles extends BaseModel
         return [
             [['nombre', 'password_hash'], 'required'],
             [['permiso_id'], 'in', array_values(Permisos::getAll())],
+            [['nombre'], 'max', 25, 'message' => 'Error: el nombre de usuario debe ser como máximo de 25 carácteres.'],
         ];
     }
 

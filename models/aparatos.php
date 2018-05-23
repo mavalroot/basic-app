@@ -29,7 +29,8 @@ class Aparatos extends BaseModel
         return [
             [['usuario_id'], 'in', array_keys(Usuarios::getAll(true)), 'message' => 'Error: Seleccione una opción válida.'],
             [['delegacion_id'], 'in', array_keys(Delegaciones::getAll(true)), 'message' => 'Error: Seleccione una opción válida.'],
-            [['tipo'], 'in', array_keys(static::getTypes()), 'message' => 'Error: Seleccione una opción válida.']
+            [['tipo'], 'in', array_keys(static::getTypes()), 'message' => 'Error: Seleccione una opción válida.'],
+            [['marca', 'modelo', 'num_serie', 'proveedor', 'tipo'], 'max', 255, 'message' => 'Error: Excede el número máximo de caracteres (255).'],
         ];
     }
 

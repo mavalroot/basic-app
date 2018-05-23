@@ -26,7 +26,7 @@ class Ordenadores extends BaseModel
     public function rules()
     {
         return [
-
+            [['micro', 'memoria', 'disco_duro', 'tipo_disco', 'ip', 'sist_op'], 'max', 255, 'message' => 'Error: Excede el número máximo de caracteres (255).'],
         ];
     }
 

@@ -118,6 +118,12 @@ class ModelValidator
             case 'not in':
             static::addError(!in_array($array[0], $array[2]), $key, $array, $errores);
             break;
+            case 'max':
+            static::addError((strlen($array[0]) <= $array[2]), $key, $array, $errores);
+            break;
+            case 'min':
+            static::addError((strlen($array[0]) >= $array[2]), $key, $array, $errores);
+            break;
             default:
             break;
         }

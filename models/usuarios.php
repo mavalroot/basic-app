@@ -28,6 +28,7 @@ class Usuarios extends BaseModel
         return [
             [['nombre'], 'required', 'message' => 'Error: este campo es obligatorio.'],
             [['delegacion_id'], 'in', array_keys(Delegaciones::getAll(true)), 'message' => 'Error: Seleccione una opción válida.'],
+            [['nombre', 'extension'], 'max', 255, 'message' => 'Error: Excede el número máximo de caracteres (255).'],
         ];
     }
 

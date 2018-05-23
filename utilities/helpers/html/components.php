@@ -112,7 +112,9 @@ class Components
      */
     public static function pagination($totalRows, $page, $pagLimit, $pagOffset, $pageUrl)
     {
-        ?>
+        if (!is_numeric($page)) {
+            $page = 1;
+        } ?>
         <nav aria-label="Paginacion">
         <ul class="pagination">
         <?php

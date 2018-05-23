@@ -7,6 +7,10 @@
  */
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
+if (!is_numeric($page)) {
+    $page = 1;
+}
+
 /**
  * Número de filas que se muestra por cada página.
  * @var int

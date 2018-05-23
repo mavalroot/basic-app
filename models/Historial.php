@@ -30,6 +30,7 @@ class Historial extends BaseModel
             [['tipo'], 'required'],
             [['referencia'], 'in', array_keys($modelo)],
             [['created_by'], 'in', array_keys(Roles::getAll())],
+            [['accion', 'tipo'], 'max', 255, 'message' => 'Error: Excede el número máximo de caracteres (255).'],
         ];
     }
 

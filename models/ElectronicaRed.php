@@ -21,7 +21,7 @@ class ElectronicaRed extends BaseModel
     public function rules()
     {
         return [
-
+            [['ubicacion', 'tipo'], 'max', 255, 'message' => 'Error: Excede el número máximo de caracteres (255).'],
         ];
     }
 

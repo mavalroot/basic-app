@@ -24,7 +24,8 @@ class Delegaciones extends BaseModel
     public function rules()
     {
         return [
-            [['nombre'], 'required', 'message' => 'Error: este campo es obligatorio.']
+            [['nombre'], 'required', 'message' => 'Error: este campo es obligatorio.'],
+            [['nombre'], 'max', 255, 'message' => 'Error: Excede el número máximo de caracteres (255).'],
         ];
     }
 

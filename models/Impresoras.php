@@ -27,6 +27,7 @@ class Impresoras extends BaseModel
     {
         return [
             [['red'], 'in', [0,1,'0', '1'], 'message' => 'Error: elija una opción correcta.'],
+            [['cartucho', 'magenta', 'cian', 'amarillo', 'negro'], 'max', 255, 'message' => 'Error: Excede el número máximo de caracteres (255).'],
         ];
     }
 
