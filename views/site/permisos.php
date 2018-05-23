@@ -28,8 +28,8 @@ $miPermiso = Permisos::getPermisoNombre($_SESSION['permiso_id']);
             <th>Aparatos</th>
             <th>Usuarios</th>
             <th>Delegaciones</th>
-            <th>Historial</th>
             <th>Roles</th>
+            <th>Historial</th>
         </thead>
         <tbody>
             <tr <?= $miPermiso == Permisos::ADMIN ? 'class="bg-warning"' : '' ?>>
@@ -38,8 +38,8 @@ $miPermiso = Permisos::getPermisoNombre($_SESSION['permiso_id']);
                 <td>ver, crear, modificar, borrar</td>
                 <td>ver, crear, modificar, borrar</td>
                 <td>ver, crear, modificar, borrar</td>
-                <td>ver</td>
                 <td>ver, crear, modificar, borrar</td>
+                <td>ver</td>
             </tr>
             <tr <?= $miPermiso == Permisos::NORMAL ? 'class="bg-warning"' : '' ?>>
                 <th>NORMAL</th>
@@ -47,7 +47,7 @@ $miPermiso = Permisos::getPermisoNombre($_SESSION['permiso_id']);
                 <td>ver, crear, modificar, borrar</td>
                 <td>ver, crear, modificar, borrar</td>
                 <td>ver, crear, modificar, borrar</td>
-                <td>ver</td>
+                <td>---</td>
                 <td>---</td>
             </tr>
             <tr <?= $miPermiso == Permisos::EDITOR ? 'class="bg-warning"' : '' ?>>
