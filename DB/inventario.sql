@@ -184,12 +184,12 @@ INSERT INTO permisos (permiso) VALUES
 INSERT INTO roles (nombre, password_hash, permiso_id) VALUES
       (
           'administrador'
-        , crypt('usuario', gen_salt('md5'))
+        , crypt('administrador', gen_salt('md5'))
         , 4
     )
     , (
-          'normal'
-        , crypt('administrador', gen_salt('md5'))
+          'usuario'
+        , crypt('usuario', gen_salt('md5'))
         , 3
     )
     , (
