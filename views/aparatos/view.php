@@ -85,12 +85,14 @@ $name = str_replace(' ', '_', $name); ?>
     </div>
 
     <div class="col-sm-6">
-        <div id="printable-qrcode" style="background: white;">
-            <img src="http://inventario.local/libs/images/ayto.png" style="height: 80px;" alt=""> <h1 style="display: inline">Ayuntamiento de Chipiona</h1>
+        <div id="printable-qrcode" style="background: white; max-width: 400px;">
+            <div style="display: flex; align-items: center;">
+                <img src="http://inventario.local/libs/images/ayto.png" style="height: 80px;" alt=""> <h3>Ayuntamiento de Chipiona</h3>
+            </div>
             <div style="display: flex" class="mt-2">
                 <div id="qrcode" title="Información"></div>
                 <div class="ml-2">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </div>
             </div>
         </div>
@@ -99,7 +101,7 @@ $name = str_replace(' ', '_', $name); ?>
 </div>
 
 <script type="text/javascript">
-    $('#qrcode').qrcode({width: 80, height: 80, text: 'http://192.168.0.103/qr/view.php?id=1'});
+    $('#qrcode').qrcode({width: 80, height: 80, text: 'http://192.168.0.103/qr/view.php?id=<?= $aparato->id ?>'});
 </script>
 <?php
 
