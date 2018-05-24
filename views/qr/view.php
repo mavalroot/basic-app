@@ -11,10 +11,10 @@ if (!isset($_GET['id'])) {
 }
 $id = $_GET['id'];
 $aparato = new Aparatos(['id' => $id]);
-if (!$aparato->readOne()) {
+if (!$aparato->readOne() || !($especifico = $aparato->getDatosAsociados())) {
     Errors::notFound();
 }
-$especifico = $aparato->getDatosAsociados();
+;
 
 Components::header($aparato->getFullName(), [], false);
 ?>

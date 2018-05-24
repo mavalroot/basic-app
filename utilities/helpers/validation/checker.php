@@ -15,12 +15,21 @@ class Checker
      */
     public static function checkLogin()
     {
-        $rol = new Roles();
-        if (!$rol->isLogged()) {
+        if (!static::checkLogged()) {
             header("Location: ../roles/login.php");
             $_SESSION['previousUrl'] = $_SERVER['REQUEST_URI'];
             exit;
         }
+    }
+
+    /**
+     * Chequea si existe un usuario conectado.
+     * @return bool
+     */
+    public static function checkLogged()
+    {
+        $rol = new Roles();
+        return $rol->isLogged();
     }
 
     /**

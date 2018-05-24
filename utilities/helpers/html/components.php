@@ -226,7 +226,7 @@ class Components
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <?php if (!Checker::checkPermission(Permisos::QRONLY)): ?>
+                <?php if (Checker::checkLogged() && !Checker::checkPermission(Permisos::QRONLY)): ?>
                     <li><a href="../aparatos/index.php" class="nav-link">Aparatos</a></li>
                     <li><a href="../usuarios/index.php" class="nav-link">Usuarios</a></li>
                     <li><a href="../delegaciones/index.php" class="nav-link">Delegaciones</a></li>
