@@ -1,5 +1,9 @@
 <?php
 
+/********************
+*     PAGINADOR     *
+*********************/
+
 /**
  * Para el paginador. Es la página en la que nos encontramso actualmente.
  * Se recibe a través de GET, y por defecto es 1.
@@ -15,7 +19,7 @@ if (!is_numeric($page)) {
  * Número de filas que se muestra por cada página.
  * @var int
  */
-$pagLimit = 5;
+$pagLimit = 10;
 
 /**
  * Calcula el offset para saber en qué fila empieza cada página.
@@ -23,6 +27,9 @@ $pagLimit = 5;
  */
 $pagOffset = ($pagLimit * $page) - $pagLimit;
 
+/********************
+*      BASEURL      *
+*********************/
 /**
  * Forma la base url de la aplicación.
  * @var string
@@ -32,16 +39,22 @@ if (isset($_SERVER['HTTPS'])) {
 } else {
     $protocol = 'http://';
 }
+/**
+ * Url base de la aplicación.
+ * @var string
+ */
+define('BASEURL', $protocol . $_SERVER['SERVER_NAME']);
+unset($protocol);
 
+/********************
+*       OTROS       *
+*********************/
 /**
  * Define una constante ROOT para acceder a la raíz más fácilmente.
  * @var string
  */
 define('ROOT', __DIR__ . '/..');
-define('BASEURL', $protocol . $_SERVER['SERVER_NAME']);
 define('ERRORS', BASEURL . '/errors');
-
-unset($protocol);
 
 /**
  * Solicita el autoloader.

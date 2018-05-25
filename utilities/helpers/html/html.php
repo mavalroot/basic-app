@@ -222,7 +222,7 @@ class Html
             ?>
             <div class="form-group">
                 <label>
-                    <input type="text" name="" value="" class="form-control">
+                    <input type="password" name="" value="" class="form-control">
                 </label>
             </div>
             <?php

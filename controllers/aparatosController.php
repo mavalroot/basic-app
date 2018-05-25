@@ -144,7 +144,7 @@ class AparatosController extends BaseController
         $especifico = $model->getDatosAsociados();
 
         if ($_POST) {
-            $no = ['usuario_id', 'delegacion_id', 'tipo'];
+            $no = ['usuario_id', 'tipo'];
             if (isset($_POST['aparatos'])) {
                 foreach ($no as $value) {
                     if ($model->$value != '') {

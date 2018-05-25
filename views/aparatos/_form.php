@@ -23,7 +23,9 @@ if (!isset($_SESSION)) {
     <legend>General</legend>
 
 <?= Html::form($aparato, 'usuario_id')->selectOption(Usuarios::getAll(true)) ?>
-<?= Html::form($aparato, 'delegacion_id')->selectOption(Delegaciones::getAll(true)) ?>
+<?= Html::form($aparato, 'delegacion_id')->selectOption(Delegaciones::getAll(true), [
+    'locked' => false,
+    ]) ?>
 <?= Html::form($aparato, 'tipo')->selectOption($aparato->getTypes(), [
         'select' => true
     ]) ?>
