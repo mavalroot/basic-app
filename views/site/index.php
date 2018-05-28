@@ -19,55 +19,18 @@ Components::header($pageTitle, []);
     <h2>Estás como invitado y no puedes acceder a todo el contenido.</h2>
 <?php else: ?>
     <div class="row">
-        <div class="col-sm-3">
-            <h4>Aparatos</h4>
+        <div class="col-sm-6">
+            <h4>Ejemplos</h4>
             <ul>
                 <li>
-                    <a href="../aparatos/create.php">Crear aparato</a>
+                    <a href="../ejemplo/create.php">Crear ejemplo</a>
                 </li>
                 <li>
-                    <a href="../aparatos/index.php">Ver todos</a>
-                </li>
-                <li>
-                    <a href="../aparatos/index.php?search=ordenadores&by=tipo">Ver ordenadores</a>
-                </li>
-                <li>
-                    <a href="../aparatos/index.php?search=impresoras&by=tipo">Ver impresoras</a>
-                </li>
-                <li>
-                    <a href="../aparatos/index.php?search=monitores&by=tipo">Ver monitores</a>
-                </li>
-                <li>
-                    <a href="../aparatos/index.php?search=perifericos&by=tipo">Ver periféricos</a>
-                </li>
-                <li>
-                    <a href="../aparatos/index.php?search=electronica_red&by=tipo">Ver electrónica de red</a>
+                    <a href="../ejemplo/index.php">Ver todos</a>
                 </li>
             </ul>
         </div>
-        <div class="col-sm-3">
-            <h4>Usuarios</h4>
-            <ul>
-                <li>
-                    <a href="../usuarios/create.php">Crear usuario</a>
-                </li>
-                <li>
-                    <a href="../usuarios/index.php">Ver todos</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm-3">
-            <h4>Delegaciones</h4>
-            <ul>
-                <li>
-                    <a href="../delegaciones/create.php">Crear delegación</a>
-                </li>
-                <li>
-                    <a href="../delegaciones/index.php">Ver todas</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm-3">
+        <div class="col-sm-6">
             <h4>Administración</h4>
             <ul>
                 <li>
@@ -83,7 +46,7 @@ Components::header($pageTitle, []);
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-6">
             <h4>Otros</h4>
             <ul>
                 <li>
