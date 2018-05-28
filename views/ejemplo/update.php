@@ -3,7 +3,7 @@ session_start();
 include_once '../../config/main-local.php';
 use utilities\helpers\validation\Errors;
 use utilities\helpers\html\Components;
-use controllers\UsuariosController;
+use controllers\EjemploController;
 
 // Obtenemos el ID del registro que se va a actualizar.
 if (!isset($_GET['id'])) {

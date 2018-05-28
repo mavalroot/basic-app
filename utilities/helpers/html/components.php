@@ -239,6 +239,7 @@ class Components
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="../usuarios/index.php">Usuarios</a>
+                      <a class="dropdown-item" href="../historial/index.php">Historial</a>
                     </div>
                 </li>
                 <?php endif; ?>

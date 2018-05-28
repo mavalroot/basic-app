@@ -24,34 +24,40 @@ $miPermiso = Permisos::getPermisoNombre($_SESSION['permiso_id']);
     <table class="table table-striped">
         <thead>
             <th>Permiso</th>
-            <th>Ejemplos</th>
             <th>QR</th>
+            <th>Ejemplos</th>
+            <th>Historial</th>
         </thead>
         <tbody>
             <tr <?= $miPermiso == Permisos::ADMIN ? 'class="bg-warning"' : '' ?>>
                 <th>ADMIN</th>
+                <td>ver</td>
                 <td>ver, crear, modificar, borrar</td>
                 <td>ver</td>
             </tr>
             <tr <?= $miPermiso == Permisos::NORMAL ? 'class="bg-warning"' : '' ?>>
                 <th>NORMAL</th>
-                <td>ver, crear, modificar, borrar</td>
                 <td>ver</td>
+                <td>ver, crear, modificar, borrar</td>
+                <td>---</td>
             </tr>
             <tr <?= $miPermiso == Permisos::EDITOR ? 'class="bg-warning"' : '' ?>>
                 <th>EDITOR</th>
-                <td>ver, crear, modificar</td>
                 <td>ver</td>
+                <td>ver, crear, modificar</td>
+                <td>---</td>
             </tr>
             <tr <?= $miPermiso == Permisos::LECTOR ? 'class="bg-warning"' : '' ?>>
                 <th>LECTOR</th>
                 <td>ver</td>
                 <td>ver</td>
+                <td>---</td>
             </tr>
             <tr <?= $miPermiso == Permisos::QRONLY ? 'class="bg-warning"' : '' ?>>
                 <th>QRONLY</th>
-                <td>---</td>
                 <td>ver</td>
+                <td>---</td>
+                <td>---</td>
             </tr>
         </tbody>
     </table>

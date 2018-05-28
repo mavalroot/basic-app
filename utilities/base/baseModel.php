@@ -470,7 +470,7 @@ class BaseModel
         return [
             'insert' => 'Ha creado un registro.',
             'update' => 'Ha hecho modificaciones en un registro.',
-            'delete' => 'Ha marcado para borrar un registro.',
+            'delete' => 'Ha borrado un registro.',
         ];
     }
 

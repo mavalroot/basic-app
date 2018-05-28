@@ -150,4 +150,25 @@ class Usuarios extends BaseModel
 
         return $new;
     }
+
+    /**
+     * Devuelve las entradas del historial relacionados con este usuario.
+     * @param  array $config Configuración adicional, puede ser: limit, offset.
+     */
+    public function getHistorial($config)
+    {
+        $limit = false;
+        $offset = false;
+        extract($config, EXTR_IF_EXISTS);
+        $query = QueryBuilder::db($this->conn)
+        ->select('*')
+        ->from('historial')
+        ->where(['created_by', $this->id])
+        ->limit($limit)
+        ->offset($offset)
+        ->orderBy('created_at DESC')
+        ->get();
+
+        return $query;
+    }
 }
