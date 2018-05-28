@@ -128,6 +128,7 @@ class UsuariosController extends BaseController
             }
             if ($model->validate() && $model->create()) {
                 Html::alert('success', 'Se ha creado el usuario. Para verlo haga click <a href="view.php?id=' . $model->id . '" class="alert-link">aquí</a>.', true);
+                $model->createRecord('insert');
                 $model->reset();
             } else {
                 Html::alert('danger', 'El usuario no ha podido crearse');
@@ -165,6 +166,7 @@ class UsuariosController extends BaseController
             if ($model->validate() && $model->update()) {
                 // Se actualiza el registro.
                 Html::alert('success', 'El usuario se ha actualizado');
+                $model->createRecord('update');
             } else {
                 // Si no se pudo actualizar, se da un aviso al usuario.
                 Html::alert('danger', 'No se ha podido actualizar el registro.');
@@ -185,7 +187,10 @@ class UsuariosController extends BaseController
         }
         $model = $this->findModel($id);
         if (isset($model)) {
+            $old = $model;
             if ($model->delete()) {
+                $old->createRecord('delete');
+                unset($old);
                 echo '<i class="fas fa-check"></i> El usuario ha sido eliminado.';
             } else {
                 echo '<i class="fas fa-exclamation-circle"></i> El usuario no ha podido ser eliminado.';

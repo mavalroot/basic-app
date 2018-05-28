@@ -90,6 +90,7 @@ class EjemploController extends BaseController
             }
             if ($model->validate() && $model->create()) {
                 Html::alert('success', 'Se ha creado el ejemplo. Para verlo haga click <a href="view.php?id=' . $model->id . '" class="alert-link">aquí</a>.', true);
+                $model->createRecord('insert');
                 $model->reset();
             } else {
                 Html::alert('danger', 'El ejemplo no ha podido crearse');
@@ -121,6 +122,7 @@ class EjemploController extends BaseController
             if ($model->validate() && $model->update()) {
                 // Se actualiza el registro.
                 Html::alert('success', 'El ejemplo se ha actualizado');
+                $model->createRecord('update');
             } else {
                 // Si no se pudo actualizar, se da un aviso al usuario.
                 Html::alert('danger', 'No se ha podido actualizar el ejemplo.');
@@ -141,7 +143,10 @@ class EjemploController extends BaseController
         }
         $model = $this->findModel($id);
         if (isset($model)) {
+            $old = $model;
             if ($model->delete()) {
+                $old->createRecord('delete');
+                unset($old);
                 echo '<i class="fas fa-check"></i> El ejemplo ha sido eliminado.';
             } else {
                 echo '<i class="fas fa-exclamation-circle"></i> El ejemplo no ha podido ser eliminado.';

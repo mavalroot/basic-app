@@ -10,6 +10,22 @@ CREATE TABLE ejemplo (
     , created_at    timestamp(0)    DEFAULT localtimestamp
 );
 
+--------------------------
+------- HISTORIAL --------
+--------------------------
+DROP TABLE IF EXISTS historial CASCADE;
+
+/**
+ * Historial que guarda información sobre altas, bajas y modificaciones.
+ */
+CREATE TABLE historial (
+      id            bigserial       PRIMARY KEY
+    , accion        varchar(255)    NOT NULL
+    , tipo          varchar(255)    NOT NULL
+    , referencia    bigint
+    , created_at    timestamp(0)    DEFAULT localtimestamp
+    , created_by    bigint          NOT NULL REFERENCES usuarios (id)
+);
 
 -----------------------------
 --------- Usuarios ----------
