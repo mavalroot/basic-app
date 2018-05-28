@@ -69,6 +69,10 @@ $name = str_replace(' ', '_', $ejemplo->ejemplo);
 </div>
 </div>
 
+<script type="text/javascript">
+var getUrl = window.location;
+var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    $('#qrcode').qrcode({width: 80, height: 80, text: `${baseUrl}/qr/view?id=` + '<?= $ejemplo->id ?>'});
+</script>
 <?php
-
 Components::footer();
