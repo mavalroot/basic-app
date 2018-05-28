@@ -1,7 +1,7 @@
 <?php
 namespace utilities\helpers\validation;
 
-use models\Roles;
+use models\Usuarios;
 use models\Permisos;
 
 /**
@@ -10,13 +10,13 @@ use models\Permisos;
 class Checker
 {
     /**
-     * Comprueba que el rol esté loggeado. En el caso de que no lo esté
+     * Comprueba que el usuario esté loggeado. En el caso de que no lo esté
      * lo redirige a la pantalla de login.
      */
     public static function checkLogin()
     {
         if (!static::checkLogged()) {
-            header("Location: ../roles/login.php");
+            header("Location: ../usuarios/login.php");
             $_SESSION['previousUrl'] = $_SERVER['REQUEST_URI'];
             exit;
         }
@@ -28,12 +28,12 @@ class Checker
      */
     public static function checkLogged()
     {
-        $rol = new Roles();
-        return $rol->isLogged();
+        $usuario = new Usuarios();
+        return $usuario->isLogged();
     }
 
     /**
-     * Comprueba que el rol del rol actual coincida con el rol pasado
+     * Comprueba que el usuario del usuario actual coincida con el usuario pasado
      * como parámetro.
      * @param  int $check
      * @return bool
@@ -60,7 +60,7 @@ class Checker
     }
 
     /**
-     * Comprueba que el permiso del rol actual sea administrador.
+     * Comprueba que el permiso del usuario actual sea administrador.
      * @param string|array $check Valor a comprobar. Debe ser un permiso existente
      * de la tabla permisos.
      * @return bool

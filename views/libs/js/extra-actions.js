@@ -33,22 +33,3 @@ function cerrarVentana() {
         $(this).closest('#option-window').remove();
     });
 }
-
-function cambiarUsuario() {
-    $('form[name="cambiar-usuario"]').on('submit', function (e) {
-        e.preventDefault();
-        let input = $('input[list="cambiar"]');
-        let value = input.val();
-        let usuario = $('option[value="' + value + '"]').data('id');
-        let aparato = $(this).find('input[type="hidden"]').val();
-
-        $.post( 'ajax/cambiarUsuario.php', {usuario_id: usuario, id: aparato}, function(data) {
-            if (usuario != undefined) {
-                $('#option-window > #window > #close').trigger('click');
-                $('#row_' + aparato).load(location.href+` #row_${aparato}>*`,"");
-            } else {
-                input.addClass('is-invalid');
-            }
-        });
-    });
-}

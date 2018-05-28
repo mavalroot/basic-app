@@ -1,6 +1,6 @@
 <?php
 include_once '../../config/main-local.php';
-use models\Permisos;
+use models\Ejemplo;
 
 use utilities\helpers\html\Html;
 use utilities\helpers\validation\Errors;
@@ -20,13 +20,9 @@ if (!isset($_SESSION)) {
 </div>
 
 <fieldset>
-    <?= Html::form($rol, 'nombre')->textInput(['message' => 'El nombre de usuario no puede repetirse.']) ?>
-    <?= Html::form($rol, 'password_hash')->passwordInput() ?>
-    <?= Html::form($rol, 'permiso_id')->selectOption(array_flip(Permisos::getAll()), ['locked' => false]) ?>
+<?= Html::form($ejemplo, 'ejemplo')->textInput() ?>
 </fieldset>
 
-<fieldset>
 <div class="form-group text-center">
     <button type="submit" class="btn btn-primary">Enviar</button>
 </div>
-</fieldset>

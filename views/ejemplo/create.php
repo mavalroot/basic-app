@@ -4,18 +4,18 @@ session_start();
 include_once '../../config/main-local.php';
 
 use utilities\helpers\html\Components;
-use controllers\RolesController;
+use controllers\EjemploController;
 
-$pageTitle = "Crear nuevo rol";
+$pageTitle = "Crear nuevo ejemplo";
 $breadcrumps = [
     'Inicio' => '../site/index.php',
-    'Roles' => 'index.php',
+    'Ejemplos' => 'index.php',
     $pageTitle => ''
 ];
 Components::header($pageTitle, $breadcrumps);
 
-$controller = new RolesController();
-$rol = $controller->create();
+$controller = new EjemploController();
+$ejemplo = $controller->create();
 ?>
 
 <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">

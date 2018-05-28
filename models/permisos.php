@@ -8,19 +8,41 @@ use utilities\base\BaseModel;
 use utilities\query\QueryBuilder;
 
 /**
- * Esta clase representa a los roles de la tabla roles.
+ * Esta clase representa a los usuarios de la tabla usuarios.
  * Se usará para login y logout.
+ *
+ * {@inheritdoc}
  */
 class Permisos extends BaseModel
 {
+    /**
+     * Administrador.
+     * @var string
+     */
     const ADMIN = 'admin';
 
+    /**
+     * Usuario normal.
+     * @var string
+     */
     const NORMAL = 'normal';
 
+    /**
+     * Permiso de lectura.
+     * @var string
+     */
     const LECTOR = 'lector';
 
+    /**
+     * Permiso de editor.
+     * @var string
+     */
     const EDITOR = 'editor';
 
+    /**
+     * Sólo puede ver los QR.
+     * @var string
+     */
     const QRONLY = 'qronly';
 
 
@@ -37,13 +59,13 @@ class Permisos extends BaseModel
     }
 
     /**
-     * Devuelve los roles que están relacionados con este permiso.
+     * Devuelve los usuarios que están relacionados con este permiso.
      * @return array
      */
-    public function getRoles()
+    public function getUsers()
     {
         $query = QueryBuilder::db($this->conn)
-            ->from('roles')
+            ->from('usuarios')
             ->where(['permiso_id', $this->id, '='])
             ->get();
 
@@ -76,12 +98,22 @@ class Permisos extends BaseModel
         return $new;
     }
 
+    /**
+     * Devuelve el id del permiso pasado por parámetro.
+     * @param  string $string   Nombre del permiso en formato string.
+     * @return int              Id del permiso.
+     */
     public static function getPermisoId($string)
     {
         $all = static::getAll();
         return isset($all[$string]) ? $all[$string] : null;
     }
 
+    /**
+     * Devuelve el nombre del permiso pasado por parámetro.
+     * @param  int      $id Id del permiso.
+     * @return string       Nombre del permiso en formato string.
+     */
     public static function getPermisoNombre($id)
     {
         $all = array_flip(static::getAll());

@@ -13,11 +13,12 @@ if (!isset($_SESSION)) {
 
 <div class="row">
     <div class="col-sm-12 text-right mb-2">
-        <a href='create.php' class='btn btn-success float-right'>
+        <a href='create.php' class='btn btn-success'>
             <i class="fas fa-plus"></i> Nuevo usuario
         </a>
     </div>
 </div>
+
 <div class="row">
     <div class="col-sm-12 mb-4">
         <?= Components::search($model->getSearchBy(), $searchTerm); ?>
@@ -29,14 +30,19 @@ if (!isset($_SESSION)) {
 <?php endif; ?>
 
 <div id="table-result">
-
 <?php if ($rows > 0): ?>
 <?php new TableView([
     'model' => $model,
     'query' => $query,
     'rows' => [
-        'nombre' => ['label' => 'Nombre'],
-        'extension' => ['label' => 'Extensión'],
+        'nombre' => ['label' => 'Nombre de usuario'],
+        [
+            'label' => 'Permisos',
+            'value' => function ($model) {
+                return $model->getPermiso();
+            }
+        ],
+        'last_con' => ['label' => 'Última conexión'],
     ],
 ]); ?>
 

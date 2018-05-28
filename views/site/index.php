@@ -71,10 +71,10 @@ Components::header($pageTitle, []);
             <h4>Administración</h4>
             <ul>
                 <li>
-                    <a href="../roles/index.php">Ver roles</a>
+                    <a href="../usuarios/index.php">Ver usuarios</a>
                 </li>
                 <li>
-                    <a href="../roles/create.php">Crear rol</a>
+                    <a href="../usuarios/create.php">Crear usuario</a>
                 </li>
                 <li>
                     <a href="../historial/index.php">Ver historial</a>

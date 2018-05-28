@@ -5,15 +5,18 @@ namespace utilities\base;
 use utilities\helpers\validation\Errors;
 
 /**
+ * @author María Valderrama Rodríguez <contact@mavalroot.es>
+ * @copyright Copyright (c) 2018, María Valderrama Rodríguez
  *
+ * Modelo básico de contusuarioador.
  */
 class BaseController
 {
     /**
-     * Rol a comprobar
+     * Usuario a comprobar
      * @var string
      */
-    protected static $rol = '';
+    protected static $usuario = '';
 
     /**
      * Modelo

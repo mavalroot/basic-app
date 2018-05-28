@@ -2,14 +2,14 @@
 session_start();
 include_once '../../config/main-local.php';
 
-use controllers\RolesController;
+use controllers\UsuariosController;
 use utilities\helpers\html\Components;
 
 $pageTitle = "Login";
 
 Components::header($pageTitle, [], true, false);
 
-$controller = new RolesController();
+$controller = new UsuariosController();
 $controller->login();
 
 include '_login.php';

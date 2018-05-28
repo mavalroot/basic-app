@@ -4,13 +4,13 @@
             <div class="form-group row">
                 <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col-sm-10">
-                <input type="text" class="form-control" name="nombre" placeholder="Nombre de rol" required>
+                <input type="text" class="form-contusuario" name="nombre" placeholder="Nombre de usuario" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
                 <div class="col-sm-10">
-                <input type="password" class="form-control" name="password_hash" placeholder="Contraseña" required>
+                <input type="password" class="form-contusuario" name="password_hash" placeholder="Contraseña" required>
                 </div>
             </div>
             <div class="form-group text-center">

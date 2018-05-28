@@ -6,6 +6,9 @@ use PDO;
 use PDOException;
 
 /**
+ * @author María Valderrama Rodríguez <contact@mavalroot.es>
+ * @copyright Copyright (c) 2018, María Valderrama Rodríguez
+ *
  * Clase que nos permite conectarnos a una base de datos.
  */
 class Database
@@ -21,19 +24,19 @@ class Database
      * Nombre de la base de datos
      * @var string
      */
-    private $db_name = 'inventario';
+    private $db_name = 'ejemplo';
 
     /**
      * Nombre del usuario que accederá a la base de datos.
      * @var string
      */
-    private $username = 'inventario';
+    private $username = 'ejemplo';
 
     /**
-     * Contraseña de dicho rol
+     * Contraseña de dicho usuario
      * @var string
      */
-    private $password_hash = 'inventario';
+    private $password_hash = 'ejemplo';
 
     /**
      * Variable que se usará para la conexión.

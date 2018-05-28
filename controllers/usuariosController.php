@@ -2,8 +2,8 @@
 
 namespace controllers;
 
-use models\Permisos;
 use models\Usuarios;
+use models\Permisos;
 use utilities\base\BaseController;
 use utilities\helpers\html\Html;
 use utilities\helpers\validation\Errors;
@@ -14,12 +14,49 @@ use utilities\helpers\validation\Checker;
  */
 class UsuariosController extends BaseController
 {
-    protected static $rol = 2;
+    protected static $usuario = 2;
 
     public function __construct()
     {
         $model = new Usuarios();
         $this->model = $model;
+    }
+
+    /**
+     * Acción de login.
+     *
+     * Primero comprueba que el usuario no esté ya loggeado. En caso de que lo
+     * esté redigirá al index, en caso de que no se comprobará si se han
+     * recibido los parámetros "Nombre" y "Password" por POST, para acto
+     * seguido hacer las debidas comprobaciones.
+     *
+     * Se lanzará un mensaje de error si el usuario o la contraseña
+     * introducidos no son válidos, o se redigirá al index si el login ha
+     * tenido éxito.
+     */
+    public function login()
+    {
+        $usuario = new Usuarios();
+        if ($usuario->isLogged()) {
+            header("Location: ../site/index.php");
+            exit;
+        }
+        if ($_POST) {
+            $usuario->nombre = $_POST['nombre'];
+            $usuario->password_hash = $_POST['password_hash'];
+
+            if ($usuario->login()) {
+                if (isset($_SESSION['previousUrl'])) {
+                    header("Location: " . $_SESSION['previousUrl']);
+                    unset($_SESSION['previousUrl']);
+                    exit;
+                }
+                header("Location: ../site/index.php");
+                exit;
+            } else {
+                Html::alert('danger', 'El usuario o la contraseña introducidos no son válidos.');
+            }
+        }
     }
 
     /**
@@ -31,7 +68,7 @@ class UsuariosController extends BaseController
      */
     public function index($pagLimit, $pagOffset)
     {
-        Checker::permission([Permisos::LECTOR, Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
+        Checker::permission(Permisos::ADMIN);
         $searchTerm = isset($_GET['search']) ? Html::h($_GET['search']) : '';
         $searchBy = isset($_GET['by']) ? Html::h($_GET['by']) : '';
         $model = new Usuarios();
@@ -41,7 +78,6 @@ class UsuariosController extends BaseController
             'limit' => $pagLimit,
             'offset' => $pagOffset,
         ]);
-
         if ($searchTerm) {
             $url = "index.php?search={$searchTerm}&by={$searchBy}&";
             $rows = $model->countAll([
@@ -64,12 +100,12 @@ class UsuariosController extends BaseController
 
     /**
      * Devuelve el modelo necesario para la creación del view del modelo.
-     * @param  int          $id Id del modelo a visualizar.
-     * @return Usuarios         Modelo de la clase.
+     * @param  int      $id Id del modelo a visualizar.
+     * @return Usuarios        Modelo de la clase.
      */
     public function view($id)
     {
-        Checker::permission([Permisos::LECTOR, Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
+        Checker::permission(Permisos::ADMIN);
         $model = new Usuarios(['id' => $id]);
         if (!$model->readOne()) {
             Errors::notFound();
@@ -84,18 +120,17 @@ class UsuariosController extends BaseController
      */
     public function create()
     {
-        Checker::permission([Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
+        Checker::permission(Permisos::ADMIN);
         $model = new Usuarios();
         if ($_POST) {
-            if (isset($_POST['usuarios'])) {
-                $model->load($_POST['usuarios']);
+            if (isset($_POST[$model->tableName()])) {
+                $model->load($_POST[$model->tableName()]);
             }
             if ($model->validate() && $model->create()) {
-                Html::alert('success', 'Se ha creado el registro. Para verlo haga click <a href="view.php?id=' . $model->id . '" class="alert-link">aquí</a>.', true);
-                $model->createRecord('insert');
+                Html::alert('success', 'Se ha creado el usuario. Para verlo haga click <a href="view.php?id=' . $model->id . '" class="alert-link">aquí</a>.', true);
                 $model->reset();
             } else {
-                Html::alert('danger', 'El registro no ha podido crearse');
+                Html::alert('danger', 'El usuario no ha podido crearse');
             }
         }
         return $model;
@@ -111,20 +146,25 @@ class UsuariosController extends BaseController
      */
     public function update($id)
     {
-        Checker::permission([Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
+        Checker::permission(Permisos::ADMIN);
         $model = $this->findModel($id);
         if (!$model->readOne()) {
             Errors::notFound();
         }
+        $old = $model->password_hash;
 
         if ($_POST) {
-            if (isset($_POST['usuarios'])) {
-                $model->load($_POST['usuarios']);
+            if (isset($_POST[$model->tableName()])) {
+                $model->load($_POST[$model->tableName()]);
+            }
+            if (isset($_POST[$model->tableName()]['password_hash']) && $_POST[$model->tableName()]['password_hash'] == '') {
+                $model->password_hash = $old;
+            } else {
+                $model->password_hash = password_hash($model->password_hash, PASSWORD_DEFAULT);
             }
             if ($model->validate() && $model->update()) {
                 // Se actualiza el registro.
-                Html::alert('success', 'El registro se ha actualizado');
-                $model->createRecord('update');
+                Html::alert('success', 'El usuario se ha actualizado');
             } else {
                 // Si no se pudo actualizar, se da un aviso al usuario.
                 Html::alert('danger', 'No se ha podido actualizar el registro.');
@@ -139,13 +179,12 @@ class UsuariosController extends BaseController
      */
     public function delete($id)
     {
-        if (!Checker::checkPermission([Permisos::ADMIN, Permisos::NORMAL])) {
+        if (!Checker::checkPermission(Permisos::ADMIN)) {
             echo '<i class="fas fa-exclamation-circle"></i> No tienes permiso de borrado.';
             return;
         }
         $model = $this->findModel($id);
         if (isset($model)) {
-            $model->createRecord('delete');
             if ($model->delete()) {
                 echo '<i class="fas fa-check"></i> El usuario ha sido eliminado.';
             } else {

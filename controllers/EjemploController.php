@@ -2,23 +2,21 @@
 
 namespace controllers;
 
+use models\Ejemplo;
 use models\Permisos;
-use models\Delegaciones;
 use utilities\base\BaseController;
-use utilities\helpers\validation\Checker;
 use utilities\helpers\html\Html;
 use utilities\helpers\validation\Errors;
+use utilities\helpers\validation\Checker;
 
 /**
  *
  */
-class DelegacionesController extends BaseController
+class EjemploController extends BaseController
 {
-    protected static $rol = 2;
-
     public function __construct()
     {
-        $model = new Delegaciones();
+        $model = new Ejemplo();
         $this->model = $model;
     }
 
@@ -31,10 +29,10 @@ class DelegacionesController extends BaseController
      */
     public function index($pagLimit, $pagOffset)
     {
-        Checker::permission([Permisos::LECTOR, Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
+        // Checker::permission();
         $searchTerm = isset($_GET['search']) ? Html::h($_GET['search']) : '';
         $searchBy = isset($_GET['by']) ? Html::h($_GET['by']) : '';
-        $model = new Delegaciones();
+        $model = new Ejemplo();
         $query = $model->readAll([
             'searchTerm' => $searchTerm,
             'searchBy' => $searchBy,
@@ -65,12 +63,12 @@ class DelegacionesController extends BaseController
     /**
      * Devuelve el modelo necesario para la creación del view del modelo.
      * @param  int          $id Id del modelo a visualizar.
-     * @return Delegaciones     Modelo de la clase.
+     * @return Ejemplo          Modelo de la clase.
      */
     public function view($id)
     {
-        Checker::permission([Permisos::LECTOR, Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
-        $model = new Delegaciones(['id' => $id]);
+        // Checker::permission();
+        $model = new Ejemplo(['id' => $id]);
         if (!$model->readOne()) {
             Errors::notFound();
         }
@@ -78,64 +76,62 @@ class DelegacionesController extends BaseController
     }
 
     /**
-     * Crea una nueva fila de la tabla "delegaciones" con los datos obtenidos
-     * del formulario.
-     * @return Delegaciones Modelo vacío para usar con el formulario.
+     * Crea una nueva fila de la tabla con los datos obtenidos a través del
+     * formulario.
+     * @return Ejemplo Modelo vacío para usar con el formulario.
      */
     public function create()
     {
-        Checker::permission([Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
-        $model = new Delegaciones();
+        // Checker::permission();
+        $model = new Ejemplo();
         if ($_POST) {
-            if (isset($_POST['delegaciones'])) {
-                $model->load($_POST['delegaciones']);
+            if (isset($_POST[$model->tableName()])) {
+                $model->load($_POST[$model->tableName()]);
             }
             if ($model->validate() && $model->create()) {
-                Html::alert('success', 'Se ha creado el registro. Para verlo haga click <a href="view.php?id=' . $model->id . '" class="alert-link">aquí</a>.', true);
-                $model->createRecord('insert');
+                Html::alert('success', 'Se ha creado el ejemplo. Para verlo haga click <a href="view.php?id=' . $model->id . '" class="alert-link">aquí</a>.', true);
                 $model->reset();
             } else {
-                Html::alert('danger', 'El registro no ha podido crearse');
+                Html::alert('danger', 'El ejemplo no ha podido crearse');
             }
         }
         return $model;
     }
 
     /**
-     * Actualiza una fila de la tabla "delegaciones" con los datos obtenidos a
-     * través del formulario.
-     * @param  int              $id Id de la fila a modificar.
-     * @return Delegaciones         Modelo de la clase cargado con sus datos
+     * Actualiza una fila de la tabla con los datos obtenidos a través del
+     * formulario.
+     * @param  int      $id Id de la fila a modificar.
+     * @return Ejemplo      Modelo de la clase cargado con sus datos
      * correspondientes, listo para un extract y la visualización en el
      * formulario.
      */
     public function update($id)
     {
-        Checker::permission([Permisos::EDITOR, Permisos::ADMIN, Permisos::NORMAL]);
+        Checker::permission([Permisos::ADMIN, Permisos::NORMAL, Permisos::EDITOR]);
         $model = $this->findModel($id);
         if (!$model->readOne()) {
             Errors::notFound();
         }
 
         if ($_POST) {
-            if (isset($_POST['delegaciones'])) {
-                $model->load($_POST['delegaciones']);
+            if (isset($_POST[$model->tableName()])) {
+                $model->load($_POST[$model->tableName()]);
             }
             if ($model->validate() && $model->update()) {
                 // Se actualiza el registro.
-                Html::alert('success', 'El registro se ha actualizado');
-                $model->createRecord('update');
+                Html::alert('success', 'El ejemplo se ha actualizado');
             } else {
                 // Si no se pudo actualizar, se da un aviso al usuario.
-                Html::alert('danger', 'No se ha podido actualizar el registro.');
+                Html::alert('danger', 'No se ha podido actualizar el ejemplo.');
             }
         }
         return $model;
     }
 
     /**
-     * Borra un registro ya existente.
-     * @param  int $id Identificador del registro que se va a borrar.
+     * Borra un ejemplo ya existente.
+     * @param  int $id Identificador del ejemplo que se va a borrar.
      */
     public function delete($id)
     {
@@ -145,11 +141,10 @@ class DelegacionesController extends BaseController
         }
         $model = $this->findModel($id);
         if (isset($model)) {
-            $model->createRecord('delete');
             if ($model->delete()) {
-                echo '<i class="fas fa-check"></i> La delegación ha sido eliminada.';
+                echo '<i class="fas fa-check"></i> El ejemplo ha sido eliminado.';
             } else {
-                echo '<i class="fas fa-exclamation-circle"></i> La delegación no ha podido ser eliminada.';
+                echo '<i class="fas fa-exclamation-circle"></i> El ejemplo no ha podido ser eliminado.';
             }
         }
     }

@@ -11,7 +11,7 @@ if (!isset($_GET['id'])) {
 }
 $id = $_GET['id'];
 
-$pageTitle = 'Editar usuario';
+$pageTitle = "Editar usuario";
 $breadcrumps = [
     'Inicio' => '../site/index.php',
     'Usuarios' => 'index.php',
@@ -19,8 +19,8 @@ $breadcrumps = [
 ];
 Components::header($pageTitle, $breadcrumps);
 
-$controller = new UsuariosController();
-$usuario = $controller->update($id);
+    $controller = new UsuariosController();
+    $usuario = $controller->update($id);
 ?>
 
 <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$id}");?>" method="post">

@@ -3,15 +3,15 @@
 namespace utilities\base;
 
 use PDO;
-
-use models\Historial;
-
 use utilities\base\Database;
 use utilities\helpers\html\Html;
 use utilities\helpers\validation\ModelValidator;
 use utilities\query\QueryBuilder;
 
 /**
+ * @author María Valderrama Rodríguez <contact@mavalroot.es>
+ * @copyright Copyright (c) 2018, María Valderrama Rodríguez
+ *
  * Modelo básico de clase.
  */
 class BaseModel
@@ -153,39 +153,6 @@ class BaseModel
     {
         $labels = static::labels();
         return isset($labels[$prop]) ? $labels[$prop] : false;
-    }
-
-    /**
-     * Mensajes para la creación de acciones del historial. Se puede
-     * personalizar en cada clase o dejar el estandar definido a continuación.
-     * @var array
-     *
-     * Sigue el siguiente formato:
-     * [
-     *      'accion' => 'mensaje'
-     * ]
-     *
-     * Las acciones deben ser: insert, update y delete
-     */
-    protected function actionMessages()
-    {
-        return [
-            'insert' => 'Ha creado un registro.',
-            'update' => 'Ha hecho modificaciones en un registro.',
-            'delete' => 'Ha marcado para borrar un registro.',
-        ];
-    }
-
-    /**
-     * Devuelve un mensaje de acción en concreto.
-     * @param  string $action   Puede ser insert, update o delete.
-     * @return string           El mensaje si este fuera válido o cadena vacía
-     * si no.
-     */
-    public function getActionMessage($action)
-    {
-        $messages = $this->actionMessages();
-        return isset($messages[$action]) ? $messages[$action] : '';
     }
 
     /**
@@ -461,23 +428,6 @@ class BaseModel
 
         $row = $query->fetch(PDO::FETCH_ASSOC);
         return $row['rows'];
-    }
-
-    /**
-     * Crea un record para el regisro de actividad reciente. La idea es que
-     * se cree uno cuando se hace insert, update o delete.
-     * @param  string $action Debe ser insert, update o delete.
-     */
-    public function createRecord($action)
-    {
-        $record = new Historial([
-            'accion' => $this->getActionMessage($action),
-            'tipo' => $this->tableName(),
-            'referencia' => ($action != 'delete' ? $this->id : ''),
-            'created_by' => $_SESSION['id']
-        ]);
-
-        return $record->validate() && $record->create();
     }
 
     /**

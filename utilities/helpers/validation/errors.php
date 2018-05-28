@@ -3,6 +3,9 @@
 namespace utilities\helpers\validation;
 
 /**
+ * @author María Valderrama Rodríguez <contact@mavalroot.es>
+ * @copyright Copyright (c) 2018, María Valderrama Rodríguez
+ *
  * Nos redirige a páginas de error.
  */
 class Errors
@@ -14,7 +17,7 @@ class Errors
     private function __construct()
     {
     }
-    
+
     /**
      * Nos lleva a una página de error 404.
      * @return null

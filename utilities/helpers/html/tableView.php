@@ -6,6 +6,9 @@ use PDO;
 use utilities\helpers\html\Html;
 
 /**
+ * @author María Valderrama Rodríguez <contact@mavalroot.es>
+ * @copyright Copyright (c) 2018, María Valderrama Rodríguez
+ *
  * Clase que ayuda en la construcción de tablas.
  */
 class TableView

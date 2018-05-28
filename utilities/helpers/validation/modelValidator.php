@@ -6,6 +6,9 @@ use DateTime;
 use utilities\base\BaseModel;
 
 /**
+ * @author María Valderrama Rodríguez <contact@mavalroot.es>
+ * @copyright Copyright (c) 2018, María Valderrama Rodríguez
+ *
  * Clase para validar modelos basados en BaseModel.
  */
 class ModelValidator

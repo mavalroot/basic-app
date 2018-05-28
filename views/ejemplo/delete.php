@@ -2,12 +2,12 @@
 session_start();
 include_once '../../config/main-local.php';
 
-use controllers\AparatosController;
+use controllers\UsuariosController;
 
 if (!isset($_POST['object_id'])) {
-    echo 'El registro no ha podido ser eliminado.';
+    echo 'El ejemplo no ha podido ser eliminado.';
     return;
 } else {
-    $controller = new AparatosController();
+    $controller = new UsuariosController();
     $controller->delete($_POST['object_id']);
 }

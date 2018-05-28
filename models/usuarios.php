@@ -2,134 +2,118 @@
 
 namespace models;
 
+use PDO;
+
 use utilities\base\Database;
 use utilities\base\BaseModel;
-
 use utilities\query\QueryBuilder;
 
 /**
+ * Esta clase representa a los usuarios de la tabla usuarios.
+ * Se usará para login y logout.
  *
-
+ * {@inheritdoc}
  */
 class Usuarios extends BaseModel
 {
-    protected $searchBy = [
-        'Nombre completo' => 'nombre',
-        'Extensión de teléfono' => 'extension',
-    ];
+
+    /**
+     * Nombre de usuario, que se corresponde al nombre de usuario de la tabla.
+     * @var string
+     */
+    public $nombre;
+    /**
+     * Contraseña, que se corresponde con la contraseña de la tabla.
+     * @var string
+     */
+    public $password_hash;
+
+    protected $sortBy = 'last_con DESC';
+
+    protected $searchBy = ['Nombre de usuario' => 'nombre'];
 
     public static function tableName()
     {
         return 'usuarios';
     }
 
-    public function rules()
+    public static function primaryKey()
     {
-        return [
-            [['nombre'], 'required', 'message' => 'Error: este campo es obligatorio.'],
-            [['delegacion_id'], 'in', array_keys(Delegaciones::getAll(true)), 'message' => 'Error: Seleccione una opción válida.'],
-            [['nombre', 'extension'], 'max', 255, 'message' => 'Error: Excede el número máximo de caracteres (255).'],
-        ];
+        return 'id';
     }
 
     protected static function labels()
     {
         return [
-            'nombre' => 'Nombre completo',
-            'delegacion_id' => 'Delegación',
-            'extension' => 'Extensión de teléfono',
+            'nombre' => 'Nombre de usuario',
+            'last_con' => 'Última conexión',
+            'permiso_id' => 'Permisos',
+            'password_hash' => 'Contraseña'
         ];
     }
 
-    protected function actionMessages()
+    public function rules()
     {
         return [
-            'insert' => 'Ha registrado un nuevo usuario: "' . $this->nombre . '".',
-            'update' => 'Ha hecho modificaciones en el usuario "' . $this->nombre . '".',
-            'delete' => 'Ha borrado el usuario "' . $this->nombre . '".',
+            [['nombre', 'password_hash'], 'required'],
+            [['permiso_id'], 'in', array_values(Permisos::getAll())],
+            [['nombre'], 'max', 25, 'message' => 'Error: el nombre de usuario debe ser como máximo de 25 carácteres.'],
         ];
     }
 
-    /**
-     * Devuelve la delegación de este usuario.
-     * @return Delegaciones|null Devuelve la delegación correspondiente o null
-     * en caso de que no tenga ninguna asignada.
-     */
-    public function getDelegacion()
+    protected function beforeInsert()
     {
-        if ($this->delegacion_id) {
-            $delegacion = new Delegaciones([
-                'id' => $this->delegacion_id
-            ]);
-            if ($delegacion->readOne()) {
-                return $delegacion;
-            }
-        }
-        return null;
+        $this->password_hash = password_hash($this->password_hash, PASSWORD_DEFAULT);
     }
 
     /**
-     * Devuelve el nombre de la delegación asignada a este usuario.
-     * @return string   Nombre de la delegación o cadena vacía en caso de que
-     * no tenga ninguna asignada.
+     * Efectúa el loggin.
      */
-    public function getNombreDelegacion()
-    {
-        $delegacion = $this->getDelegacion();
-        return isset($delegacion->nombre) ? $delegacion->nombre : '';
-    }
-
-    /**
-     * Devuelve los aparatos que este usuario está usando actualmente.
-     * @return array    Array con los datos necesarios, en el siguiente formato:
-     *  [
-     *      [
-     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
-     *      ],
-     *      [
-     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
-     *      ],
-     *  ]
-     */
-    public function getAparatosActuales()
+    public function login()
     {
         $query = QueryBuilder::db($this->conn)
-            ->select('*')
-            ->from('aparatos')
-            ->where(['usuario_id', $this->id])
-            ->get();
-
-        $data = $query->fetchAll();
-
-        return $data;
-    }
-
-    /**
-     * Devuelve los aparatos que este usuario ha usado anteriormente según los
-     * datos de la tabla "aparatos_usuarios".
-     * @return array    Array con los datos necesarios, en el siguiente formato:
-     *  [
-     *      [
-     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
-     *      ],
-     *      [
-     *          'propiedad1' => 'valor', 'propiedad2' => 'valor', ...
-     *      ],
-     *  ]
-     */
-    public function getAparatosAnteriores()
-    {
-        $query = QueryBuilder::db($this->conn)
-        ->select('a.*, au.usuario_id as anterior, au.created_at as hasta')
-        ->from('aparatos_usuarios au')
-        ->join('aparatos a', ['a.id', 'au.aparato_id'])
-        ->where(['au.usuario_id', $this->id])
-        ->orderBy('hasta DESC')
+        ->select('*')
+        ->from(self::tableName())
+        ->where(['nombre', $this->nombre])
         ->get();
 
-        $data = $query->fetchAll();
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        $password_hash = $row['password_hash'];
 
-        return $data;
+        if (password_verify($this->password_hash, $password_hash)) {
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['nombre'] = $this->nombre;
+            $_SESSION['permiso_id'] = $row['permiso_id'];
+            $this->readOne(['nombre', $this->nombre]);
+            $this->last_con = date("Y-m-d H:i:s");
+            $this->update();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Comprueba si el usuario actual está loggeado.
+     * @return bool
+     */
+    public function isLogged()
+    {
+        if (isset($_SESSION['nombre'])) {
+            return $this->readOne(['nombre', $_SESSION['nombre']]);
+        }
+        return false;
+    }
+
+    /**
+     * Devuelve el nombre del permiso.
+     * @return string
+     */
+    public function getPermiso()
+    {
+        $permiso = new Permisos();
+        $permiso->readOne(['id', $this->permiso_id]);
+        return $permiso->permiso;
+        ;
     }
 
     /**
@@ -155,14 +139,14 @@ class Usuarios extends BaseModel
         $data = $query->fetchAll();
 
         $new = [];
+        if ($withEmpty) {
+            $new[''] = 'Ningún';
+        }
         foreach ($data as $value) {
             $new[$value['id']] = $value['nombre'];
         }
-        asort($new, SORT_NATURAL | SORT_FLAG_CASE);
 
-        if ($withEmpty) {
-            $new = ['' => 'Ningún'] + $new;
-        }
+        asort($new, SORT_NATURAL | SORT_FLAG_CASE);
 
         return $new;
     }

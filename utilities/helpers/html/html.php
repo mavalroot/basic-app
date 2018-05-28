@@ -6,6 +6,9 @@ use DateTime;
 use utilities\base\BaseModel;
 
 /**
+ * @author María Valderrama Rodríguez <contact@mavalroot.es>
+ * @copyright Copyright (c) 2018, María Valderrama Rodríguez
+ *
  * Proporciona un set de métodos estáticos que generan código HTML.
  */
 class Html
@@ -163,7 +166,7 @@ class Html
                     <?= static::$label ?: $model->getLabel($prop) ?>
                 </label>
                 <div class="col-sm-10">
-                    <input type="text" id="<?= $name ?>" name="<?= $name ?>" value="<?= $value ?>" class="form-control <?= $valid ?>"  />
+                    <input type="text" id="<?= $name ?>" name="<?= $name ?>" value="<?= $value ?>" class="form-contusuario <?= $valid ?>"  />
 
                     <small>
                         <?= $config['message'] ?>
@@ -178,7 +181,7 @@ class Html
             ?>
             <div class="form-group">
                 <label>
-                    <input type="text" name="" value="" class="form-control">
+                    <input type="text" name="" value="" class="form-contusuario">
                 </label>
             </div>
             <?php
@@ -207,7 +210,7 @@ class Html
                     <?= static::$label ?: $model->getLabel($prop) ?>
                 </label>
                 <div class="col-sm-10">
-                    <input type="password" id="<?= $name ?>" name="<?= $name ?>" class="form-control <?= $valid ?>"  />
+                    <input type="password" id="<?= $name ?>" name="<?= $name ?>" class="form-contusuario <?= $valid ?>"  />
 
                     <small>
                         <?= $config['message'] ?>
@@ -222,7 +225,7 @@ class Html
             ?>
             <div class="form-group">
                 <label>
-                    <input type="password" name="" value="" class="form-control">
+                    <input type="password" name="" value="" class="form-contusuario">
                 </label>
             </div>
             <?php
@@ -253,7 +256,7 @@ class Html
                     <?= static::$label ?: $model->getLabel($prop) ?>
                 </label>
                 <div class="col-sm-10">
-                    <input type="number" id="<?= $name ?>" name="<?= $name ?>" value="<?= $value ?>" class="form-control <?= $valid ?>" <?= $currency ?>  />
+                    <input type="number" id="<?= $name ?>" name="<?= $name ?>" value="<?= $value ?>" class="form-contusuario <?= $valid ?>" <?= $currency ?>  />
                     <small>
                         <?= $config['message'] ?>
                     </small>
@@ -267,7 +270,7 @@ class Html
             ?>
             <div class="form-group">
                 <label>
-                    <input type="number" name="" value="" class="form-control">
+                    <input type="number" name="" value="" class="form-contusuario">
                 </label>
             </div>
             <?php
@@ -297,7 +300,7 @@ class Html
                     <?= static::$label ?: $model->getLabel($prop) ?>
                 </label>
                 <div class="col-sm-10">
-                    <input type="date" id="<?= $name ?>" name="<?= $name ?>" value="<?= $value ?>" class="form-control <?= $valid ?>"  />
+                    <input type="date" id="<?= $name ?>" name="<?= $name ?>" value="<?= $value ?>" class="form-contusuario <?= $valid ?>"  />
                     <small>
                         <?= $config['message'] ?>
                     </small>
@@ -311,7 +314,7 @@ class Html
             ?>
             <div class="form-group">
                 <label>
-                    <input type="date" name="" value="" class="form-control" />
+                    <input type="date" name="" value="" class="form-contusuario" />
                 </label>
             </div>
             <?php
@@ -341,7 +344,7 @@ class Html
                     <?= static::$label ?: $model->getLabel($prop) ?>
                 </label>
                 <div class="col-sm-10">
-                    <input type="text" id="<?= $name ?>" value="<?= $value ?>" class="form-control <?= $valid ?> <?= $config['class'] ?>" disabled />
+                    <input type="text" id="<?= $name ?>" value="<?= $value ?>" class="form-contusuario <?= $valid ?> <?= $config['class'] ?>" disabled />
                     <small>
                         <?= $config['message'] ?>
                     </small>
@@ -355,7 +358,7 @@ class Html
             ?>
             <div class="form-group">
                 <label>
-                    <input type="text" name="" value="" class="form-control <?= $config['class'] ?>">
+                    <input type="text" name="" value="" class="form-contusuario <?= $config['class'] ?>">
                 </label>
             </div>
             <?php
@@ -484,7 +487,7 @@ class Html
             <div class="form-group row">
                 <label for="<?= $name ?>" class="col-sm-2 col-form-label"><?= static::$label ?: $model->getLabel($prop) ?></label>
                 <div class="col-sm-10">
-                    <select id="<?= $name ?>" class="form-control <?= $valid ?>" name="<?= $name ?>" <?= $set && $config['locked'] ? 'disabled="true"' : '' ?>>
+                    <select id="<?= $name ?>" class="form-contusuario <?= $valid ?>" name="<?= $name ?>" <?= $set && $config['locked'] ? 'disabled="true"' : '' ?>>
                         <?php if ($config['select']): ?>
                             <option value="">-- Elegir --</option>
                         <?php endif; ?>
@@ -520,7 +523,7 @@ class Html
                     <?= static::$label ?: $model->getLabel($prop) ?>
                 </label>
                 <div class="col-sm-10">
-                    <textarea id="<?= $name ?>" name="<?= $name ?>" class="form-control <?= $valid ?>"  ><?= preg_replace('/<br\\s*?\/??>/i', '', $value) ?></textarea>
+                    <textarea id="<?= $name ?>" name="<?= $name ?>" class="form-contusuario <?= $valid ?>"  ><?= preg_replace('/<br\\s*?\/??>/i', '', $value) ?></textarea>
 
                     <small>
                         <?= $config['message'] ?>
@@ -535,7 +538,7 @@ class Html
             ?>
             <div class="form-group">
                 <label>
-                    <input type="text" name="" value="" class="form-control">
+                    <input type="text" name="" value="" class="form-contusuario">
                 </label>
             </div>
             <?php

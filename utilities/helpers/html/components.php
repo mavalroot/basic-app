@@ -7,6 +7,9 @@ use models\Permisos;
 use utilities\helpers\validation\Checker;
 
 /**
+ * @author María Valderrama Rodríguez <contact@mavalroot.es>
+ * @copyright Copyright (c) 2018, María Valderrama Rodríguez
+ *
  * Nos proporciona una serie de componentes html.
  */
 class Components
@@ -34,7 +37,7 @@ class Components
      * la barra de navegación. Por defecto sí se mostrará.
      *
      * @param   bool    $check          Indica si quiere o no que se haga la
-     * comprobación de que el rol esté conectado. Pensado para el login.
+     * comprobación de que el usuario esté conectado. Pensado para el login.
      */
     public static function header($pageTitle, $breadcrumps = [], $navbar = true, $check = true)
     {
@@ -93,7 +96,7 @@ class Components
         <?php if ($bool): ?>
             <footer class="page-footer font-small bg-dark text-white mt-5">
                 <div class="footer-copyright py-3 text-center">
-                    © <?= date("Y"); ?> Ayto. de Chipiona
+                    © Copyright <?= date("Y"); ?>: <a href="https://mavalroot.es">mavalroot</a>
                 </div>
             </footer>
         <?php endif; ?>
@@ -218,27 +221,24 @@ class Components
     public static function navbar()
     {
         ?>
-        <nav class="navbar navbar-expand-lg navbar navbar-light border-bottom border-warning fixed-top" style="background-color: #f2f2f2">
-          <a class="navbar-brand" href="../site/index.php"><img src="../libs/images/ayto.png" height="50" class="d-inline-block align-middle">Ayto. de Chipiona</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark border-bottom border-warning fixed-top">
+          <a class="navbar-brand" href="../site/index.php">mavalroot</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-contusuarios="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <?php if (Checker::checkLogged() && !Checker::checkPermission(Permisos::QRONLY)): ?>
-                    <li><a href="../aparatos/index.php" class="nav-link">Aparatos</a></li>
-                    <li><a href="../usuarios/index.php" class="nav-link">Usuarios</a></li>
-                    <li><a href="../delegaciones/index.php" class="nav-link">Delegaciones</a></li>
+                    <li><a href="../ejemplo/index.php" class="nav-link">Ejemplo</a></li>
                 <?php endif; ?>
                 <?php if (Checker::checkPermission(Permisos::ADMIN)): ?>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" usuarioe="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Administración
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="../historial/index.php">Historial</a>
-                      <a class="dropdown-item" href="../roles/index.php">Roles</a>
+                      <a class="dropdown-item" href="../usuarios/index.php">Usuarios</a>
                     </div>
                 </li>
                 <?php endif; ?>
@@ -246,11 +246,11 @@ class Components
             </ul>
             <?php if (isset($_SESSION['nombre'])): ?>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../roles/logout.php" class="nav-link">Logout ( <?= $_SESSION['nombre'] ?> )</a></li>
+                <li><a href="../usuarios/logout.php" class="nav-link">Logout ( <?= $_SESSION['nombre'] ?> )</a></li>
             </ul>
             <?php else: ?>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../roles/login.php" class="nav-link">Login</a></li>
+                <li><a href="../usuarios/login.php" class="nav-link">Login</a></li>
             </ul>
             <?php endif ?>
           </div>
@@ -266,10 +266,10 @@ class Components
     public static function search($options, $searchTerm = null)
     {
         $options = is_string($options) ? [$options] : $options; ?>
-            <form role='search' action='index.php'>
+            <form usuarioe='search' action='index.php'>
                 <div class='input-group'>
                     <?php $search_value=isset($searchTerm) ? "value='" . $searchTerm ."'" : ""; ?>
-                    <input type='text' class='form-control' placeholder='Introduzca un término de búsqueda.' name='search' id='srch-term' required <?= $search_value ?> />
+                    <input type='text' class='form-contusuario' placeholder='Introduzca un término de búsqueda.' name='search' id='srch-term' required <?= $search_value ?> />
                     <div class='input-group-append'>
                         <select class="btn btn-outline-secondary" name="by">
                             <?php foreach ($options as $label => $value): ?>

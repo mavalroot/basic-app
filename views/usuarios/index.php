@@ -1,9 +1,9 @@
 <?php
 session_start();
 include_once '../../config/main-local.php';
-use controllers\UsuariosController;
-
 use utilities\helpers\html\Components;
+
+use controllers\UsuariosController;
 
 $pageTitle = 'Usuarios';
 $breadcrumps = [

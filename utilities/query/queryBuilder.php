@@ -6,6 +6,9 @@ use PDO;
 use PDOStatement;
 
 /**
+ * @author María Valderrama Rodríguez <contact@mavalroot.es>
+ * @copyright Copyright (c) 2018, María Valderrama Rodríguez
+ *
  * Clase que ayuda a la construcción de una query.
  */
 class QueryBuilder

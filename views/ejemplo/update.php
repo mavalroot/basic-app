@@ -3,7 +3,7 @@ session_start();
 include_once '../../config/main-local.php';
 use utilities\helpers\validation\Errors;
 use utilities\helpers\html\Components;
-use controllers\RolesController;
+use controllers\UsuariosController;
 
 // Obtenemos el ID del registro que se va a actualizar.
 if (!isset($_GET['id'])) {
@@ -11,16 +11,16 @@ if (!isset($_GET['id'])) {
 }
 $id = $_GET['id'];
 
-$pageTitle = "Editar rol";
+$pageTitle = 'Editar ejemplo';
 $breadcrumps = [
     'Inicio' => '../site/index.php',
-    'Roles' => 'index.php',
+    'Ejemplos' => 'index.php',
     $pageTitle => ''
 ];
 Components::header($pageTitle, $breadcrumps);
 
-    $controller = new RolesController();
-    $rol = $controller->update($id);
+$controller = new EjemploController();
+$ejemplo = $controller->update($id);
 ?>
 
 <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$id}");?>" method="post">

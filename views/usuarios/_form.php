@@ -1,6 +1,6 @@
 <?php
 include_once '../../config/main-local.php';
-use models\Delegaciones;
+use models\Permisos;
 
 use utilities\helpers\html\Html;
 use utilities\helpers\validation\Errors;
@@ -20,11 +20,13 @@ if (!isset($_SESSION)) {
 </div>
 
 <fieldset>
-<?= Html::form($usuario, 'nombre')->textInput() ?>
-<?= Html::form($usuario, 'delegacion_id')->selectOption(Delegaciones::getAll(true)) ?>
-<?= Html::form($usuario, 'extension')->textInput() ?>
+    <?= Html::form($usuario, 'nombre')->textInput(['message' => 'El nombre de usuario no puede repetirse.']) ?>
+    <?= Html::form($usuario, 'password_hash')->passwordInput() ?>
+    <?= Html::form($usuario, 'permiso_id')->selectOption(array_flip(Permisos::getAll()), ['locked' => false]) ?>
 </fieldset>
 
+<fieldset>
 <div class="form-group text-center">
     <button type="submit" class="btn btn-primary">Enviar</button>
 </div>
+</fieldset>
