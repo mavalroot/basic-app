@@ -5,3 +5,5 @@ La aplicación permitiría:
 - Hacer altas, bajas y modificaciones.
 - Gestionar usuarios y permisos.
 - Consultar historial de actividad.
+
+Documentación: [Ver](https://mavalroot.es/basic-app/).
