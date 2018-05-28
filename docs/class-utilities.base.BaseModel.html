@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <link rel="stylesheet" href="resources/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/style.css">
+
+        <title>
+            Class utilities\base\BaseModel
+        </title>
+    </head>
+
+    <body>
+<div id="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="index.html">
+                                Overview
+                            </a>
+                        </li>
+
+                            <li>
+                                <a href="classes.html">Classes</a>
+                            </li>
+
+
+
+
+
+                    </ul>
+
+                    <form id="search" class="pull-right">
+                        <input type="text" name="q" class="form-control text" placeholder="Search class, function or namespace" autofocus>
+                    </form>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+            <div id="breadcrumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+<div class="pull-left type">
+    <span class="label label-success">Class</span>
+</div>
+
+<ol class="breadcrumb pull-left">
+        <li>
+            <a href="namespace-utilities.html">utilities</a>
+        </li>
+            <li class="backslash">\</li>
+        <li>
+            <a href="namespace-utilities.base.html">base</a>
+        </li>
+
+        <li class="backslash">\</li>
+        <li class="active">BaseModel</li>
+</ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+    <h1>BaseModel</h1>
+
+
+
+
+        <div>
+            <h2>Known subclasses</h2>
+            <a href="class-models.Ejemplo.html">models\Ejemplo</a>, 
+            <a href="class-models.Historial.html">models\Historial</a>, 
+            <a href="class-models.Permisos.html">models\Permisos</a>, 
+            <a href="class-models.Usuarios.html">models\Usuarios</a>
+        </div>
+
+    <div class="info">
+        
+
+            <br>
+            <br>
+            <a href="source-class-utilities.base.BaseModel.html" class="open-source-code">Open source code</a>
+        <br>
+    </div>
+
+        <table class="summary table table-bordered table-responsive table-striped" id="methods">
+            <tr><th colspan="3">Methods Summary</th></tr>
+
+
+
+<tr id="___construct">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#___construct">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#60-71">__construct</a>( <span> array <span class="property-name">$config</span> = <span class="php-keyword1">array</span> ( )</span> )</code>
+
+            <div class="description">
+                Constructor de nuestra clase.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_tableName">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_tableName">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#77-80">tableName</a>( )</code>
+
+            <div class="description">
+                Nombre de la tabla asociada a la clase.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_primaryKey">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_primaryKey">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#88-91">primaryKey</a>( )</code>
+
+            <div class="description">
+                Clave primaria por la cual se indexa la tabla.
+
+Debe corresponder al nombre de una columna de la tabla que corresponde
+a la clase.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_rules">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_rules">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#125-128">rules</a>( )</code>
+
+            <div class="description">
+                Es un array que contiene las normas de validación para comprobar, antes
+de intentar insertar una fila en la tabla, que la instancia de clase
+es una fila válida.
+
+En caso de que haya que insertar filas en varias tablas de forma
+encadenada, ya sea porque se relacionen entre si o por otro motivo,
+lograremos que si una de esas inserciones no es válida, no se inserten
+las anteriores.
+
+Para construir las reglas de la clase hay que seguir la siguiente
+estructura:
+
+Comprobar tipo:
+[
+     ['propiedad_de_la_clase', 'tipo', 'message' =&gt; 'Mensaje de error']
+]
+Téngase en cuenta que el mensaje es opcional, ya que hay uno por defecto.
+
+Operaciones
+[
+     ['propiedad_de_la_clase', 'operador', 'comparacion', 'message' =&gt; 'Mensaje de error']
+]
+Téngase en cuenta que el mensaje es opcional, ya que hay uno por defecto.
+
+Ejemplo:
+return [
+     ['edad', integer],
+     ['edad', '&gt;', 0, 'message' =&gt; 'La edad debe ser mayor que cero'],
+];
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_labels">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 protected static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_labels">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#142-147">labels</a>( )</code>
+
+            <div class="description">
+                Labels relacionados con la propiedad de la clase, con motivo de su mejor
+visualización en las vistas.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_getLabel">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_getLabel">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#154-158">getLabel</a>( <span> string <span class="property-name">$prop</span> </span> )</code>
+
+            <div class="description">
+                Devuelve el label de una propiedad en específico.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_validate">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_validate">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#172-177">validate</a>( )</code>
+
+            <div class="description">
+                Valida las propiedades del modelo para comprobar que cumple las reglas
+previamente definidas en rules().
+
+Se utiliza la clase ModelValidator.
+
+Los errores generados se guardan en el atributo $errors, y pueden ser
+consultados a través de getErrors().
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_getErrors">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_getErrors">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#184-190">getErrors</a>( <span> string <span class="property-name">$attr</span> = <span class="php-keyword1">NULL</span></span> )</code>
+
+            <div class="description">
+                Devuelve los errores guardados en el atributo $errors.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_getSearchBy">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_getSearchBy">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#196-199">getSearchBy</a>( )</code>
+
+            <div class="description">
+                Devuelve el atributo searchBy.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_setSortBy">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_setSortBy">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#205-208">setSortBy</a>( <span> string <span class="property-name">$new</span> </span> )</code>
+
+            <div class="description">
+                Cambia el criterio de búsqueda de una instancia.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_beforeInsert">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 protected 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_beforeInsert">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#214-217">beforeInsert</a>( )</code>
+
+            <div class="description">
+                Se implementa antes del insert.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_afterInsert">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 protected 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_afterInsert">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#223-226">afterInsert</a>( )</code>
+
+            <div class="description">
+                Se implementa después del insert.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_beforeUpdate">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 protected 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_beforeUpdate">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#232-235">beforeUpdate</a>( )</code>
+
+            <div class="description">
+                Se implementa antes del update.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_afterUpdate">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 protected 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_afterUpdate">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#241-244">afterUpdate</a>( )</code>
+
+            <div class="description">
+                Se implementa después del update.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_load">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_load">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#250-257">load</a>( <span> array <span class="property-name">$post</span> </span> )</code>
+
+            <div class="description">
+                Carga los datos obtenidos por post al modelo.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_readOne">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_readOne">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#269-289">readOne</a>( <span> array <span class="property-name">$where</span> = <span class="php-keyword1">false</span></span> )</code>
+
+            <div class="description">
+                Muestra una fila específica de la tabla.
+
+Por defecto usará la clave primaria, pero si se le pasa un array que
+contenga "columna" y "valor" lo usará para filtrar.
+
+$ejemplo-&gt;readOne(['columna' =&gt; 'valor']);
+$ejemplo-&gt;readOne();
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_readAll">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_readAll">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#302-318">readAll</a>( <span> array <span class="property-name">$config</span> </span> )</code>
+
+            <div class="description">
+                Va mostrando todas las filas de una tabla, con unas limitaciones para
+la paginación.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_create">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_create">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#324-347">create</a>( )</code>
+
+            <div class="description">
+                Crea una nueva fila en la tabla.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_update">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_update">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#353-382">update</a>( )</code>
+
+            <div class="description">
+                Actualiza una fila de la tabla.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_delete">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_delete">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#388-400">delete</a>( )</code>
+
+            <div class="description">
+                Elimina una fila de la tabla.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_reset">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_reset">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#405-410">reset</a>( )</code>
+
+            <div class="description">
+                Resetea la instancia del objeto.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_countAll">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_countAll">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#419-433">countAll</a>( <span> array <span class="property-name">$search</span> = <span class="php-keyword1">array</span> ( )</span> )</code>
+
+            <div class="description">
+                Cuenta todas las filas de una tabla, sirve para la paginación.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_getAllColumns">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_getAllColumns">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#439-454">getAllColumns</a>( )</code>
+
+            <div class="description">
+                Obtiene los nombres de las columnas de la tabla en forma de array.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_actionMessages">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 protected 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_actionMessages">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#468-475">actionMessages</a>( )</code>
+
+            <div class="description">
+                Mensajes para la creación de acciones del historial. Se puede
+personalizar en cada clase o dejar el estandar definido a continuación.
+
+
+
+
+
+
+                    <h2>var</h2>
+                    <div class="list">
+                        <br>
+                    </div>
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_getActionMessage">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_getActionMessage">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#483-487">getActionMessage</a>( <span> string <span class="property-name">$action</span> </span> )</code>
+
+            <div class="description">
+                Devuelve un mensaje de acción en concreto.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_createRecord">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_createRecord">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#494-504">createRecord</a>( <span> string <span class="property-name">$action</span> </span> )</code>
+
+            <div class="description">
+                Crea un record para el regisro de actividad reciente. La idea es que
+se cree uno cuando se hace insert, update o delete.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_getQRData">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_getQRData">#</a>
+            <code><a href="source-class-utilities.base.BaseModel.html#513-524">getQRData</a>( <span> array <span class="property-name">$exclude</span> = <span class="php-keyword1">array</span> ( )</span> )</code>
+
+            <div class="description">
+                Devuelve los datos del modelo en formato string, con sus correspondientes
+saltos de linea, para crear un código QR que muestre dicho texto.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+        </table>
+
+
+
+
+
+        <table class="summary table table-bordered table-responsive table-striped" id="properties">
+            <tr><th colspan="3">Properties Summary</th></tr>
+<tr id="$conn">
+    <td class="attributes">
+        <code class="keyword">
+            protected 
+
+            null|\PDO
+        </code>
+    </td>
+
+    <td class="name">
+        <code>
+            <a href="source-class-utilities.base.BaseModel.html#25" class="property-name">$conn</a>
+        </code>
+        <div class="description">
+            Conexión a la base de datos.
+
+                <br>
+                <br>
+        </div>
+    </td>
+    <td class="value">
+        <div>
+            <a href="#$conn" class="anchor pull-right">#</a>
+            <code><span class="php-keyword1">NULL</span></code>
+        </div>
+    </td>
+</tr>
+<tr id="$searchBy">
+    <td class="attributes">
+        <code class="keyword">
+            protected 
+
+            array
+        </code>
+    </td>
+
+    <td class="name">
+        <code>
+            <a href="source-class-utilities.base.BaseModel.html#35" class="property-name">$searchBy</a>
+        </code>
+        <div class="description">
+            Campos de búsqueda. Sigue el siguiente formato:
+[
+     'Label' =&gt; 'columna1',
+     'Label' =&gt; 'columna2',
+]
+
+                <br>
+                <br>
+        </div>
+    </td>
+    <td class="value">
+        <div>
+            <a href="#$searchBy" class="anchor pull-right">#</a>
+            <code><span class="php-keyword1">array</span> (
+  <span class="php-quote">'ID'</span> =&gt; <span class="php-quote">'id'</span>,
+)</code>
+        </div>
+    </td>
+</tr>
+<tr id="$sortBy">
+    <td class="attributes">
+        <code class="keyword">
+            protected 
+
+            string
+        </code>
+    </td>
+
+    <td class="name">
+        <code>
+            <a href="source-class-utilities.base.BaseModel.html#43" class="property-name">$sortBy</a>
+        </code>
+        <div class="description">
+            Atributo por el cual se ordenan las columnas de la tabla.
+
+Primer se indica la columa, luego si la ordenación es ascendente (ASC)
+o descendente (DESC).
+
+                <br>
+                <br>
+        </div>
+    </td>
+    <td class="value">
+        <div>
+            <a href="#$sortBy" class="anchor pull-right">#</a>
+            <code><span class="php-quote">'created_at DESC'</span></code>
+        </div>
+    </td>
+</tr>
+<tr id="$errors">
+    <td class="attributes">
+        <code class="keyword">
+            protected 
+
+            array
+        </code>
+    </td>
+
+    <td class="name">
+        <code>
+            <a href="source-class-utilities.base.BaseModel.html#49" class="property-name">$errors</a>
+        </code>
+        <div class="description">
+            Errores obtenidos al hacer un validate().
+
+                <br>
+                <br>
+        </div>
+    </td>
+    <td class="value">
+        <div>
+            <a href="#$errors" class="anchor pull-right">#</a>
+            <code><span class="php-keyword1">array</span> (
+)</code>
+        </div>
+    </td>
+</tr>
+        </table>
+
+
+    <div id="footer">
+        Generated by <a href="https://github.com/apigen/apigen">ApiGen</a>
+    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="resources/jquery-3.2.1.min.js"></script>
+        <script src="resources/jquery-ui-1.12.1.min.js"></script>
+
+        <script src="elementlist.js"></script>
+        <script src="resources/main.js"></script>
+    </body>
+</html>
+
+

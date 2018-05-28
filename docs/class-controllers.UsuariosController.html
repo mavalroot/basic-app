@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <link rel="stylesheet" href="resources/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/style.css">
+
+        <title>
+            Class controllers\UsuariosController
+        </title>
+    </head>
+
+    <body>
+<div id="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="index.html">
+                                Overview
+                            </a>
+                        </li>
+
+                            <li>
+                                <a href="classes.html">Classes</a>
+                            </li>
+
+
+
+
+
+                    </ul>
+
+                    <form id="search" class="pull-right">
+                        <input type="text" name="q" class="form-control text" placeholder="Search class, function or namespace" autofocus>
+                    </form>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+            <div id="breadcrumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+<div class="pull-left type">
+    <span class="label label-success">Class</span>
+</div>
+
+<ol class="breadcrumb pull-left">
+        <li>
+            <a href="namespace-controllers.html">controllers</a>
+        </li>
+
+        <li class="backslash">\</li>
+        <li class="active">UsuariosController</li>
+</ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+    <h1>UsuariosController</h1>
+
+
+        <dl class="tree">
+            <dd>
+                    extends
+                    <a href="class-utilities.base.BaseController.html">
+                        utilities\base\BaseController
+                    </a>
+
+
+            </dd>
+        </dl>
+
+
+
+    <div class="info">
+        
+
+            <a href="source-class-controllers.UsuariosController.html" class="open-source-code">Open source code</a>
+        <br>
+    </div>
+
+        <table class="summary table table-bordered table-responsive table-striped" id="methods">
+            <tr><th colspan="3">Methods Summary</th></tr>
+
+
+
+<tr id="___construct">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#___construct">#</a>
+            <code><a href="source-class-controllers.UsuariosController.html#19-23">__construct</a>( )</code>
+
+            <div class="description">
+                
+
+
+
+
+
+
+
+                        <h2>Overrides</h2>
+                        <div>
+                            <code>
+                                <a href="class-utilities.base.BaseController.html#___construct">
+                                    utilities\base\BaseController::__construct()
+                                </a>
+                            </code>
+                        </div>
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_login">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_login">#</a>
+            <code><a href="source-class-controllers.UsuariosController.html#37-60">login</a>( )</code>
+
+            <div class="description">
+                Acción de login.
+
+Primero comprueba que el usuario no esté ya loggeado. En caso de que lo
+esté redigirá al index, en caso de que no se comprobará si se han
+recibido los parámetros "Nombre" y "Password" por POST, para acto
+seguido hacer las debidas comprobaciones.
+
+Se lanzará un mensaje de error si el usuario o la contraseña
+introducidos no son válidos, o se redigirá al index si el login ha
+tenido éxito.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_index">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_index">#</a>
+            <code><a href="source-class-controllers.UsuariosController.html#69-99">index</a>( <span> int <span class="property-name">$pagLimit</span> </span>, <span> int <span class="property-name">$pagOffset</span> </span> )</code>
+
+            <div class="description">
+                Devuelve las variables necesarias para la creación del index del modelo.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_view">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_view">#</a>
+            <code><a href="source-class-controllers.UsuariosController.html#106-114">view</a>( <span> int <span class="property-name">$id</span> </span> )</code>
+
+            <div class="description">
+                Devuelve el modelo necesario para la creación del view del modelo.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_create">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_create">#</a>
+            <code><a href="source-class-controllers.UsuariosController.html#121-138">create</a>( )</code>
+
+            <div class="description">
+                Crea una nueva fila de la tabla "usuarios" con los datos obtenidos
+del formulario.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_update">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_update">#</a>
+            <code><a href="source-class-controllers.UsuariosController.html#148-176">update</a>( <span> int <span class="property-name">$id</span> </span> )</code>
+
+            <div class="description">
+                Actualiza una fila de la tabla "delegaciones" con los datos obtenidos a
+través del formulario.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_delete">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public 
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_delete">#</a>
+            <code><a href="source-class-controllers.UsuariosController.html#182-199">delete</a>( <span> int <span class="property-name">$id</span> </span> )</code>
+
+            <div class="description">
+                Borra un registro ya existente.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+        </table>
+
+        <table class="summary table table-bordered table-responsive table-striped">
+            <tr>
+                <th>
+                    Methods inherited from <a href="class-utilities.base.BaseController.html#methods">utilities\base\BaseController</a>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                        <code><a href="class-utilities.base.BaseController.html#___construct">__construct()</a></code>, 
+                        <code><a href="class-utilities.base.BaseController.html#_findModel">findModel()</a></code>
+                </td>
+            </tr>
+        </table>
+
+
+
+
+        <table class="summary table table-bordered table-responsive table-striped" id="properties">
+            <tr><th colspan="3">Properties Summary</th></tr>
+<tr id="$usuario">
+    <td class="attributes">
+        <code class="keyword">
+            protected static
+
+            
+        </code>
+    </td>
+
+    <td class="name">
+        <code>
+            <a href="source-class-controllers.UsuariosController.html#17" class="property-name">$usuario</a>
+        </code>
+        <div class="description">
+            
+
+        </div>
+    </td>
+    <td class="value">
+        <div>
+            <a href="#$usuario" class="anchor pull-right">#</a>
+            <code><span class="php-num">2</span></code>
+        </div>
+    </td>
+</tr>
+        </table>
+
+            <table class="summary table table-bordered table-responsive table-striped">
+                <tr>
+                    <th>
+                        Properties inherited from <a href="class-utilities.base.BaseController.html#properties">utilities\base\BaseController</a>
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                            <code><a href="class-utilities.base.BaseController.html#$usuario" class="property-name">$usuario</a></code>, 
+                            <code><a href="class-utilities.base.BaseController.html#$model" class="property-name">$model</a></code>
+                    </td>
+                </tr>
+            </table>
+
+    <div id="footer">
+        Generated by <a href="https://github.com/apigen/apigen">ApiGen</a>
+    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="resources/jquery-3.2.1.min.js"></script>
+        <script src="resources/jquery-ui-1.12.1.min.js"></script>
+
+        <script src="elementlist.js"></script>
+        <script src="resources/main.js"></script>
+    </body>
+</html>
+
+

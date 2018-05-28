@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <link rel="stylesheet" href="resources/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/style.css">
+
+        <title>
+            Class utilities\query\QueryBuilder
+        </title>
+    </head>
+
+    <body>
+<div id="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="index.html">
+                                Overview
+                            </a>
+                        </li>
+
+                            <li>
+                                <a href="classes.html">Classes</a>
+                            </li>
+
+
+
+
+
+                    </ul>
+
+                    <form id="search" class="pull-right">
+                        <input type="text" name="q" class="form-control text" placeholder="Search class, function or namespace" autofocus>
+                    </form>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+            <div id="breadcrumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+<div class="pull-left type">
+    <span class="label label-success">Class</span>
+</div>
+
+<ol class="breadcrumb pull-left">
+        <li>
+            <a href="namespace-utilities.html">utilities</a>
+        </li>
+            <li class="backslash">\</li>
+        <li>
+            <a href="namespace-utilities.query.html">query</a>
+        </li>
+
+        <li class="backslash">\</li>
+        <li class="active">QueryBuilder</li>
+</ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+    <h1>QueryBuilder</h1>
+
+
+
+
+
+    <div class="info">
+        
+
+            <br>
+            <br>
+            <a href="source-class-utilities.query.QueryBuilder.html" class="open-source-code">Open source code</a>
+        <br>
+    </div>
+
+        <table class="summary table table-bordered table-responsive table-striped" id="methods">
+            <tr><th colspan="3">Methods Summary</th></tr>
+
+
+
+<tr id="_getInstance">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_getInstance">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#113-120">getInstance</a>( )</code>
+
+            <div class="description">
+                Devuelve la instancia de clase para poder encadenar métodos.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_db">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_db">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#129-134">db</a>( <span> \PDO <span class="property-name">$db</span> </span> )</code>
+
+            <div class="description">
+                Proporciona una conexión a la base de datos deseada para hacer la query.
+
+Es obligatorio.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_select">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_select">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#143-147">select</a>( <span> string <span class="property-name">$value</span> </span> )</code>
+
+            <div class="description">
+                Indica la select de la query que se está construyendo.
+
+Es opcional, pues en caso de que no se proporcione será '*'.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_from">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_from">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#155-159">from</a>( <span> string <span class="property-name">$value</span> </span> )</code>
+
+            <div class="description">
+                Indica el from de la query que se está construyendo.
+
+Es obligatorio.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_join">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_join">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#175-183">join</a>( <span> string <span class="property-name">$value</span> </span>, <span> array <span class="property-name">$array</span> </span> )</code>
+
+            <div class="description">
+                Indica el join de la query que se está construyendo.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_leftJoin">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_leftJoin">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#199-207">leftJoin</a>( <span> string <span class="property-name">$value</span> </span>, <span> array <span class="property-name">$array</span> </span> )</code>
+
+            <div class="description">
+                Indica el left join de la query que se está construyendo.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_rightJoin">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_rightJoin">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#223-231">rightJoin</a>( <span> string <span class="property-name">$value</span> </span>, <span> array <span class="property-name">$array</span> </span> )</code>
+
+            <div class="description">
+                Indica el right join de la query que se está construyendo.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_orderBy">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_orderBy">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#247-257">orderBy</a>( <span> string|array <span class="property-name">$order</span> </span> )</code>
+
+            <div class="description">
+                Indica los order de la query que se está construyendo.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_where">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_where">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#271-280">where</a>( <span> array <span class="property-name">$array</span> </span> )</code>
+
+            <div class="description">
+                Indica el where de la query que se está construyendo.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_andWhere">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_andWhere">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#295-304">andWhere</a>( <span> array <span class="property-name">$array</span> </span> )</code>
+
+            <div class="description">
+                Indica el where de la query que se está construyendo. La diferencia con
+where() es que este añade un 'and' al principio.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_orWhere">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_orWhere">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#319-328">orWhere</a>( <span> array <span class="property-name">$array</span> </span> )</code>
+
+            <div class="description">
+                Indica el where de la query que se está construyendo. La diferencia con
+where() es que este añade un 'or' al principio.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_limit">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_limit">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#335-339">limit</a>( <span> int|bool <span class="property-name">$value</span> </span> )</code>
+
+            <div class="description">
+                Indica el limit de la query que se está construyendo.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_offset">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_offset">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#346-350">offset</a>( <span> int|bool <span class="property-name">$value</span> </span> )</code>
+
+            <div class="description">
+                Indica el offset de la query que se está construyendo.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_groupBy">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_groupBy">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#363-367">groupBy</a>( <span> array <span class="property-name">$array</span> </span> )</code>
+
+            <div class="description">
+                Indica el group by de la query que se está construyendo.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_having">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_having">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#381-390">having</a>( <span> array <span class="property-name">$array</span> </span> )</code>
+
+            <div class="description">
+                Indica el having de la query que se está construyendo.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_andHaving">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_andHaving">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#405-414">andHaving</a>( <span> array <span class="property-name">$array</span> </span> )</code>
+
+            <div class="description">
+                Indica el having de la query que se está construyendo. La diferencia con
+having() es que este añade un 'and' al principio.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_orHaving">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_orHaving">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#429-438">orHaving</a>( <span> array <span class="property-name">$array</span> </span> )</code>
+
+            <div class="description">
+                Indica el having de la query que se está construyendo. La diferencia con
+having() es que este añade un 'or' al principio.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+
+
+
+<tr id="_get">
+
+    <td class="attributes col-md-1">
+        <code class="keyword">
+                 public static
+                
+                
+        </code>
+    </td>
+
+    <td class="name">
+        <div>
+            <a class="anchor pull-right" href="#_get">#</a>
+            <code><a href="source-class-utilities.query.QueryBuilder.html#445-453">get</a>( )</code>
+
+            <div class="description">
+                Una vez formada la query, este método la bindea, la ejecuta y por
+último la devuelve.
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </td>
+</tr>
+        </table>
+
+
+
+
+
+
+
+    <div id="footer">
+        Generated by <a href="https://github.com/apigen/apigen">ApiGen</a>
+    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="resources/jquery-3.2.1.min.js"></script>
+        <script src="resources/jquery-ui-1.12.1.min.js"></script>
+
+        <script src="elementlist.js"></script>
+        <script src="resources/main.js"></script>
+    </body>
+</html>
+
+
